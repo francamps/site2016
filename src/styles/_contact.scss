@@ -1,0 +1,35 @@
+.contact {
+  height: 500px;
+
+  .title {
+    float: left;
+    width: 50%;
+  }
+
+  .content {
+    background: $white;
+    width: 50%;
+    height: 100%;
+    float: right;
+
+    .copy {
+      padding: 40px;
+    }
+  }
+
+  .social-icon {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      display: inline;
+      overflow: hidden;
+      float: left;
+      background-size: 64px 32px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+
+      &.github {
+        background-image: url('../assets/social/github2.png');
+      }
+  }
+}

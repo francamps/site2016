@@ -1,0 +1,42 @@
+@import 'sidemenu';
+
+.side-menu {
+  width: 100px;
+  float: left;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transition: width .5s, background .25s;
+  z-index: 1;
+
+  &.open {
+    width: 100%;
+    background: $white;
+    transition: width .5s, background .25s;
+
+    .options {
+      width: 100%;
+      text-align: center;
+      height: 100%;
+      top: -50%;
+
+      p {
+        font-family: 'Merriweather-Bold';
+        text-transform: uppercase;
+        font-size: $normal;
+
+        a {
+          text-decoration: none;
+          color: $darkgrey;
+          transition: color .1s;
+
+          &:hover {
+            color: $midgrey;
+            transition: color .1s;
+          }
+        }
+      }
+    }
+  }
+}

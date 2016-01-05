@@ -1,0 +1,43 @@
+@import 'logo';
+
+.hello {
+  max-width: 1200px;
+  width: 80%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  h1.hello-copy {
+    display: inline-block;
+    float: left;
+    font-family: 'Merriweather', sans-serif;
+    font-weight: light;
+
+    p {
+      color: $midgrey;
+
+      .highlight {
+        color: $white;
+      }
+
+      &::selection {
+        color: $off-yellow;
+        background: $darkgrey;
+      }
+    }
+
+    a {
+      color: $black;
+      background: none;
+      transition: background .3s, color .3s;
+      text-decoration: none;
+
+      &:hover {
+        background: $darkgrey;
+        color: $white;
+        transition: background .3s, color .3s;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+$small: 12px;
+$normal: 16px;
+$large: 24px;
+$xlarge: 36px;
+$xxlarge: 48px;
+$title-size: 72px;
+
+@font-face {
+    font-family: Merriweather;
+    src: url(../assets/fonts/Merriweather-Regular.ttf);
+}
+
+@font-face {
+    font-family: MerriweatherLight;
+    src: url(../assets/fonts/Merriweather-Light.ttf);
+}
+
+@font-face {
+    font-family: MerriweatherBold;
+    src: url(../assets/fonts/Merriweather-Bold.ttf);
+}

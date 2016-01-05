@@ -1,0 +1,63 @@
+@import 'animations';
+@import 'fonts';
+@import 'colors';
+@import 'breakpoints';
+
+/*
+Sections
+*/
+@import 'hello';
+@import 'work';
+@import 'sidepanel';
+@import 'contact';
+@import 'footer';
+
+/*
+Main styles
+*/
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+  background: $darkgrey;
+  color: $darkgrey;
+  margin: 0;
+  font-family: Merriweather;
+
+  section {
+    width: 100%;
+    min-height: 100%;
+    clear: both;
+  }
+
+  h1 {
+    font-size: $large;
+  }
+
+  h2 {
+    font-family: sans-serif;
+    font-size: $large;
+    line-height: $xlarge;
+  }
+
+  .copy {
+    padding: 60px;
+    font-family: 'MerriweatherLight';
+    line-height: $xlarge;
+    font-size: $normal;
+  }
+
+  @media (min-width: $min-tablet-portrait-width) {
+    h1 {
+      font-size: $xlarge;
+    }
+  }
+
+  @media (min-width: $min-tablet-landscape-width) {
+    h1 {
+      font-size: $xxlarge;
+    }
+  }
+}
