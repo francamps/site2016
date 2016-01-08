@@ -8,7 +8,7 @@
   left: 0;
   bottom: 0;
   transition: width .5s, background .25s;
-  z-index: 1;
+  z-index: $zero;
 
   &.open {
     width: 100%;

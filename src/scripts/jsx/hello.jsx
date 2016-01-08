@@ -9,9 +9,11 @@ export default class Hello extends React.Component {
   render() {
     return (
       <section className='hello'>
-        <Logo />
-        <div className='fadeInDown animated'>
-          <Message />
+        <div className='hello-wrapper'>
+          <Logo />
+          <div className='fadeInDown animated'>
+            <Message />
+          </div>
         </div>
       </section>
     )

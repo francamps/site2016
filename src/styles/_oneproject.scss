@@ -1,0 +1,37 @@
+.one-project {
+  height: 300px;
+  cursor: pointer;
+  background: $white;
+  transition: background 0.1s;
+  border-bottom: 1px solid $yellow;
+  margin-bottom: 25px;
+  box-shadow: 0 0 2px 0 $yellow;
+  padding: 20px;
+
+  &:hover {
+    box-shadow: 0 0 6px 0 $yellow;
+    transition: box-shadow 0.1s;
+  }
+
+  .thumbnail {
+    width: 30%;
+    height: 100%;
+    margin-right: 5%;
+    display: inline-block;
+    float: left;
+  }
+
+  .summary {
+    width: 65%;
+    display: inline-block;
+
+    .title {
+      font-size: $large;
+      color: $darkgrey;
+    }
+
+    .abstract {
+
+    }
+  }
+}

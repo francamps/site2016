@@ -3,15 +3,17 @@ var gulp = require('gulp');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var babelify = require('babelify');
+var transform = require('vinyl-transform');
 var source = require('vinyl-source-stream');
-
+var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 
+var factor = require('factor-bundle');
+
 function compile () {
-  return browserify({
+  var app = browserify({
             entries: [
               './src/scripts/jsx/app.jsx',
-              './src/scripts/jsx/work.jsx',
               './src/scripts/jsx/jokesart.jsx'
             ],
             extensions: ['.jsx'],
@@ -20,9 +22,14 @@ function compile () {
           .transform(babelify, {
             presets: ['es2015', 'react']
           })
+          .plugin(factor, {
+            o: ['public/app.js', 'public/jokesart.js']
+          })
           .bundle()
-          .pipe(source('app.js'))
-          .pipe(gulp.dest('public'));
+          .pipe(source('common.js'))
+          .pipe(gulp.dest('public/'));
+
+    return app;
 }
 
 function sassify () {

@@ -1,6 +1,7 @@
 @import 'animations';
 @import 'fonts';
 @import 'colors';
+@import 'layers';
 @import 'breakpoints';
 
 /*
@@ -13,6 +14,11 @@ Sections
 @import 'footer';
 
 /*
+Other components
+*/
+@import 'oneprojectthumbnail';
+
+/*
 Main styles
 */
 html, body {
@@ -21,7 +27,7 @@ html, body {
 }
 
 body {
-  background: $darkgrey;
+  background: $white;
   color: $darkgrey;
   margin: 0;
   font-family: Merriweather;

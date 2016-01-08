@@ -1,36 +1,71 @@
-.work {
-  background: $white;
-  position: relative;
+@import 'oneproject';
 
+.work {
   width: 100%;
   height: 2000px;
+  position: relative;
 
-  .content-guide {
+  .avatar {
+      background-image: url('../assets/avatar.png');
+      background-size: 100px 100px;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      right: -50px;
+      margin: 0 auto;
+      margin-top: 40px;
+      border-radius: 50px;
+      border: 2px solid $yellow;
+      z-index: $first;
+  }
+
+  .content-detail {
     height: 100%;
-    width: 50%;
+    width: 0%;
     float: left;
-    background: $off-yellow;
-    position: relative;
-
-    .avatar {
-        background-image: url('../assets/avatar.png');
-        background-size: 100px 100px;
-        width: 100px;
-        height: 100px;
-        position: absolute;
-        right: -50px;
-        margin: 0 auto;
-        margin-top: 40px;
-        border-radius: 50px;
-        border: 2px solid $off-yellow;
-        z-index: 2;
-    }
+    background: $yellow;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s;
+    z-index: $first;
   }
 
   .content {
       height: 100%;
-      width: 50%;
+      width: 100%;
       float: right;
-      background: $white;
+      transition: width 0.3s;
+      z-index: $zero;
+
+      .projects {
+        max-width: 1200px;
+        width: 80%;
+        margin: 0 auto;
+      }
+  }
+
+  &.in-detail {
+    overflow: hidden;
+
+    .content-detail {
+      width: 100%;
+      transition: width 0.3s;
+
+      .one-project-detail {
+        width: 80%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+    }
+
+    .content {
+      .one-project {
+        opacity: 1;
+        transition: opacity .5s;
+      }
+    }
   }
 }

@@ -9,7 +9,7 @@ export default class SideMenu extends React.Component {
       <div className='options'>
         <p className='fadeInDown animated'><a href="about.html">ABOUT</a></p>
         <p className='fadeInDown animated'><a href="work.html">WORK</a></p>
-        <p className='fadeInDown animated'><a href="jokeart.html">OTHER WORK / JOKES / ART</a></p>
+        <p className='fadeInDown animated'><a href="jokesart.html">OTHER WORK / JOKES / ART</a></p>
         <p className='fadeInUp animated'><a href="journal.html">JOURNAL</a></p>
       </div>);
   }
