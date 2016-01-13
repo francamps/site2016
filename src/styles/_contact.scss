@@ -1,35 +1,24 @@
 .contact {
   height: 500px;
 
-  .title {
-    float: left;
-    width: 50%;
-  }
-
   .content {
     background: $white;
-    width: 50%;
+    width: 80%;
     height: 100%;
-    float: right;
+    margin: 0 auto;
 
     .copy {
       padding: 40px;
-    }
-  }
 
-  .social-icon {
-      margin-top: 20px;
-      margin-bottom: 20px;
-      display: inline;
-      overflow: hidden;
-      float: left;
-      background-size: 64px 32px;
-      width: 32px;
-      height: 32px;
-      cursor: pointer;
+      a {
+        text-decoratin: none;
+        color: $ultrablue;
 
-      &.github {
-        background-image: url('../assets/social/github2.png');
+        &:hover {
+          color: $white;
+          background: $ultrablue;
+        }
       }
+    }
   }
 }

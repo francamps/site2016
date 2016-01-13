@@ -1,4 +1,4 @@
-@import 'sidemenu';
+@import 'sidemenuburg';
 
 .side-menu {
   width: 100px;
@@ -10,30 +10,80 @@
   transition: width .5s, background .25s;
   z-index: $zero;
 
+  &.right {
+    left: auto;
+    right: 0;
+    float: right;
+  }
+
   &.open {
     width: 100%;
-    background: $white;
+    background: rgba($ultrablue, .95);
     transition: width .5s, background .25s;
 
-    .options {
-      width: 100%;
-      text-align: center;
+    .menu {
       height: 100%;
-      top: -50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      p {
-        font-family: 'Merriweather-Bold';
-        text-transform: uppercase;
-        font-size: $normal;
+      .options {
+        width: 100%;
+        text-align: center;
 
-        a {
-          text-decoration: none;
-          color: $darkgrey;
-          transition: color .1s;
+        .menu-option {
+          width: 100%;
+          font-family: 'Merriweather-Bold';
+          text-transform: uppercase;
+          font-size: $xxlarge;
+          margin: 0;
+          padding-left: 0;
+          cursor: pointer;
+          background: none;
+          transition: color .2s, background .2s;
+
+          .option-wrapper {
+            display: inline-block;
+            transform: translateX(+70px);
+          }
+
+          a {
+            text-decoration: none;
+            color: $white;
+            transition: color .2s;
+            display: inline-block;
+            height: 70px;
+            line-height: 90px;
+            float: left;
+          }
 
           &:hover {
-            color: $midgrey;
-            transition: color .1s;
+            background: $white;
+            transition: color .2s, background .2s;
+
+            a {
+              color: $ultrablue;
+            }
+
+            .sparkline {
+              @keyframes dash {
+                from {
+                  stroke-dashoffset: 192;
+                }
+                to {
+                  stroke-dashoffset: 384;
+                }
+              }
+
+              svg {
+                transform: scale(0.5, 0.5);
+              }
+
+              path {
+                stroke: $ultrablue;
+                animation: dash .4s linear forwards;
+              }
+            }
           }
         }
       }

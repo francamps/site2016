@@ -1,11 +1,47 @@
 .footer {
-  background: $yellow;
+  background: $ultrablue;
+  padding-bottom: 60px;
+  margin-top: 120px;
 
   .logo {
+    text-align: center;
     path {
       stroke: $white;
       stroke-width: 2px;
       fill: none;
+    }
+  }
+
+  .social-footer {
+    margin: 0 auto;
+    text-align: center;
+    width: 189px;
+    height: 62px;
+    clear: both;
+
+    .social-icon {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      display: inline;
+      float: left;
+      cursor: pointer;
+
+      path,
+      circle {
+        /*fill: $midgrey;*/
+        fill: $ultrablue;
+        stroke: $white;
+        stroke-width: 2px;
+        transition: fill .3s, stroke .3s;
+      }
+
+      &:hover {
+        path {
+          fill: $white;
+          stroke: $ultrablue;
+          transition: fill .3s, stroke .3s;
+        }
+      }
     }
   }
 }

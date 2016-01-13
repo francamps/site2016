@@ -1,29 +1,50 @@
 .logo {
-  text-align: center;
   width: 100%;
   display: inline-block;
 
   svg {
-    transform: scale(0.75, 0.75);
+    //transform: scale(0.75, 0.75);
+    padding: 20px;
     max-width: 110px;
     max-height: 340px;
   }
 
   path {
-    stroke-width: 2px;
-    stroke: $yellow;
+    stroke-width: 1px;
+    stroke: $ultrablue;
     fill: none;
     stroke-dasharray: 700;
     stroke-dashoffset: 700;
-    animation: dash 4s linear forwards;
+    animation: dashLogo 4s linear forwards;
   }
 
-  @keyframes dash {
-    from {
-      stroke-dashoffset: 700;
+  &:hover {
+    path {
+      animation: dashLogoLoop 4s linear infinite;
     }
-    to {
-      stroke-dashoffset: 0;
+  }
+}
+
+.hero {
+  width: 100%;
+  display: inline-block;
+
+  svg {
+    padding: 20px;
+  }
+
+  path {
+    stroke-width: 1px;
+    stroke: $ultrablue;
+    fill: none;
+    stroke-dasharray: 1050;
+    stroke-dashoffset: 1050;
+    animation: dashHero 3s linear forwards;
+  }
+
+  &:hover {
+    path {
+      animation: dashLogoLoop 4s linear infinite;
     }
   }
 }

@@ -1,6 +1,6 @@
 .projects-wrapper {
   width: 100%;
-  
+
   .column {
     width: 33.33333%;
     float: left;
@@ -8,9 +8,46 @@
     .one-project-thumbnail-wrapper {
       padding: 0 17px 17px 17px;
 
-      .placeholder {
-        background: $yellow;
-        height: 300px;
+      &:first-child {
+        padding-left: 0;
+      }
+
+      .one-project-thumbnail {
+        cursor: pointer;
+
+        .placeholder {
+          background: $ultrablue;
+          height: 300px;
+        }
+
+        svg {
+          margin: 5px;
+          padding: 5px;
+        }
+
+        .shape {
+          stroke-dasharray: 5;
+          stroke-width: 1px;
+          fill: transparent;
+          stroke: $ultrablue;
+          border-bottom: 5px solid black;
+          transition: stroke .5s, stroke-width .5s, stroke-dashoffset .5s, stroke-dasharray .52s;
+        }
+
+        &:hover .shape {
+          stroke: $ultragreen;
+          stroke-width: 2px;
+          stroke-dashoffset: 0;
+          stroke-dasharray: 0;
+        }
+
+        .title {
+          padding: 10px;
+          text-align: center;
+          text-transform: uppercase;
+          letter-spacing: 8px;
+          font-family: 'Lato'
+        }
       }
     }
   }

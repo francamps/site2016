@@ -2,27 +2,65 @@
 Animations
 */
 
-@keyframes fadeInDown {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translate3d(0, -60%, 0);
   }
 
   to {
     opacity: 1;
-    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0%, 0);
   }
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translate3d(0, -40%, 0);
+    transform: translate3d(0, +10%, 0);
   }
 
   to {
     opacity: 1;
-    transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, 0%, 0);
+  }
+}
+
+@keyframes dashHero {
+  from {
+    stroke-dashoffset: 1050;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+@keyframes dashLogo {
+  from {
+    stroke-dashoffset: 700;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dashLogoLoop {
+  from {
+    stroke-dashoffset: 1400;
+  }
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
@@ -31,6 +69,10 @@ Animations
   animation-duration: 2s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
 }
 
 .fadeInDown {

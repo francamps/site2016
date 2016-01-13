@@ -1,33 +1,34 @@
 'use strict';
 
-export default class About extends React.Component {
+import React from 'react';
+import { render } from 'react-dom'
 
+import SidePanel from './sidepanel/sidepanel';
+import Logo from './logo';
+import Footer from './footer';
+
+export default class About extends React.Component {
   render() {
     return (
-      <p>I am a UX Designer and Art Director from Austria living in Berlin.
-
-Artworks and illustrations were my gateway to the creative industry which led to the foundation of my own studio and to first steps in the digital world.
-Art Direction
-Starting with basic websites several years ago I found myself working as an Art Director for complex projects with a holistic approach soon. Visually appealing designs, subtle details and brand guidelines combined to innovative interfaces across various touch points became my daily companion.
-Out of this love for aesthetic design my passion for functionality and structure evolved. Jumping right into Photoshop didn’t feel accurate anymore and skipping the steps of building a framework based on functionality and usability became inevitable.
-UX Design
-A user-centered mindset and sensitivity for design turned out to be the perfect fit when collaborating with agencies, clients and brands to develop digital concepts and solve problems together.
-This rough framework outlines my process of developing digital experiences:
-
-1. RESEARCH and gather the present state
-2. STRUCTURE setup and content of the project
-3. CONCEPT AND STRATEGY
-4. CREATE, evaluate and iterate deliverables like
-Personas
-Site maps
-Use cases and scenarios
-User flow
-Sketches and Infographics
-Wireframes
-Communicating the conceptual approach/UX strategy and reasoning behind it, is present during the whole process.
-
-To achieve the goal of making the web a better place I trust in teamwork, latest technology and intuition.</p>
-    )
+      <div>
+        <section className='about'>
+          <SidePanel />
+          <Logo />
+          <h2>Hola</h2>
+          <div className='copy'>
+            <p>I’m Franc Camps-Febrer and I am a data visualization engineer and digital artist. I was born in Barcelona, and I am based in Brooklyn.</p>
+            <p>I’m currently working for @Knewton, the adaptive learning platform. I also do freelance work when I believe it’ll make the world better. I am passionate about all things storytelling, and exploring combinations of formats to tell more powerful stories.</p>
+            <p>I’ve worked as a bunch of different things, but most importantly as researcher, teacher, designer and developer. I’ve always done writing for various purposes. I earned a master degree in Developmental Neuroscience from CUNY in 2011, and focused my master’s thesis on neuroaesthetics, synaesthesia and the emergence of creative thinking based on research work I collaborated with at NYU’s Center for Neural Science. I also shot a documentary about it.</p>
+            <p>Late 2011, I started pursuing my interests in visualization, interaction, design and development full-time. Putting all my experiences together, I like to think I have both a qualitative and quantitative approach to storytelling. You can check my resume here.</p>
+            <p>I was part of the School for Poetic Computation Fall 2014 session, exploring the intersection of code, design, hardware and theory in media art.</p>
+            <p>I have an opinion.</p>
+            <p>Say hi!</p>
+          </div>
+        </section>
+        <Footer />
+      </div>
+    );
   }
-
 }
+
+render(<About />, document.getElementById('about'));

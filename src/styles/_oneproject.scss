@@ -3,13 +3,13 @@
   cursor: pointer;
   background: $white;
   transition: background 0.1s;
-  border-bottom: 1px solid $yellow;
+  border-bottom: 1px solid $ultrablue;
   margin-bottom: 25px;
-  box-shadow: 0 0 2px 0 $yellow;
+  box-shadow: 0 0 2px 0 $ultrablue;
   padding: 20px;
 
   &:hover {
-    box-shadow: 0 0 6px 0 $yellow;
+    box-shadow: 0 0 6px 0 $ultrablue;
     transition: box-shadow 0.1s;
   }
 
@@ -34,4 +34,14 @@
 
     }
   }
+}
+
+.one-project-detail {
+  padding: 40px;
+  border: 2px solid $white;
+  color: $white;
+  max-width: 900px;
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
 }

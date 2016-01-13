@@ -9,12 +9,15 @@ var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 
 var factor = require('factor-bundle');
+var autoprefixer = require('gulp-autoprefixer');
 
 function compile () {
   var app = browserify({
             entries: [
               './src/scripts/jsx/app.jsx',
-              './src/scripts/jsx/jokesart.jsx'
+              './src/scripts/jsx/jokesart.jsx',
+              './src/scripts/jsx/work.jsx',
+              './src/scripts/jsx/about.jsx'
             ],
             extensions: ['.jsx'],
             debug: true
@@ -23,7 +26,12 @@ function compile () {
             presets: ['es2015', 'react']
           })
           .plugin(factor, {
-            o: ['public/app.js', 'public/jokesart.js']
+            o: [
+              'public/app.js',
+              'public/jokesart.js',
+              'public/work.js',
+              'public/about.js'
+            ]
           })
           .bundle()
           .pipe(source('common.js'))
@@ -35,6 +43,7 @@ function compile () {
 function sassify () {
   return gulp.src('./src/styles/**/*.scss')
             .pipe(sass().on('error', sass.logError))
+            .pipe(autoprefixer())
             .pipe(gulp.dest('public/css/'));
 }
 

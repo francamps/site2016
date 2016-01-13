@@ -7,8 +7,9 @@ import Router from 'react-router';
 import { IndexRoute, Link, Route } from 'react-router';
 
 import Hello from './hello';
-import Work from './work';
+import FeaturedWork from './featuredwork';
 import SidePanel from './sidepanel/sidepanel';
+import SideMenu from './sidepanel/sidemenu';
 import Contact from './contact/contact';
 import Footer from './footer';
 
@@ -16,10 +17,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/*this.props.children*/}
-        <SidePanel />
+        <SidePanel contents={<SideMenu />} />
         <Hello />
-        <Work />
+        <FeaturedWork />
         <Contact />
         <Footer />
       </div>
