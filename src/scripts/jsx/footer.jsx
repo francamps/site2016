@@ -10,6 +10,7 @@ export default class Footer extends React.Component {
     return (
       <div className='footer'>
         <Logo />
+        <a className='footer-mail' href='mailto:hi@franc.ly'>hi@franc.ly</a>
         <div className='social-footer'>
           <SocialIcon type={'github'} />
           <SocialIcon type={'linkedin'} />

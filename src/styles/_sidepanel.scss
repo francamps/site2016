@@ -1,20 +1,15 @@
 @import 'sidemenuburg';
+@import 'breakpoints';
 
 .side-menu {
   width: 100px;
-  float: left;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
   transition: width .5s, background .25s;
-  z-index: $zero;
-
-  &.right {
-    left: auto;
-    right: 0;
-    float: right;
-  }
+  z-index: $fourth;
+  overflow-y: scroll;
 
   &.open {
     width: 100%;
@@ -23,6 +18,7 @@
 
     .menu {
       height: 100%;
+      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -33,9 +29,11 @@
 
         .menu-option {
           width: 100%;
-          font-family: 'Merriweather-Bold';
+          font-family: 'Lato';
+          font-weight: bold;
+          letter-spacing: .1em;
           text-transform: uppercase;
-          font-size: $xxlarge;
+          font-size: $large;
           margin: 0;
           padding-left: 0;
           cursor: pointer;
@@ -44,7 +42,6 @@
 
           .option-wrapper {
             display: inline-block;
-            transform: translateX(+70px);
           }
 
           a {
@@ -53,7 +50,7 @@
             transition: color .2s;
             display: inline-block;
             height: 70px;
-            line-height: 90px;
+            line-height: 80px;
             float: left;
           }
 
@@ -65,27 +62,46 @@
               color: $ultrablue;
             }
 
-            .sparkline {
-              @keyframes dash {
-                from {
-                  stroke-dashoffset: 192;
-                }
-                to {
-                  stroke-dashoffset: 384;
-                }
-              }
+            .wing1 {
+              transform: skew(0, 30deg) translate(20px, 20px);
+            }
 
-              svg {
-                transform: scale(0.5, 0.5);
-              }
-
-              path {
-                stroke: $ultrablue;
-                animation: dash .4s linear forwards;
-              }
+            .wing2 {
+              transform: skew(0deg, -30deg) translate(10px, 10px);
             }
           }
         }
+
+        @media (min-width: $min-mobile-width) and (max-width: $min-tablet-portrait-width) {
+          .menu-option {
+            font-size: $normal;
+          }
+        }
+
+        @media (min-width: $min-tablet-portrait-width) and (max-width: $min-tablet-landscape-width) {
+          .menu-option {
+            font-size: $large;
+          }
+        }
+      }
+    }
+  }
+  &.left {
+    right: auto;
+    left: 0;
+
+    &.open {
+      background: $white;
+    }
+
+    .side-menu-burg.is-active  {
+      span {
+        background: $white;
+      }
+
+      span::before,
+      span::after {
+        background: $ultrablue;
       }
     }
   }

@@ -5,20 +5,6 @@
   max-width: 1200px;
   position: relative;
 
-  .avatar {
-      background-image: url('../assets/avatar.png');
-      background-size: 100px 100px;
-      width: 100px;
-      height: 100px;
-      position: absolute;
-      right: -50px;
-      margin: 0 auto;
-      margin-top: 40px;
-      border-radius: 50px;
-      border: 2px solid $ultrablue;
-      z-index: $first;
-  }
-
   .content-detail {
     height: 100%;
     width: 0%;
@@ -34,7 +20,7 @@
   }
 
   .content {
-      height: 100%;
+      min-height: 100%;
       width: 100%;
       float: right;
       transition: width 0.3s;

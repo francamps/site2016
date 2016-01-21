@@ -1,15 +1,21 @@
 .footer {
-  background: $ultrablue;
+  background: $bggrad;
   padding-bottom: 60px;
   margin-top: 120px;
 
   .logo {
     text-align: center;
-    path {
-      stroke: $white;
-      stroke-width: 2px;
-      fill: none;
-    }
+  }
+
+  .footer-mail {
+    display: block;
+    font-size: $small;
+    text-align: center;
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    text-decoration: none;
+    color: $lightblue;
   }
 
   .social-footer {
@@ -22,6 +28,7 @@
     .social-icon {
       margin-top: 20px;
       margin-bottom: 20px;
+      transform: scale(.7, .7);
       display: inline;
       float: left;
       cursor: pointer;
@@ -29,8 +36,8 @@
       path,
       circle {
         /*fill: $midgrey;*/
-        fill: $ultrablue;
-        stroke: $white;
+        fill: $ultrapink;
+        stroke: $deeppink;
         stroke-width: 2px;
         transition: fill .3s, stroke .3s;
       }
@@ -38,7 +45,7 @@
       &:hover {
         path {
           fill: $white;
-          stroke: $ultrablue;
+          stroke: $deeppink;
           transition: fill .3s, stroke .3s;
         }
       }

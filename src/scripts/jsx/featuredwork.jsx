@@ -5,7 +5,6 @@ import { render } from 'react-dom';
 import $ from 'jquery';
 
 import SidePanel from './sidepanel/sidepanel';
-import OneProject from './oneproject';
 import OneProjectDetail from './oneprojectdetail';
 import OneProjectThumbnail from './oneprojectthumbnail';
 

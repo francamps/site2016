@@ -3,24 +3,50 @@
   display: inline-block;
 
   svg {
-    //transform: scale(0.75, 0.75);
-    padding: 20px;
+    //transform: scale(.75, .75);
+    padding: 20px 0;
     max-width: 110px;
     max-height: 340px;
-  }
 
-  path {
-    stroke-width: 1px;
-    stroke: $ultrablue;
-    fill: none;
-    stroke-dasharray: 700;
-    stroke-dashoffset: 700;
-    animation: dashLogo 4s linear forwards;
-  }
-
-  &:hover {
     path {
-      animation: dashLogoLoop 4s linear infinite;
+      stroke-width: 2px;
+      stroke: $ultragreen;
+      fill: none;
+      stroke-dasharray: 700;
+      stroke-dashoffset: 700;
+      animation: dashLogo 4s linear forwards;
+    }
+
+    &:hover {
+      path {
+        animation: dashLogoLoop 4s linear infinite;
+      }
+    }
+  }
+
+  svg {
+    rect {
+      fill: $ultrapink;
+    }
+
+    path {
+      /*fill: $midgrey;*/
+      fill: $ultrablue;
+      stroke: none;
+      stroke-width: 2px;
+      transition: fill .3s, stroke .3s;
+    }
+
+    &:hover {
+      rect {
+        fill: none;
+      }
+
+      path {
+        fill: $ultrapink;
+        stroke: $ultrablue;
+        transition: fill .3s, stroke .3s;
+      }
     }
   }
 }
@@ -28,23 +54,103 @@
 .hero {
   width: 100%;
   display: inline-block;
+  height: 350px;
+  text-align: center;
 
-  svg {
-    padding: 20px;
+  .rectangle-hero {
+    position: relative;
   }
 
-  path {
-    stroke-width: 1px;
-    stroke: $ultrablue;
-    fill: none;
-    stroke-dasharray: 1050;
-    stroke-dashoffset: 1050;
-    animation: dashHero 3s linear forwards;
+  .rectangle-hero.parallel {
+    width: 150px;
+    height: 150px;
+    background: rgba($white, 0.1);
+    transform: skew(0, 15deg) translate(50px, 0px);
+    transition: transform .5s;
+
+    @media (max-width: $min-tablet-portrait-width) {
+      opacity: 0;
+    }
+  }
+
+  .rectangle-hero.top {
+      width: 150px;
+      height: 100px;
+      background: rgba($white, 0.05);
+      transform: skew(-45deg, 15deg) translate(90px, -140px);
+      transition: transform .5s;
+      @media (max-width: $min-tablet-portrait-width) {
+        opacity: 0;
+      }
+  }
+
+  .rectangle-hero.forward {
+      width: 100px;
+      height: 160px;
+      background: rgba($white, 0.35);
+      transform: skew(0, -45deg) translate(50px, -60px);
+      transition: transform .5s;
+      @media (max-width: $min-tablet-portrait-width) {
+        opacity: 0;
+      }
   }
 
   &:hover {
-    path {
-      animation: dashLogoLoop 4s linear infinite;
+    .rectangle-hero.parallel {
+      transform: skew(0, 15deg) translate(70px, 0px);
+      transition: transform .5s;
     }
+
+    .rectangle-hero.forward {
+        transform: skew(0, -45deg) translate(40px, -60px);
+        transition: transform .5s;
+    }
+  }
+
+  svg {
+    padding: 20px;
+    transform: scale(.5, .5);
+    //background: rgba($ultrablue, 0.8);
+    //transform: skew(0, 15deg)translate(170px, -290px);
+    //transform: translate(170px, -290px);
+    transition: transform .5s;
+    background: $ultrapink;
+    circle {
+      fill: $ultrablue;
+    }
+
+    &:hover {
+      //transform: skew(0, 15deg)translate(160px, -290px);
+      //transform: translate(160px, -290px);
+      transform: scale(.5, .5);
+      transition: transform .5s;
+      //background: $ultrablue;
+
+      circle {
+        //fill: $ultrapink;
+      }
+    }
+
+    /*path {
+      stroke-width: 1px;
+      stroke: $white;
+      stroke-dasharray: 1050;
+      stroke-dashoffset: 1050;
+      animation: dashHero 3s linear forwards;
+    }
+
+    @media (max-width: $min-tablet-portrait-width) {
+      transform: translate(0, -300px);
+      //background: $white;
+      path {
+        stroke: $ultrablue;
+      }
+    }
+
+    &:hover {
+      path {
+        animation: dashLogoLoop 4s linear infinite;
+      }
+    }*/
   }
 }

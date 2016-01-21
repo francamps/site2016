@@ -1,0 +1,20 @@
+.butterfly {
+  display: inline-block;
+
+  .wing {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    transition: transform .8s;
+  }
+
+  .wing.wing1 {
+    background: rgba($ultrablue, .8);
+    transform: skew(0, 30deg) translate(40px, 20px);
+  }
+
+  .wing.wing2 {
+    background: rgba($ultrapink, .8);
+    transform: skew(0deg, -30deg) translate(30px, 10px);
+  }
+}

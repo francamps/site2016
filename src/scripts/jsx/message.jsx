@@ -11,18 +11,9 @@ module.exports = React.createClass({
 
     render: function () {
       return (
-        <h1 className='hello-copy'>
-          <p>
-            I'm Franc. I am a <span className='highlight'> designer </span>
-            and <span className='highlight'> engineer</span> working in
-            the realm of <span className='highlight'>data and information experience </span>
-            tools.</p>
-
-          <p>
-            I am based between <span className='highlight'>New York </span>
-            and <span className='highlight'>Barcelona</span>.</p>
-          <p>Say hi!</p>
-        </h1>
+        <div className='hello-copy'>
+          <p></p>
+        </div>
       );
     }
 });

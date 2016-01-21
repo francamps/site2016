@@ -1,9 +1,10 @@
-@import 'animations';
 @import 'fonts';
 @import 'colors';
+@import 'animations';
 @import 'layers';
 @import 'breakpoints';
 @import 'sparkline';
+@import 'butterfly';
 
 /*
 Sections
@@ -39,6 +40,15 @@ body {
     clear: both;
     display: inline-block;
     margin-left: 100px;
+
+    @media (min-width: $min-mobile-width) and (max-width: $min-tablet-portrait-width) {
+        margin-left: 20px;
+        padding: 10px;
+    }
+
+    @media (min-width: $min-tablet-portrait-width) and (max-width: $min-tablet-landscape-width) {
+      margin-left: 40px;
+    }
   }
 
   h1 {
@@ -46,8 +56,8 @@ body {
   }
 
   h2 {
-    font-family: sans-serif;
-    font-size: $large;
+    font-family: 'Lato';
+    font-size: $xlarge;
     line-height: $xlarge;
     text-align: left;
   }
@@ -60,8 +70,8 @@ body {
   }
 
   .copy {
-    padding: 60px;
-    max-width: 800px;
+    padding: 60px 0;
+    max-width: 740px;
     margin: 0 auto;
     padding-left: 0;
     margin-left: 0;

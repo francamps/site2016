@@ -10,37 +10,15 @@ import Logo from './logo';
 
 import Footer from './footer';
 
-let project = {
-  'id': 'project0',
-  'title': 'Trainfuck',
-  'abstract': 'Trainfuck: An encoding or implementation of Brainfuck in the physical world, using the MTA subway system. (Yeah, it\'s totally out there)'
-}
-
 let projects = [
-  {
-    'id': 'project0',
-    'title': 'Visual whatsapp',
-    'abstract': 'Trainfuck: An encoding or implementation of Brainfuck in the physical world, using the MTA subway system. (Yeah, it\'s totally out there)'
-  },{
-    'id': 'project1',
-    'title': 'Unsend',
-    'abstract': 'Trainfuck: An encoding or implementation of Brainfuck in the physical world, using the MTA subway system. (Yeah, it\'s totally out there)'
-  },{
-    'id': 'project2',
-    'title': 'Trainfuck',
-    'abstract': 'Trainfuck: An encoding or implementation of Brainfuck in the physical world, using the MTA subway system. (Yeah, it\'s totally out there)'
-  },{
-    'id': 'project3',
-    'title': 'Craigslist flaneur',
-    'abstract': 'Trainfuck: An encoding or implementation of Brainfuck in the physical world, using the MTA subway system. (Yeah, it\'s totally out there)'
-  }
-]
+  'trainfuck', 'whatsapp', 'unsend'
+];
 
 export default class Jokesart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeProject: project,
+      activeProject: null,
       openMenu: false
     }
   }
@@ -49,7 +27,7 @@ export default class Jokesart extends React.Component {
     // Select project from id
     let selectedProject = {};
     projects.forEach((project) => {
-      if (project.id === id) { selectedProject = project; }
+      if (project === id) { selectedProject = project; }
     });
 
     this.setState({
@@ -61,34 +39,30 @@ export default class Jokesart extends React.Component {
   render() {
     return (
       <div>
-        <section className='jokes-art'>
-          <SidePanel />
-          <SidePanel
-            hidden={true}
-            additionalClass='right'
-            contents={<OneProjectDetail project={this.state.activeProject}/>}
-            isOpen={this.state.openMenu}/>
-          <div className='jokes-art-wrapper'>
+        <SidePanel
+          hidden={true}
+          additionalClass={'left'}
+          contents={<OneProjectDetail
+            projectId={this.state.activeProject}
+            type={'projects'}/>}
+          isOpen={this.state.openMenu}/>
+        <section className='work'>
             <Logo />
-            <h2>Digital Art / Jokes / Other work</h2>
+            <h2 className='fadeInUp animated'>Digital Art / Jokes / Other work</h2>
             <p className='copy'>
               In parallel, I explore digital contexts artistically. I like to reshape our online identities, explore how we communicate to each other, and what other forms these communications can take. I’m interested in online communities and what makes them emerge.
             </p>
             <div className='projects-wrapper'>
-              <div className='column'>
-                <OneProjectThumbnail
-                  onSelectProject={this.selectProject.bind(this)}
-                  project={projects[0]} />
-                <OneProjectThumbnail onSelectProject={this.selectProject.bind(this)} project={projects[1]} />
-              </div>
-              <div className='column'>
-                <OneProjectThumbnail onSelectProject={this.selectProject.bind(this)} project={projects[2]} />
-              </div>
-              <div className='column'>
-                <OneProjectThumbnail onSelectProject={this.selectProject.bind(this)} project={projects[3]} />
-              </div>
+              {projects.map((project) => {
+                return (
+                  <OneProjectThumbnail
+                    key={project}
+                    type={'projects'}
+                    onSelectProject={this.selectProject.bind(this)}
+                    projectId={project} />
+                )
+              })}
             </div>
-          </div>
         </section>
         <Footer />
       </div>

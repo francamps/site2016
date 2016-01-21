@@ -1,8 +1,9 @@
 'use strict';
 
 import React from 'react';
+import { Link } from 'react-router';
 
-import Sparkline from '../sparkline';
+import Butterfly from '../butterfly/butterfly';
 
 export default class SideMenu extends React.Component {
 
@@ -12,26 +13,26 @@ export default class SideMenu extends React.Component {
         <div className='options'>
           <div className='menu-option fadeInDown animated'>
             <div className='option-wrapper'>
-              <a href="about.html">ABOUT</a>
-              <Sparkline sparklineNum={0}/>
+              <Link to="about">ABOUT</Link>
+              <Butterfly />
             </div>
           </div>
           <div className='menu-option fadeInDown animated'>
             <div className='option-wrapper'>
-              <a href="work.html">WORK</a>
-              <Sparkline sparklineNum={1}/>
+              <Link to="work">WORK</Link>
+              <Butterfly />
             </div>
           </div>
           <div className='menu-option fadeInUp animated'>
             <div className='option-wrapper'>
-              <a href="jokesart.html">OTHER WORK / JOKES / ART</a>
-              <Sparkline sparklineNum={2}/>
+              <Link to="jokesart">OTHER WORK / JOKES / ART</Link>
+              <Butterfly />
             </div>
           </div>
           <div className='menu-option fadeInUp animated'>
             <div className='option-wrapper'>
               <a href="journal.html">JOURNAL</a>
-              <Sparkline sparklineNum={3}/>
+              <Butterfly />
             </div>
           </div>
         </div>

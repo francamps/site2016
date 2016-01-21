@@ -1,9 +1,12 @@
 @import 'logo';
 
+.top-hello {
+  background: $bggrad;
+}
+
 .hello {
   max-width: 1200px;
   width: 80%;
-  max-width: 450px;
   margin: 0 auto;
   left: 0;
   right: 0;
@@ -12,18 +15,74 @@
   justify-content: center;
   align-items: center;
 
-  h1.hello-copy {
+  .hello-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .navigation {
+      text-align: center;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      margin: 20px 0;
+
+      a {
+        font-family: 'Lato';
+        font-weight: bold;
+        font-size: $small;
+        letter-spacing: .1em;
+        padding: 15px;
+        text-decoration: none;
+        color: $ultrapink;
+        background: none;
+        transition: background 0.3s, color 0.3s;
+        &:hover {
+          color: $white;
+          background: $ultrapink;
+          transition: background 0.3s, color 0.3s;
+        }
+      }
+    }
+
+    .categories {
+      text-align: center;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      margin: 20px 0;
+
+      span {
+        font-family: 'Lato';
+        font-size: $small;
+        font-weight: bold;
+        letter-spacing: 0em;
+        text-transform: uppercase;
+        padding: 15px;
+        color: $darkgrey;
+      }
+    }
+  }
+
+  .hello-copy {
     display: inline-block;
     float: left;
-    font-family: 'MerriweatherLight', sans-serif;
     line-height: 36px;
     font-size: 16px;
+    width: 100%;
+
+    h2 {
+      font-family: 'Lato';
+      color: $ultrapink;
+    }
 
     p {
-      color: $midgrey;
+      color: $deeppink;
+      font-family: 'MerriweatherLight', sans-serif;
+      text-align: center;
 
       .highlight {
-        color: $darkgrey;
+        color: $white;
       }
 
       &::selection {

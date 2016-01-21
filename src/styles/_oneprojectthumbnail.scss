@@ -1,53 +1,110 @@
 .projects-wrapper {
   width: 100%;
+  max-width: 800px;
+  float: left;
 
-  .column {
-    width: 33.33333%;
-    float: left;
+  .one-project-thumbnail-wrapper {
+    padding: 0;
+    margin-bottom: 80px;
 
-    .one-project-thumbnail-wrapper {
-      padding: 0 17px 17px 17px;
+    .one-project-thumbnail {
+      cursor: pointer;
+      position: relative;
 
-      &:first-child {
-        padding-left: 0;
+      .thumbnail {
+        //border: $ultrablue 1px solid;
+        height: 300px;
+        width: 100%;
+        overflow: hidden;
+        filter: none;
+        transition: filter .5s;
+        background: rgba($ultrablue, 0.05);
+
+        img {
+          width: 100%;
+        }
       }
 
+      .butterfly {
+        position: relative;
+        top: 50px;
+        opacity: 0;
+      }
+
+      .title {
+        padding: 10px 0;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: .1em;
+        font-family: 'Lato';
+        font-size: $large;
+        color: $darkgrey;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        z-index: $first;
+      }
+    }
+
+    &:hover {
+      .thumbnail {
+        filter: blur(6px);
+        transition: filter .3s;
+
+        img {
+          opacity: .3;
+          transition: opacity .3s;
+        }
+      }
+
+      .butterfly {
+        opacity: 1;
+        transition: opacity .3s;
+      }
+
+      .title {
+        opacity: 1;
+        display: inline-block;
+        transition: opacity .3s;
+      }
+
+      .wing1 {
+        transform: skew(0, 30deg) translate(20px, 20px);
+      }
+
+      .wing2 {
+        transform: skew(0deg, -30deg) translate(10px, 10px);
+      }
+    }
+
+    @media (min-width: $min-mobile-width) and (max-width: $min-tablet-landscape-width) {
       .one-project-thumbnail {
-        cursor: pointer;
+        .thumbnail {
+          filter: blur(6px);
 
-        .placeholder {
-          background: $ultrablue;
-          height: 300px;
+          img {
+            opacity: .3;
+          }
         }
 
-        svg {
-          margin: 5px;
-          padding: 5px;
-        }
-
-        .shape {
-          stroke-dasharray: 5;
-          stroke-width: 1px;
-          fill: transparent;
-          stroke: $ultrablue;
-          border-bottom: 5px solid black;
-          transition: stroke .5s, stroke-width .5s, stroke-dashoffset .5s, stroke-dasharray .52s;
-        }
-
-        &:hover .shape {
-          stroke: $ultragreen;
-          stroke-width: 2px;
-          stroke-dashoffset: 0;
-          stroke-dasharray: 0;
+        .butterfly {
+          opacity: 1;
         }
 
         .title {
-          padding: 10px;
-          text-align: center;
-          text-transform: uppercase;
-          letter-spacing: 8px;
-          font-family: 'Lato'
+          opacity: 1;
+          display: inline-block;
         }
+
+        .wing1 {
+          transform: skew(0, 30deg) translate(20px, 20px);
+        }
+
+        .wing2 {
+          transform: skew(0deg, -30deg) translate(10px, 10px);
+        }        
       }
     }
   }

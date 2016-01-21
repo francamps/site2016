@@ -1,4 +1,14 @@
+@import 'breakpoints';
+
 .work {
   width: 80%;
   max-width: 1200px;
+
+  @media (min-width: $min-mobile-width) and (max-width: $min-tablet-portrait-width) {
+      width: 90%;
+  }
+
+  @media (min-width: $min-tablet-portrait-width) and (max-width: $min-tablet-landscape-width) {
+    width: 90%;
+  }
 }

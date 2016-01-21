@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { render } from 'react-dom'
+import { render } from 'react-dom';
 
 import Router from 'react-router';
 import { IndexRoute, Link, Route } from 'react-router';
@@ -13,28 +13,41 @@ import SideMenu from './sidepanel/sidemenu';
 import Contact from './contact/contact';
 import Footer from './footer';
 
+import About from './about';
+import Work from './work';
+import Jokesart from './jokesart';
+import ProjectsApp from './project';
+
+class Home extends React.Component {
+  render() {
+    return (
+      <div>
+        <Hello />
+        <Contact />
+        <Footer />
+      </div>
+    )
+  }
+}
+
 class App extends React.Component {
   render() {
     return (
       <div>
         <SidePanel contents={<SideMenu />} />
-        <Hello />
-        <FeaturedWork />
-        <Contact />
-        <Footer />
+        {this.props.children}
       </div>
     );
   }
 };
 
-/*render((
+render((
   <Router>
     <Route path="/" component={App}>
-      <IndexRoute component={Hello}/>
-      <Route path="work" component={Work}/>
-      <Route path="jokeart" component={Jokeart}/>
+      <IndexRoute component={Home}/>
+      <Route path="/about" component={About}/>
+      <Route path="/work" component={Work}/>
+      <Route path="/jokesart" component={Jokesart}/>
     </Route>
   </Router>
-), document.getElementById('app'));*/
-
-render(<App />, document.getElementById('app'));
+), document.getElementById('app'));

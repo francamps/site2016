@@ -2,23 +2,29 @@
 
 import React from 'react';
 
-let Logo = require('./logo.jsx');
-
-let Message = require('./message.jsx');
-
+import Message from './message';
 import Hero from './hero';
+import Navigation from './navigation';
 
 export default class Hello extends React.Component {
   render() {
     return (
-      <section className='hello'>
-        <div className='hello-wrapper'>
-          <Hero />
-          <div className='fadeInDown animated'>
-            <Message />
+      <div className='top-hello'>
+        <section className='hello'>
+          <div className='hello-wrapper'>
+            <div className='categories'>
+              <span>UI/UX Design Engineering</span>
+              <span>Visualization</span>
+              <span>Information Experience</span>
+            </div>
+            <div className='fadeInDown animated'>
+              <Hero />
+              <Message />
+            </div>
+            <Navigation />
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     )
   }
 };

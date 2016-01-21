@@ -30,5 +30,3 @@ export default class About extends React.Component {
     );
   }
 }
-
-render(<About />, document.getElementById('about'));
