@@ -1,10 +1,11 @@
 var gulp = require('gulp');
 
 var browserify = require('browserify');
-var watchify = require('watchify');
+
 var babelify = require('babelify');
-var transform = require('vinyl-transform');
+
 var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 
@@ -16,29 +17,23 @@ var markdown = require('gulp-markdown-to-json');
 function compile () {
   var app = browserify({
             entries: [
-              './src/scripts/jsx/app.jsx',
-              './src/scripts/jsx/jokesart.jsx',
-              './src/scripts/jsx/work.jsx',
-              './src/scripts/jsx/about.jsx',
-              './src/scripts/jsx/project.jsx'
+              './src/scripts/jsx/app.jsx'
             ],
             extensions: ['.jsx'],
-            debug: true
+            debug: false
           })
           .transform(babelify, {
             presets: ['es2015', 'react']
           })
           .plugin(factor, {
             o: [
-              'public/app.js',
-              'public/jokesart.js',
-              'public/work.js',
-              'public/about.js',
-              'public/project.js',
+              'public/app.js'
             ]
           })
           .bundle()
           .pipe(source('common.js'))
+          .pipe(buffer())
+          .pipe(uglify())
           .pipe(gulp.dest('public/'));
 
     return app;
@@ -47,13 +42,12 @@ function compile () {
 function sassify () {
   return gulp.src('./src/styles/**/*.scss')
             .pipe(sass().on('error', sass.logError))
-            .pipe(autoprefixer())
+            .pipe(autoprefixer({ browsers: ['last 1 version'] }))
             .pipe(gulp.dest('public/css/'));
 }
 
 gulp.task('build', function () { return compile(); });
 gulp.task('sass', function () { return sassify(); });
-
 gulp.task('copy', function () {
   gulp.src('./src/scripts/content/**/*.json', {base: './src/scripts/content'})
       .pipe(gulp.dest('./public'))
@@ -74,6 +68,12 @@ gulp.task('watch', ['build', 'sass', 'markdown', 'copy'], function () {
   gulp.watch('./src/styles/**/*.scss', ['sass']);
   gulp.watch('./src/scripts/content/**/*.md', ['markdown']);
   gulp.watch('./src/scripts/content/**/*.json', ['copy']);
+});
+
+gulp.task('minify', function () {
+  gulp.src('./public/app.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('public'));
 });
 
 gulp.task('default', ['watch']);

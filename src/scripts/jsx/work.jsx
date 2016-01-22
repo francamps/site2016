@@ -1,8 +1,5 @@
 'use strict';
 
-import React from 'react';
-import { render } from 'react-dom'
-
 import OneProjectThumbnail from './oneprojectthumbnail';
 import OneProjectDetail from './oneprojectdetail';
 import SidePanel from './sidepanel/sidepanel';

@@ -1,6 +1,5 @@
 'use strict';
 
-import React from 'react';
 import Logo from './logo';
 import SocialIcon from './socialicon';
 

@@ -5,6 +5,8 @@ image: trainfuck.png
 date: 2014-10-22
 ---
 
+<span class='project-tag'>Conceptual</span><span class='project-tag'>Performance</span><span class='project-tag'>Computation</span>
+
 Brainfuck is an esoteric programming language, used mostly for challenges and programming language design athletics. It is very minimalist, and superconfusing. Here's 'Hello World!' in Brainfuck.
 
 ```
@@ -26,7 +28,9 @@ A Brainfuck program has an implicit byte pointer, free to move within array of 3
 
 ### A Manhattan-bound Trainfuck is approaching the station
 
-Trainfuck is an implementation of Brainfuck using the MTA subway system. I'm looking for ways of implementing the language in a way that can be literally compiled and interpreted, but in the meantime I'm just setting the rules for some real world fun.
+![Trainfuck](assets/content/projects/trainfuck.png)
+
+_Trainfuck_ is an implementation of Brainfuck using the MTA subway system. I'm looking for ways of implementing the language in a way that can be literally compiled and interpreted, but in the meantime I'm just setting the rules for some real world fun.
 
 In reality, it's a different encoding of the Brainfuck commands.
 
@@ -45,3 +49,12 @@ In reality, it's a different encoding of the Brainfuck commands.
 With this set of rules, I've started on 14th Street on the A line and followed the rules to print 'Hello World' as a proof of concept.
 
 <div style="width: 500px; margin: 0 auto"><iframe src="//player.vimeo.com/video/113971587" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+
+### More images
+
+![Trainfuck](assets/content/projects/trainfuck01.png)
+![Trainfuck](assets/content/projects/trainfuck02.png)
+![Trainfuck](assets/content/projects/trainfuck03.png)
+![Trainfuck](assets/content/projects/trainfuck04.png)
+![Trainfuck](assets/content/projects/trainfuck05.png)
+![Trainfuck](assets/content/projects/trainfuck06.png)

@@ -5,6 +5,8 @@ image: unsend.jpg
 date: 2015-07-19 15:00
 ---
 
+<span class='project-tag'>Digital narrtives</span><span class='project-tag'>Personal data</span><span class='project-tag'>Conceptual</span>
+
 _Unsend_ is an exploration in the traces we leave as we live some of our relationships online, our thoughts and the way some features of our personalities, insecurities and every rich angle of it translates into our experience online.
 
 As I was getting ready to leave some of my life experiences in NY behind, I realized I had never emptied my _Drafts_ folder on Gmail. I have used email extensively in the past, as notetaker, as a way to keep in touch with friends and family, as a personal journal. It has been my notebook, always open.

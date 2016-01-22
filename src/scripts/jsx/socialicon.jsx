@@ -1,7 +1,5 @@
 'use strict'
 
-import React from 'react';
-
 let iconData = {
   github: 'https://github.com/francamps',
   vimeo: '',

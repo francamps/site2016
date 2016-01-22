@@ -9,12 +9,12 @@
   }
 
   .wing.wing1 {
-    background: rgba($ultrablue, .8);
+    background: rgba($lightgreen, .8);
     transform: skew(0, 30deg) translate(40px, 20px);
   }
 
   .wing.wing2 {
-    background: rgba($ultrapink, .8);
+    background: rgba($lightblue, .8);
     transform: skew(0deg, -30deg) translate(30px, 10px);
   }
 }

@@ -1,7 +1,5 @@
 'use strict';
 
-import React from 'react';
-
 import Message from './message';
 import Hero from './hero';
 import Navigation from './navigation';

@@ -39,7 +39,7 @@
         transition: background 0.3s, color 0.3s;
         &:hover {
           color: $white;
-          background: $ultrapink;
+          background: $linearBGgrad;
           transition: background 0.3s, color 0.3s;
         }
       }

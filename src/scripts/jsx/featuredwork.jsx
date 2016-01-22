@@ -1,7 +1,5 @@
 'use strict';
 
-import React from 'react';
-import { render } from 'react-dom';
 import $ from 'jquery';
 
 import SidePanel from './sidepanel/sidepanel';

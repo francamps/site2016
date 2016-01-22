@@ -12,13 +12,13 @@
       position: relative;
 
       .thumbnail {
-        //border: $ultrablue 1px solid;
+        border: #efefef 1px solid;
         height: 300px;
         width: 100%;
         overflow: hidden;
         filter: none;
-        transition: filter .5s;
         background: rgba($ultrablue, 0.05);
+        transition: filter .5s, background .3s;
 
         img {
           width: 100%;
@@ -42,9 +42,15 @@
         position: absolute;
         top: 50%;
         width: 100%;
+        filter: blur(10px);
         text-align: center;
         opacity: 0;
         z-index: $first;
+        transition: opacity .3s;
+      }
+
+      .loading {
+        opacity: 0;
       }
     }
 
@@ -59,6 +65,11 @@
         }
       }
 
+      .loading {
+        opacity: 1;
+        transition: opacity .3s;
+      }
+
       .butterfly {
         opacity: 1;
         transition: opacity .3s;
@@ -66,8 +77,9 @@
 
       .title {
         opacity: 1;
+        filter: none;
         display: inline-block;
-        transition: opacity .3s;
+        transition: opacity .3s, filter .6s;
       }
 
       .wing1 {
@@ -104,7 +116,7 @@
 
         .wing2 {
           transform: skew(0deg, -30deg) translate(10px, 10px);
-        }        
+        }
       }
     }
   }

@@ -7,7 +7,6 @@ $brown: rgb(156, 138, 106);
 $ultragreen: rgb(39, 255, 0);
 $ultrablue: rgb(40, 0, 215);
 /* ULTRAPINK */
-//$ultrablue: rgb(239, 0, 140);
 $ultrapink: rgb(239, 0, 140);
 $deeppink: rgb(81, 6, 51);
 $lighterdeeppink: rgb(113, 18, 82);
@@ -28,3 +27,5 @@ $bggrad: radial-gradient(center, ellipse cover, $almostwhite 0%, $offwhite 100%)
 $ultrapink: rgb(36, 216, 205);
 $lightblue: rgb(36, 216, 205);
 $lightgreen: rgb(120, 220, 58);
+
+$linearBGgrad: linear-gradient(-30deg, $lightgreen, $lightblue);

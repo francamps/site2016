@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react';
+import Loading from './loading';
 import $ from 'jquery';
 
 export default class OneProjectDetail extends React.Component {
@@ -24,11 +24,24 @@ export default class OneProjectDetail extends React.Component {
 
   render() {
     let body = this.state.project.body || '';
+    let author = 'by: ' + (this.state.project.author || 'Franc') + ' - 2015';
+    let year = this.state.project.date || 'Ongoing';
     let title = this.state.project.title || 'Loading...';
+
+    /*if (!this.state.project.body) {
+      return (
+          <div className="one-project-detail fadeIn animated">
+            <Loading />
+          </div>
+      )
+    }*/
 
     return (
       <div className="one-project-detail fadeIn animated">
-        <h1 dangerouslySetInnerHTML={{ __html: title}}></h1>
+        <div className='header'>
+          <h1 dangerouslySetInnerHTML={{ __html: title}}></h1>
+          <h3 className='author' dangerouslySetInnerHTML={{ __html: author }}></h3>
+        </div>
         <p dangerouslySetInnerHTML={{__html: body}}></p>
       </div>
     )

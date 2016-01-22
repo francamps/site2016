@@ -1,6 +1,5 @@
 'use strict';
 
-import React from 'react';
 import Butterfly from './butterfly/butterfly';
 import { IndexRoute, Link, Route } from 'react-router';
 

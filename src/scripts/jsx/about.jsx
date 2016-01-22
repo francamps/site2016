@@ -1,8 +1,5 @@
 'use strict';
 
-import React from 'react';
-import { render } from 'react-dom'
-
 import SidePanel from './sidepanel/sidepanel';
 import Logo from './logo';
 import Footer from './footer';

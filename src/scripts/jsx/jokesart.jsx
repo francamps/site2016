@@ -1,8 +1,5 @@
 'use strict';
 
-import React from 'react';
-import { render } from 'react-dom'
-
 import OneProjectThumbnail from './oneprojectthumbnail';
 import OneProjectDetail from './oneprojectdetail';
 import SidePanel from './sidepanel/sidepanel';
@@ -11,7 +8,7 @@ import Logo from './logo';
 import Footer from './footer';
 
 let projects = [
-  'trainfuck', 'whatsapp', 'unsend'
+  'trainfuck', 'whatsapp', 'unsend', 'craigslist'
 ];
 
 export default class Jokesart extends React.Component {
@@ -69,5 +66,3 @@ export default class Jokesart extends React.Component {
     )
   }
 };
-
-render(<Jokesart />, document.getElementById('app'));
