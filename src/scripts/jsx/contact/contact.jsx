@@ -2,6 +2,7 @@
 
 import React from 'react';
 import SocialIcon from '../socialicon';
+import { Link } from 'react-router';
 
 export default class Contact extends React.Component {
   render() {
@@ -13,26 +14,22 @@ export default class Contact extends React.Component {
             <p>
               I'm <span className='highlight'>Franc Camps-Febrer</span>. I am a <span className='highlight'> designer </span>
               and <span className='highlight'> engineer</span> working in
-              the realm of <span className='highlight'>data and information experience </span>
-              tools.
-
-
+              the realm of <span className='highlight'>data </span>and
+              <span className='highlight'> information tools </span>and
+              <span className='highlight'> experiences</span>.
             </p>
 
             <p>
-              I am based between <span className='highlight'>New York </span>
-              and <span className='highlight'>Barcelona</span>.
+              <span className='highlight'>New York City </span>
+              || <span className='highlight'>Barcelona</span>
             </p>
 
             <p>If you want to collaborate, chat or have an idea, say hi!</p>
-            <p><a href='mailto:hi@franc.ly'>hi AD franc DOT ly</a></p>
-            <div className='social-footer'>
-              <SocialIcon type={'github'} />
-              <SocialIcon type={'linkedin'} />
-              <SocialIcon type={'vimeo'} />
-              <SocialIcon type={'twitter'} />
-              <SocialIcon type={'instagram'} />
-            </div>
+            <p><a className='mailto' href='mailto:hi@franc.ly'>hi@franc.ly</a></p>
+
+            <p>
+              Go see some <Link to="work">work</Link>
+            </p>
           </div>
         </div>
       </div>

@@ -5,16 +5,20 @@
     position: relative;
     width: 20px;
     height: 20px;
-    transition: transform .8s;
+    transition: transform .8s, -webkit-transform .8s;
   }
 
   .wing.wing1 {
+    opacity: 0;
     background: rgba($lightgreen, .8);
     transform: skew(0, 30deg) translate(40px, 20px);
+    -webkit-transform: skew(0, 30deg) translate(40px, 20px);
   }
 
   .wing.wing2 {
+    opacity: 0;
     background: rgba($lightblue, .8);
     transform: skew(0deg, -30deg) translate(30px, 10px);
+    -webkit-transform: skew(0deg, -30deg) translate(30px, 10px);
   }
 }

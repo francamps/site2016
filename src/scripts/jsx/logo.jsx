@@ -1,6 +1,20 @@
 'use strict';
 
+import $ from 'jquery';
+
 export default class Logo extends React.Component {
+  componentDidMount() {
+    $('.logo path').css('fill', 'url(#logoGrad)');
+
+    $('.logo path').on('mouseover', function () {
+      $(this).css('fill', 'url(#logoGradFinal)');
+    });
+
+    $('.logo path').on('mouseout', function () {
+      $(this).css('fill', 'url(#logoGrad)');
+    });
+  }
+
   render() {
     return (
       <div className="logo">
@@ -19,13 +33,13 @@ export default class Logo extends React.Component {
             </defs>
           <rect fill-rule="evenodd" clip-rule="evenodd" width="172.8" height="172.8"/>
           <g>
-          	<path fill-rule="evenodd" clip-rule="evenodd" d="M86.76,75.84c1.7-1.987,3.217-3.013,3.84-5.52
+          	<path id='path1' fill-rule="evenodd" clip-rule="evenodd" d="M86.76,75.84c1.7-1.987,3.217-3.013,3.84-5.52
           		c0.592-2.381-0.275-5.85-0.72-7.68c-1.336-5.495-2.089-10.411-3.36-15.6c-0.647-2.64-0.859-6-2.4-7.92
           		c-0.338,9.431-1.571,22.142,0.48,30.72C85.118,72.002,85.673,74.399,86.76,75.84z"/>
           	<path fill-rule="evenodd" clip-rule="evenodd" d="M87.48,100.801c-2.742,4.24-6.433,8.559-7.92,13.92
           		c-0.812,2.926,0.268,6.564,0.96,8.879c1.075,3.594,1.725,6.65,3.12,9.84c1.166,2.668,2.76,5.469,4.32,7.68
           		c0.192-0.244,1.971-5.439,2.64-8.16c1.964-7.99,1.018-19.838-1.2-26.639C88.775,104.403,88.382,102.415,87.48,100.801z"/>
-          	<path fill-rule="evenodd" clip-rule="evenodd" d="M86.4,14.4c-39.765,0-72,32.235-72,72c0,39.764,32.235,72,72,72
+          	<path className='pathChar' fill-rule="evenodd" clip-rule="evenodd" d="M86.4,14.4c-39.765,0-72,32.235-72,72c0,39.764,32.235,72,72,72
           		s72-32.236,72-72C158.4,46.636,126.165,14.4,86.4,14.4z M104.521,88.801c-0.808-0.08-1.625-0.449-2.16-0.961
           		c-0.795-0.76-0.977-1.439-1.92-2.16c-1.618,2.425-7.104,6.093-7.68,8.88c1.108,2.109,1.771,4.84,2.64,7.199
           		c3.47,9.416,4.831,25.025,1.44,36c-1.635,5.295-2.93,11.338-9.841,11.279c-0.912,0.002-1.662-0.318-2.399-1.199

@@ -1,5 +1,5 @@
 ---
-title: Whatsapp gum scultures
+title: Whatsapp gum sculptures
 author: Franc
 image: whatsapp.png
 date: 2015-07-19 15:00

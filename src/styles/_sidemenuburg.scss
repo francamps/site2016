@@ -68,7 +68,8 @@
 
   &.is-active  {
     span {
-      background: $ultrablue;
+      background: $linearBGgrad;
+      transform: rotate(45deg);
       transition-delay: 0s, 0.2s;
     }
 
@@ -80,12 +81,14 @@
 
     span::before {
       top: 0;
-      transform: rotate(45deg);
+      transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
     }
 
     span::after {
       bottom: 0;
-      transform: rotate(-45deg);
+      transform: rotate(-90deg);
+      -webkit-transform: rotate(-90deg);
     }
   }
 }

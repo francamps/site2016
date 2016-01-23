@@ -16,7 +16,7 @@ import Footer from './footer';
 import About from './about';
 import Work from './work';
 import Jokesart from './jokesart';
-import ProjectsApp from './project';
+import Journal from './journal';
 
 class Home extends React.Component {
   render() {
@@ -34,7 +34,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <SidePanel contents={<SideMenu />} />
         {this.props.children}
       </div>
     );
@@ -48,6 +47,7 @@ render((
       <Route path="/about" component={About}/>
       <Route path="/work" component={Work}/>
       <Route path="/jokesart" component={Jokesart}/>
+      <Route path="/journal" component={Journal}/>
     </Route>
   </Router>
 ), document.getElementById('app'));

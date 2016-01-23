@@ -13,7 +13,7 @@ export default class SideMenu extends React.Component {
         <div className='options'>
           <div className='menu-option fadeInDown animated'>
             <div className='option-wrapper'>
-              <Link to="about">ABOUT</Link>
+              <Link to="about">BIO</Link>
               <Butterfly />
             </div>
           </div>
@@ -31,7 +31,7 @@ export default class SideMenu extends React.Component {
           </div>
           <div className='menu-option fadeInUp animated'>
             <div className='option-wrapper'>
-              <a href="journal.html">JOURNAL</a>
+              <Link to="journal">JOURNAL (coming soon)</Link>
               <Butterfly />
             </div>
           </div>

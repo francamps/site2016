@@ -42,7 +42,7 @@ function compile () {
 function sassify () {
   return gulp.src('./src/styles/**/*.scss')
             .pipe(sass().on('error', sass.logError))
-            .pipe(autoprefixer({ browsers: ['last 1 version'] }))
+            .pipe(autoprefixer())
             .pipe(gulp.dest('public/css/'));
 }
 

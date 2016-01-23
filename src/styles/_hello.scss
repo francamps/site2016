@@ -1,7 +1,7 @@
 @import 'logo';
 
 .top-hello {
-  background: $bggrad;
+  background: $linearBGgrad;
 }
 
 .hello {
@@ -12,6 +12,7 @@
   right: 0;
   bottom: 0;
   display: flex;
+  display: -webkit-box;
   justify-content: center;
   align-items: center;
 
@@ -28,18 +29,19 @@
       margin: 20px 0;
 
       a {
-        font-family: 'Lato';
+        font-family: 'DinProBold';
         font-weight: bold;
-        font-size: $small;
+        font-size: $normal;
         letter-spacing: .1em;
         padding: 15px;
         text-decoration: none;
-        color: $ultrapink;
+        color: $white;
         background: none;
         transition: background 0.3s, color 0.3s;
+
         &:hover {
-          color: $white;
-          background: $linearBGgrad;
+          color: $darkgrey;
+          background: $white;
           transition: background 0.3s, color 0.3s;
         }
       }
@@ -50,17 +52,31 @@
       width: 100%;
       position: absolute;
       top: 0;
-      margin: 20px 0;
+      margin: 15px 0;
+      z-index: $second;
 
       span {
-        font-family: 'Lato';
+        font-family: 'DINPro-Bold';
         font-size: $small;
         font-weight: bold;
-        letter-spacing: 0em;
+        letter-spacing: .1em;
         text-transform: uppercase;
         padding: 15px;
         color: $darkgrey;
       }
+    }
+
+    .this-is {
+      text-align: center;
+      width: 100%;
+      z-index: $second;
+      font-family: 'DinProLight';
+      font-size: $large;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: .2em;
+      top: 160px;
+      position: absolute;
     }
   }
 

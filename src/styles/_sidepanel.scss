@@ -13,13 +13,15 @@
 
   &.open {
     width: 100%;
-    background: rgba($ultrablue, .95);
+    background: $linearBGgrad;
     transition: width .5s, background .25s;
 
     .menu {
       height: 100%;
       width: 100%;
       display: flex;
+      display: -webkit-box;
+      display: -webkit-flex;
       justify-content: center;
       align-items: center;
 
@@ -29,7 +31,7 @@
 
         .menu-option {
           width: 100%;
-          font-family: 'Lato';
+          font-family: 'DinProBold';
           font-weight: bold;
           letter-spacing: .1em;
           text-transform: uppercase;
@@ -50,7 +52,7 @@
             transition: color .2s;
             display: inline-block;
             height: 70px;
-            line-height: 80px;
+            line-height: 70px;
             float: left;
           }
 
@@ -59,14 +61,16 @@
             transition: color .2s, background .2s;
 
             a {
-              color: $ultrablue;
+              color: $darkgrey;
             }
 
             .wing1 {
+              opacity: 1;
               transform: skew(0, 30deg) translate(20px, 20px);
             }
 
             .wing2 {
+              opacity: 1;
               transform: skew(0deg, -30deg) translate(10px, 10px);
             }
           }
@@ -101,7 +105,7 @@
 
       span::before,
       span::after {
-        background: $ultrablue;
+        background: $linearBGgrad;
       }
     }
   }

@@ -2,6 +2,7 @@
 
 import Logo from './logo';
 import SocialIcon from './socialicon';
+import { Link } from 'react-router';
 
 export default class Footer extends React.Component {
 
@@ -9,11 +10,20 @@ export default class Footer extends React.Component {
     return (
       <div className='footer'>
         <Logo />
-        <a className='footer-mail' href='mailto:hi@franc.ly'>hi@franc.ly</a>
+        <div className='footer-nav'>
+          <Link to='about'>ABOUT</Link>
+          <Link to='work'>WORK</Link>
+          <Link to='jokesart'>JOKES / ART</Link>
+        </div>
+        {/*<a className='footer-mail' href='mailto:hi@franc.ly'>
+          hi@franc.ly
+        </a>*/}        
         <div className='social-footer'>
           <SocialIcon type={'github'} />
           <SocialIcon type={'linkedin'} />
+          <SocialIcon type={'vimeo'} />
           <SocialIcon type={'twitter'} />
+          <SocialIcon type={'instagram'} />
         </div>
       </div>
     );

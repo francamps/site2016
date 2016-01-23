@@ -1,16 +1,24 @@
+.footer {
+  .logo {
+    svg {
+      transform: none;
+    }
+  }
+}
+
 .logo {
   width: 100%;
   display: inline-block;
 
   svg {
-    //transform: scale(.75, .75);
+    transform: scale(.6, .6) translate(-40px, 0);
     padding: 20px 0;
     max-width: 110px;
-    max-height: 340px;
+    max-height: 110px;
 
     path {
       stroke-width: 2px;
-      stroke: $ultragreen;
+      stroke: $ultrablue;
       fill: none;
       stroke-dasharray: 700;
       stroke-dashoffset: 700;
@@ -30,8 +38,6 @@
     }
 
     path {
-      /*fill: $midgrey;*/
-      fill: url(#logoGrad);
       stroke: none;
       stroke-width: 2px;
       transition: fill .3s, stroke .3s;
@@ -43,8 +49,7 @@
       }
 
       path {
-        fill: url(#logoGradFinal);
-        stroke: rgb(239, 0, 140);
+        stroke: $ultrablue;
         transition: fill .3s, stroke .3s;
       }
     }
@@ -59,26 +64,22 @@
 
   svg {
     padding: 20px;
-    transform: scale(.5, .5);
-    //background: rgba($ultrablue, 0.8);
-    //transform: skew(0, 15deg)translate(170px, -290px);
-    //transform: translate(170px, -290px);
+    transform: scale(.75, .75)translate(-20px, -10px);
     transition: transform .5s;
-    //background: $ultrapink;
-    background: $linearBGgrad;
+
+    path,
     circle {
+      stroke-width: 2px;
+      stroke: $ultrablue;
       fill: none;
+      stroke-dasharray: 700;
+      stroke-dashoffset: 700;
+      animation: dashLogo 4s linear forwards;
     }
-
     &:hover {
-      //transform: skew(0, 15deg)translate(160px, -290px);
-      //transform: translate(160px, -290px);
-      transform: scale(.5, .5);
-      transition: transform .5s;
-      //background: $ultrablue;
-
+      path,
       circle {
-        //fill: $ultrapink;
+        animation: dashLogo 4s linear infinite;
       }
     }
   }

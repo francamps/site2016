@@ -3,6 +3,7 @@
 import OneProjectThumbnail from './oneprojectthumbnail';
 import OneProjectDetail from './oneprojectdetail';
 import SidePanel from './sidepanel/sidepanel';
+import SideMenu from './sidepanel/sidemenu';
 import Logo from './logo';
 
 import Footer from './footer';
@@ -33,9 +34,14 @@ export default class Jokesart extends React.Component {
     });
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     return (
       <div>
+        <SidePanel contents={<SideMenu />} />      
         <SidePanel
           hidden={true}
           additionalClass={'left'}

@@ -111,7 +111,7 @@ export default class SocialIcon extends React.Component {
         <div onClick={this.onClickLink.bind(this)} className="social-icon instagram">
           <svg x="0px" y="0px"
           	 width="61px" height="60px" viewBox="89.38 89.88 61 60" enable-background="new 89.38 89.88 61 60">
-          <circle fill="#FFC963" cx="120.098" cy="119.875" r="29.97"/>
+          <circle cx="120.098" cy="119.875" r="29.97"/>
           <path fill="#FFFFFF" d="M136.478,127.876c0-5.399,0-10.801,0-16.201c0-3.253,0.083-6.07-1.801-7.401
           	c-1.656-1.17-5.251-0.8-8.001-0.8c-6.267,0-12.535,0-18.801,0c-0.384,0.259-1.25,0.343-1.8,0.4c-0.693,0.88-1.829,1.386-2.2,2.6
           	c-0.551,1.802-0.2,4.479-0.2,6.601c0,4.467,0,8.935,0,13.401c0,3.684-0.354,7.479,1.8,9.001c2.407,1.7,12.847,0.8,17.001,0.8
