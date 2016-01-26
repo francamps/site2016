@@ -1,12 +1,14 @@
 ---
-title: Hierarchical clustering of educational content (Forbes)
+title: Clustering of educational content
 author: Franc
-image: differentiation.png
-date: 2015-07-19 15:00
+image: ForbesB.png
+date: 2012
 ---
 
 <span class='project-tag'>Visualization</span>
 <span class='project-tag'>Print</span>
 <span class='project-tag'>Visual communication</span>
 
-Hierarchical clustering of educational content. Visualization for Knewton, featured on Forbes Magazine (Python matplotlib, Illustrator)
+Based on different variables estimated by Knewton's algorithms, Clustering of educational content. Visualization for Knewton, featured on Forbes Magazine (Python matplotlib, Illustrator)
+
+![Clustering](assets/content/work/ForbesB.png)

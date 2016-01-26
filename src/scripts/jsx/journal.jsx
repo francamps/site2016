@@ -22,9 +22,6 @@ export default class Journal extends React.Component {
             <p className="copy">
               Coming soon...
             </p>
-            <Link to='about'>Bio</Link>
-            <Link to='work'>Work</Link>
-            <Link to='jokesart'>Jokes / Art</Link>
         </section>
         <Footer />
       </div>

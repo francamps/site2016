@@ -2,7 +2,7 @@
 title: Crowdacademy
 author: Franc
 image: crowdacademy.png
-date: 2014-07-19 15:00
+date: 2014
 ---
 
 <span class='project-tag'>Tools</span>

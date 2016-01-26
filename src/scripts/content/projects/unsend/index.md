@@ -2,7 +2,7 @@
 title: A book of unsent words
 author: Franc
 image: unsend.jpg
-date: 2015-07-19 15:00
+date: 2015
 ---
 
 <span class='project-tag'>Digital narrtives</span><span class='project-tag'>Personal data</span><span class='project-tag'>Conceptual</span>

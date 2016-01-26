@@ -66,6 +66,7 @@
     padding: 20px;
     transform: scale(.75, .75)translate(-20px, -10px);
     transition: transform .5s;
+    overflow: visible;
 
     path,
     circle {

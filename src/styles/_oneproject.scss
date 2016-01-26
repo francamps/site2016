@@ -1,3 +1,5 @@
+@import 'arrows';
+
 .one-project {
   height: 300px;
   cursor: pointer;
@@ -59,10 +61,26 @@
     line-height: $small;
     padding: 8px;
     margin-right: 5px;
+    display: inline-block;
+    margin-bottom: 10px;
   }
 
   & > p {
     margin-bottom: 180px;
+  }
+
+  .next,
+  .prev {
+    position: fixed;
+    font-size: $xlarge;
+  }
+
+  .next{
+    right: 0;
+  }
+
+  .prev {
+    left: 0;
   }
 
   pre {
@@ -70,5 +88,26 @@
     background: $almostwhite;
     overflow-x: scroll;
     border: solid 1px $offwhite;
+  }
+
+  .project-dots {
+    position: absolute;
+    top: 13px;
+    margin: 0 auto;
+    text-algin: center;
+
+    .project-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 10px;
+      background: $linearBGgrad;
+      display: inline-block;
+      margin: 0px 2px;
+      opacity: .3;
+
+      &.active {
+        opacity: 1;
+      }
+    }
   }
 }

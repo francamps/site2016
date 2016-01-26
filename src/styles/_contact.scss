@@ -44,22 +44,22 @@
           text-decoration: none;
           font-weight: bold;
           color: $lightblue;
-        }
-      }
-
-      &.mailto {
-        text-decoration: none;
-        font-family: 'DINPro-Light';
-        padding: 20px 0;
-        color: $ultrapink;
-        background: none;
-        font-size: $large;
-        border-bottom: $white 4px transparent;
-        transition: border 0.3s;
-
-        &:hover {
-          border-bottom: $ultrapink 4px solid;
+          border-bottom: $white 4px transparent;
           transition: border 0.3s;
+
+          &:hover {
+            border-bottom: $ultrapink 4px solid;
+            transition: border 0.3s;
+          }
+
+          &.mailto {
+            text-decoration: none;
+            font-family: 'DINPro-Light';
+            padding: 10px 0;
+            margin: 10px auto;
+            color: $ultrapink;
+            background: none;
+          }
         }
       }
     }

@@ -2,12 +2,25 @@
 
 import Loading from './loading';
 import $ from 'jquery';
+import Arrow from './arrow';
+import Ps from 'perfect-scrollbar';
 
 export default class OneProjectDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       project: {}
+    }
+  }
+
+  bindArrowKeys() {
+    document.onkeydown = (e) => {
+      e = e || window.event;
+      if (e.keyCode == '37') {
+        this.props.onPrevProject(this.props.projectId);
+      } else if (e.keyCode == '39') {
+         this.props.onNextProject(this.props.projectId);
+      }
     }
   }
 
@@ -20,30 +33,58 @@ export default class OneProjectDetail extends React.Component {
         this.setState({ project: data });
       });
     }
+
+    this.bindArrowKeys();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.projectId) {
+      let path = (nextProps.type === 'projects') ? './projects/' : './work/';
+      let id = nextProps.projectId;
+
+      $.get(path + id + '/index.json', (data) => {
+        this.setState({ project: data });
+      });
+    }
+  }
+
+  renderDots() {
+    let projects = this.props.projects || [];
+    return (
+      <div className='project-dots'>
+        {projects.map((project, i) => {
+          let classes = 'project-dot';
+          classes += (this.props.projectNum === i) ? ' active' : '';
+          return (
+            <div className={classes}></div>
+          );
+        })}
+      </div>
+    );
   }
 
   render() {
     let body = this.state.project.body || '';
-    let author = 'by: ' + (this.state.project.author || 'Franc') + ' - 2015';
+    let author = 'by: ' + (this.state.project.author || 'Franc');
     let year = this.state.project.date || 'Ongoing';
+    author += ' - ' + year;
     let title = this.state.project.title || 'Loading...';
 
-    /*if (!this.state.project.body) {
-      return (
-          <div className="one-project-detail fadeIn animated">
-            <Loading />
-          </div>
-      )
-    }*/
-
     return (
-      <div className="one-project-detail fadeIn animated">
+      <div id="OneProjectDetail" className="one-project-detail fadeIn animated">
+        {this.renderDots()}
         <div className='header'>
-          <h1 dangerouslySetInnerHTML={{ __html: title}}></h1>
+          <h2 dangerouslySetInnerHTML={{ __html: title}}></h2>
           <h3 className='author' dangerouslySetInnerHTML={{ __html: author }}></h3>
         </div>
+        <Arrow
+          direction='next'
+          onNextProject={this.props.onNextProject.bind(null, this.props.projectId)}/>
+          <Arrow
+            direction='prev'
+            onNextProject={this.props.onPrevProject.bind(null, this.props.projectId)}/>
         <p dangerouslySetInnerHTML={{__html: body}}></p>
       </div>
-    )
+    );
   }
 }

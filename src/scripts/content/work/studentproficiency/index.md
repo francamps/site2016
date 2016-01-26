@@ -2,7 +2,7 @@
 title: Student Proficiency
 author: Franc
 image: proficiency.png
-date: 2015-07-19 15:00
+date: 2014
 ---
 
 <span class='project-tag'>Interactive viusalizaiton</span>

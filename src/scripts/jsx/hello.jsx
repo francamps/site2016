@@ -18,7 +18,6 @@ export default class Hello extends React.Component {
             <div className='this-is'><span>FRANC DOT LY</span></div>
             <div className='fadeInDown animated'>
               <Hero />
-              <Message />
             </div>
             {/*<div className='hero'>
               <img src='./assets/herotemp.png' width='500px' />

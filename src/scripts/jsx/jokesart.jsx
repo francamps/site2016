@@ -5,11 +5,11 @@ import OneProjectDetail from './oneprojectdetail';
 import SidePanel from './sidepanel/sidepanel';
 import SideMenu from './sidepanel/sidemenu';
 import Logo from './logo';
-
 import Footer from './footer';
+import $ from 'jquery';
 
 let projects = [
-  'trainfuck', 'whatsapp', 'unsend', 'craigslist'
+  'trainfuck', 'whatsapp', 'unsend', 'craigslist', 'binarycard'
 ];
 
 export default class Jokesart extends React.Component {
@@ -34,19 +34,76 @@ export default class Jokesart extends React.Component {
     });
   }
 
+  nextProject(id) {
+    // Select next project after id
+    let selectedProject = {};
+
+    if (id === projects[projects.length - 1]) {
+      selectedProject = projects[0];
+    } else {
+      projects.forEach((project, i) => {
+        if (project === id) { selectedProject = projects[i + 1]; }
+      });
+    }
+
+    this.setState({
+      activeProject: selectedProject,
+      openMenu: true
+    });
+  }
+
+  prevProject(id) {
+    // Select next project after id
+    let selectedProject = {};
+
+    if (id === projects[0]) {
+      selectedProject = projects[projects.length - 1];
+    } else {
+      projects.forEach((project, i) => {
+        if (project === id) { selectedProject = projects[i - 1]; }
+      });
+    }
+
+    this.setState({
+      activeProject: selectedProject,
+      openMenu: true
+    });
+  }
+
   componentDidMount() {
     window.scrollTo(0, 0);
+    this.bindEscKey();
+  }
+
+  whichProjectNum() {
+    let j = 0;
+    projects.forEach((project, i) => {
+      if (project === this.state.activeProject) { j = i; }
+    });
+    return j;
+  }
+
+  bindEscKey() {
+    $(document).keyup((e) => {
+      if (e.keyCode == 27) {
+        this.setState({ openMenu: false });
+      }
+    });
   }
 
   render() {
     return (
       <div>
-        <SidePanel contents={<SideMenu />} />      
+        <SidePanel contents={<SideMenu />} />
         <SidePanel
           hidden={true}
           additionalClass={'left'}
           contents={<OneProjectDetail
+            onNextProject={this.nextProject.bind(this)}
+            onPrevProject={this.prevProject.bind(this)}
             projectId={this.state.activeProject}
+            projectNum={this.whichProjectNum()}
+            projects={projects}
             type={'projects'}/>}
           isOpen={this.state.openMenu}/>
         <section className='work'>

@@ -24,11 +24,11 @@ export default class Contact extends React.Component {
               || <span className='highlight'>Barcelona</span>
             </p>
 
-            <p>If you want to collaborate, chat or have an idea, say hi!</p>
+            <p>Say hi!</p>
             <p><a className='mailto' href='mailto:hi@franc.ly'>hi@franc.ly</a></p>
 
             <p>
-              Go see some <Link to="work">work</Link>
+              Go see some <Link to="work">work.</Link>
             </p>
           </div>
         </div>

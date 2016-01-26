@@ -2,7 +2,7 @@
 title: Student differentiation
 author: Franc
 image: differentiation.png
-date: 2015-07-19 15:00
+date: 2014
 ---
 
 <span class='project-tag'>Interactive viusalizaiton</span>
@@ -12,4 +12,7 @@ date: 2015-07-19 15:00
 
 A visualization showing the several user interacting with nodes of content in an adaptive course. Video visualization for Knewton (d3).
 
-![Differentiation](assets/content/work/differentiation.png)
+![Differentiation](assets/content/work/differentiation01.png)
+![Differentiation](assets/content/work/differentiation02.png)
+![Differentiation](assets/content/work/differentiation03.png)
+![Differentiation](assets/content/work/differentiation04.png)
