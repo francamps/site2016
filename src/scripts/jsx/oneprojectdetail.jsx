@@ -27,14 +27,18 @@ export default class OneProjectDetail extends React.Component {
     document.getElementsByTagName('body')[0].className += ' noscroll'
   }
 
+  loadJSON(path, id) {
+    $.getJSON(path + id + '/index.json', (data) => {
+      this.setState({ project: data });
+    });
+  }
+
   componentDidMount() {
     if (this.props.projectId) {
       let path = (this.props.type === 'projects') ? './projects/' : './work/';
       let id = this.props.projectId;
 
-      $.get(path + id + '/index.json', (data) => {
-        this.setState({ project: data });
-      });
+      window.setTimeout(this.loadJSON.bind(this, path, id), 500);
     }
 
     this.bindArrowKeys();
@@ -42,12 +46,12 @@ export default class OneProjectDetail extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.projectId) {
+      this.setState({ project: {} });
+
       let path = (nextProps.type === 'projects') ? './projects/' : './work/';
       let id = nextProps.projectId;
 
-      $.get(path + id + '/index.json', (data) => {
-        this.setState({ project: data });
-      });
+      window.setTimeout(this.loadJSON.bind(this, path, id), 500);
     }
   }
 

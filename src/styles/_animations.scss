@@ -74,6 +74,12 @@ Animations
   animation-name: fadeIn;
 }
 
+.fadeInDelayed {
+  animation-name: fadeIn;
+  animation-delay: .75s;
+  -webkit-animation-delay: .75s;
+}
+
 .fadeInDown {
   animation-name: fadeInDown;
 }

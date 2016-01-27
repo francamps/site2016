@@ -121,6 +121,12 @@ export default class Jokesart extends React.Component {
     });
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.openMenu === false) {
+      $('body').removeClass('noscroll');
+    }
+  }  
+
   render() {
     return (
       <div>

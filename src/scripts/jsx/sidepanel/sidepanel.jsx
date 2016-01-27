@@ -17,7 +17,16 @@ export default class SidePanel extends React.Component {
     this.setState({isOpen: true});
   }
 
+  allowBodyScroll() {
+    var elems = document.getElementsByTagName("body");
+    [].forEach.call(elems, function(el) {
+        el.classList.remove("noscroll");
+    });
+  }
+
   closeMenu() {
+    this.allowBodyScroll();
+
     this.setState({
       isOpen: false,
       contents: <SideMenu />

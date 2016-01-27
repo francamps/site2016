@@ -61,6 +61,7 @@
       top: 0%;
       margin: 0;
       z-index: $second;
+      padding-top: 10px;
 
       span {
         font-family: 'DINPro-Bold';
@@ -69,13 +70,16 @@
         letter-spacing: .1em;
         text-transform: uppercase;
         padding: 5px;
+        margin-top: 5px;
         color: $darkgrey;
         display: block;
       }
       @media (min-width: $min-tablet-portrait-width) {
         top: 0%;
+        padding-top: 0;
         span {
           padding: 15px;
+          margin-top: 5px;
           display: inline-block;
         }
       }

@@ -14,7 +14,7 @@ export default class Footer extends React.Component {
           <Link to='about'>ABOUT</Link>
           <Link to='work'>WORK</Link>
           <Link to='jokesart'>JOKES / ART</Link>
-        </div>     
+        </div>
         <div className='social-footer'>
           <SocialIcon type={'github'} />
           <SocialIcon type={'linkedin'} />
@@ -22,6 +22,7 @@ export default class Footer extends React.Component {
           <SocialIcon type={'twitter'} />
           <SocialIcon type={'instagram'} />
         </div>
+        <span className='footer-mail'>By Franc Camps-Febrer - hi@franc.ly - 2016</span>
       </div>
     );
   }

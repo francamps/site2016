@@ -18,11 +18,11 @@ export default class OneProjectThumbnail extends React.Component {
   }
 
   componentDidMount() {
+
     if (this.props.projectId) {
       let path = (this.props.type === 'projects') ? './projects/' : './work/';
       let id = this.props.projectId;
-
-      $.get(path + id + '/index.json', (data) => {
+      $.getJSON(path + id + '/index.json', (data) => {
         this.setState({ project: data });
       });
     }
@@ -31,7 +31,6 @@ export default class OneProjectThumbnail extends React.Component {
   renderThumbnail() {
     let path = 'assets/content/';
     path += (this.props.type === 'projects') ? 'projects/' : 'work/';
-
 
     if (this.state.project.image) {
       return (
