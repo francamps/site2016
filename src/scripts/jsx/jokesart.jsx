@@ -83,7 +83,6 @@ export default class Jokesart extends React.Component {
   getURLParameter(name) {
       let search = location.hash.split('?').slice();
       search = search.slice(1, search.length).join();
-      console.log(search);
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
       var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
           results = regex.exec('?' + search);
@@ -115,7 +114,7 @@ export default class Jokesart extends React.Component {
   }
 
   bindEscKey() {
-    $(document).keyup((e) => {
+    window.addEventListener('keyup', (e) => {
       if (e.keyCode == 27) {
         this.setState({ openMenu: false });
       }

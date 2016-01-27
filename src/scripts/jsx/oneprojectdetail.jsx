@@ -3,7 +3,6 @@
 import Loading from './loading';
 import $ from 'jquery';
 import Arrow from './arrow';
-import Ps from 'perfect-scrollbar';
 
 export default class OneProjectDetail extends React.Component {
   constructor(props) {
@@ -22,6 +21,10 @@ export default class OneProjectDetail extends React.Component {
          this.props.onNextProject(this.props.projectId);
       }
     }
+  }
+
+  componentWillMount() {
+    document.getElementsByTagName('body')[0].className += ' noscroll'
   }
 
   componentDidMount() {
@@ -69,6 +72,7 @@ export default class OneProjectDetail extends React.Component {
     let year = this.state.project.date || 'Ongoing';
     author += ' - ' + year;
     let title = this.state.project.title || 'Loading...';
+    let tags = this.state.project.tags || '';
 
     return (
       <div id="OneProjectDetail" className="one-project-detail fadeIn animated">
@@ -76,6 +80,7 @@ export default class OneProjectDetail extends React.Component {
         <div className='header'>
           <h2 dangerouslySetInnerHTML={{ __html: title}}></h2>
           <h3 className='author' dangerouslySetInnerHTML={{ __html: author }}></h3>
+          <p dangerouslySetInnerHTML={{__html: tags }}></p>
         </div>
         <Arrow
           direction='next'

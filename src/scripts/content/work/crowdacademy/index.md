@@ -3,11 +3,8 @@ title: Crowdacademy
 author: Franc
 image: crowdacademy.png
 date: 2014
+tags: <span class='project-tag'>Tools</span><span class='project-tag'>Prototyping</span><span class='project-tag'>UX Design</span>
 ---
-
-<span class='project-tag'>Tools</span>
-<span class='project-tag'>Prototyping</span>
-<span class='project-tag'>UX Design</span>
 
 A proof of concept for a set of tools for founder and project starters on crowdfunding platforms.
 

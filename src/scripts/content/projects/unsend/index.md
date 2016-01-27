@@ -3,9 +3,8 @@ title: A book of unsent words
 author: Franc
 image: unsend.jpg
 date: 2015
+tags: <span class='project-tag'>Digital narrtives</span><span class='project-tag'>Personal data</span><span class='project-tag'>Conceptual</span>
 ---
-
-<span class='project-tag'>Digital narrtives</span><span class='project-tag'>Personal data</span><span class='project-tag'>Conceptual</span>
 
 _Unsend_ is an exploration in the traces we leave as we live some of our relationships online, our thoughts and the way some features of our personalities, insecurities and every rich angle of it translates into our experience online.
 

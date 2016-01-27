@@ -3,11 +3,8 @@ title: Readiness Visualization
 author: Franc
 image: readiness.png
 date: 2012
+tags: <span class='project-tag'>Interactive viusalizaiton</span><span class='project-tag'>d3.js</span><span class='project-tag'>Visual communication</span>
 ---
-
-<span class='project-tag'>Interactive viusalizaiton</span>
-<span class='project-tag'>d3.js</span>
-<span class='project-tag'>Visual communication</span>
 
 When I joined Knewton in early 2012, we found that we were consistently challenged by the difficulty of explaining what the Knewton platform did and how it could help publishers and institutions. Personalization in music, ecommerce and other experiences online was relatively straightforward and very easy to understand by the user. However, to understand the idea in the context of an educational experience was a whole other matter.
 

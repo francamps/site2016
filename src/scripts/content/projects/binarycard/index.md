@@ -3,6 +3,7 @@ title: Binary Card Calculator
 author: Franc
 image: binarycard.png
 date: 2014
+tags: <span class='project-tag'>Games</span><span class='project-tag'>Design</span>
 ---
 
 An online calculator to support a workshop using [Toru Urakawa](https://twitter.com/toru_urakawa)'s Binary Card games. A project done at the School for Poetic Computation in New York.

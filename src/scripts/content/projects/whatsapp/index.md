@@ -3,9 +3,8 @@ title: Whatsapp gum sculptures
 author: Franc
 image: whatsapp.png
 date: 2015
+tags: <span class='project-tag'>Personal data</span><span class='project-tag'>Design</span><span class='project-tag'>Visualization</span><span class='project-tag'>Digital narratives</span>
 ---
-
-<span class='project-tag'>Personal data</span><span class='project-tag'>Design</span><span class='project-tag'>Visualization</span><span class='project-tag'>Digital narratives</span>
 
 In the same line as other projects, _Whatsapp gum sculptures_ explores the traces we leave when we live online and reimagines how do visualize and think of them
 

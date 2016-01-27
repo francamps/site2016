@@ -3,9 +3,8 @@ title: Trainfuck
 author: franc
 image: trainfuck.png
 date: 2014
+tags: <span class='project-tag'>Conceptual</span><span class='project-tag'>Performance</span><span class='project-tag'>Computation</span>
 ---
-
-<span class='project-tag'>Conceptual</span><span class='project-tag'>Performance</span><span class='project-tag'>Computation</span>
 
 Brainfuck is an esoteric programming language, used mostly for challenges and programming language design athletics. It is very minimalist, and superconfusing. Here's 'Hello World!' in Brainfuck.
 

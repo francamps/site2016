@@ -90,6 +90,12 @@ export default class Work extends React.Component {
     return j;
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.openMenu === false) {
+      $('body').removeClass('noscroll');
+    }
+  }
+
   bindEscKey() {
     $(document).keyup((e) => {
       if (e.keyCode == 27) {
@@ -99,7 +105,6 @@ export default class Work extends React.Component {
   }
 
   render() {
-    console.log(this.props.params);
     return (
       <div>
         <SidePanel contents={<SideMenu />} />

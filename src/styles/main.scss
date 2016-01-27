@@ -13,6 +13,7 @@ Sections
 @import 'sidepanel';
 @import 'contact';
 @import 'footer';
+@import 'about';
 
 /*
 Other components
@@ -34,6 +35,10 @@ body {
   margin: 0;
   font-family: Merriweather;
 
+  &.noscroll {
+    overflow: hidden;
+  }
+
   section {
     min-height: 100%;
     clear: both;
@@ -49,6 +54,17 @@ body {
     @media (min-width: $min-tablet-landscape-width) {
       padding-left: 100px;
       padding-right: 100px;
+    }
+
+    &.about,
+    &.work,
+    &.jokesart,
+    &.journal {
+      padding-top: 50px;
+
+      @media (min-width: $min-tablet-portrait-width) {
+        padding-top: 200px;
+      }
     }
   }
 
@@ -82,8 +98,8 @@ body {
   }
 
   .copy {
-    padding: 60px 0;
-    max-width: 740px;
+    padding: 60px 0 60px 0;
+    max-width: 800px;
     margin: 0 auto;
     padding-left: 0;
     margin-left: 0;
