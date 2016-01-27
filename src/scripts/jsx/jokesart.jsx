@@ -9,7 +9,11 @@ import Footer from './footer';
 import $ from 'jquery';
 
 let projects = [
-  'trainfuck', 'whatsapp', 'unsend', 'craigslist', 'binarycard'
+  'trainfuck',
+  'whatsapp',
+  'unsend',
+  'craigslist',
+  'binarycard'
 ];
 
 export default class Jokesart extends React.Component {
@@ -73,6 +77,33 @@ export default class Jokesart extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     this.bindEscKey();
+    this.getProjectParam();
+  }
+
+  getURLParameter(name) {
+      let search = location.hash.split('?').slice();
+      search = search.slice(1, search.length).join();
+      console.log(search);
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec('?' + search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  getProjectParam() {
+    let selectedProject,
+        projectParam = this.getURLParameter('project');
+
+    projects.forEach((project, i) => {
+      if (project === projectParam) { selectedProject = projectParam; }
+    });
+
+    if (selectedProject) {
+      this.setState({
+        activeProject: selectedProject,
+        openMenu: true
+      });
+    }
   }
 
   whichProjectNum() {
@@ -106,7 +137,7 @@ export default class Jokesart extends React.Component {
             projects={projects}
             type={'projects'}/>}
           isOpen={this.state.openMenu}/>
-        <section className='work'>
+        <section className='jokesart'>
             <Logo />
             <h2 className='fadeInUp animated'>Digital Art / Jokes / Other work</h2>
             <p className='copy'>

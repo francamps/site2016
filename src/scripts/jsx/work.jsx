@@ -99,6 +99,7 @@ export default class Work extends React.Component {
   }
 
   render() {
+    console.log(this.props.params);
     return (
       <div>
         <SidePanel contents={<SideMenu />} />

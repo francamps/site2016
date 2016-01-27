@@ -3,7 +3,6 @@
 @import 'animations';
 @import 'layers';
 @import 'breakpoints';
-@import 'sparkline';
 @import 'butterfly';
 @import 'loading';
 
@@ -11,7 +10,6 @@
 Sections
 */
 @import 'hello';
-@import 'featuredwork';
 @import 'sidepanel';
 @import 'contact';
 @import 'footer';
@@ -20,6 +18,7 @@ Sections
 Other components
 */
 @import 'oneprojectthumbnail';
+@import 'oneproject';
 
 /*
 Main styles

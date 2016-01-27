@@ -2,29 +2,24 @@ $yellow: rgb(253, 199, 106);
 $off-yellow: rgb(253, 221, 170);
 $off-off-yellow: rgb(254, 238, 213);
 
-$brown: rgb(156, 138, 106);
-
 $ultragreen: rgb(39, 255, 0);
 $ultrablue: rgb(40, 0, 215);
+
 /* ULTRAPINK */
 $ultrapink: rgb(239, 0, 140);
 $deeppink: rgb(81, 6, 51);
 $lighterdeeppink: rgb(113, 18, 82);
-$bggrad: radial-gradient(center, ellipse cover, $lighterdeeppink 0%, $deeppink 100%);
 
 $black: rgb(0, 0, 0);
 $darkgrey: rgb(40, 44, 52);
 $midgrey: rgb(129, 137, 143);
 $white: rgb(255, 255, 255);
 
-$purple: rgb(132, 78, 251);
 
 $almostwhite: rgb(254, 251, 247);
 $offwhite: rgb(212, 212, 210);
-$bggrad: radial-gradient(center, ellipse cover, $almostwhite 0%, $offwhite 100%);
 $bggrad: radial-gradient(circle, $almostwhite, $offwhite);
 
-$ultrapink: rgb(36, 216, 205);
 $lightblue: rgb(36, 216, 205);
 $lightgreen: rgb(120, 220, 58);
 

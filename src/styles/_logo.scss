@@ -59,12 +59,17 @@
 .hero {
   width: 100%;
   display: inline-block;
-  height: 350px;
+  height: 100%;
   text-align: center;
+
+  a {
+    position: absolute;
+    top: 50%;
+  }
 
   svg {
     padding: 20px;
-    transform: scale(.75, .75)translate(-20px, -10px);
+    transform: scale(.75, .75)translate(-140px, -210px);
     transition: transform .5s;
     overflow: visible;
 

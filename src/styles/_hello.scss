@@ -6,21 +6,25 @@
 }
 
 .hello {
-  max-width: 1200px;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   left: 0;
   right: 0;
   bottom: 0;
+  padding: 0;
   display: flex;
   display: -webkit-box;
   justify-content: center;
   align-items: center;
 
   .hello-wrapper {
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
     .navigation {
       text-align: center;
@@ -45,6 +49,8 @@
           background: $white;
           transition: background 0.3s, color 0.3s;
         }
+
+
       }
     }
 
@@ -52,7 +58,7 @@
       text-align: center;
       width: 100%;
       position: absolute;
-      top: 0;
+      top: 0%;
       margin: 15px 0;
       z-index: $second;
 
@@ -62,50 +68,36 @@
         font-weight: bold;
         letter-spacing: .1em;
         text-transform: uppercase;
-        padding: 15px;
+        padding: 5px;
         color: $darkgrey;
+        display: block;
       }
+      @media (min-width: $min-tablet-portrait-width) {
+        top: 0%;
+        span {
+          padding: 15px;
+          display: inline-block;
+        }
+      }
+
     }
 
     .this-is {
-      text-align: center;
-      width: 100%;
-      z-index: $second;
-      font-family: 'DinProLight';
-      font-size: $large;
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: .2em;
-      top: 160px;
-      position: absolute;
+      h2 {
+        width: 100%;
+        z-index: $second;
+        text-align: center;
+        top: 50%;
+        transform: translate(0, 0px);
+        position: absolute;
+      }
     }
   }
 
   .hello-copy {
-    display: inline-block;
-    float: left;
-    line-height: 36px;
-    font-size: 16px;
-    width: 100%;
-
     h2 {
       font-family: 'Lato';
-      color: $ultrapink;
-    }
-
-    p {
-      color: $deeppink;
-      font-family: 'MerriweatherLight', sans-serif;
-      text-align: center;
-
-      .highlight {
-        color: $white;
-      }
-
-      &::selection {
-        color: $ultrablue;
-        background: $darkgrey;
-      }
+      color: $lightblue;
     }
 
     a {

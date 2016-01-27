@@ -5,12 +5,12 @@ import { render } from 'react-dom';
 
 import Router from 'react-router';
 import { IndexRoute, Link, Route } from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import Hello from './hello';
-import FeaturedWork from './featuredwork';
 import SidePanel from './sidepanel/sidepanel';
 import SideMenu from './sidepanel/sidemenu';
-import Contact from './contact/contact';
+import Contact from './contact';
 import Footer from './footer';
 
 import About from './about';
@@ -44,10 +44,10 @@ render((
   <Router>
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
-      <Route path="/about" component={About}/>
-      <Route path="/work" component={Work}/>
-      <Route path="/jokesart" component={Jokesart}/>
-      <Route path="/journal" component={Journal}/>
+      <Route path="about" component={About}/>
+      <Route path="work" component={Work}/>
+      <Route path="jokesart" component={Jokesart}/>
+      <Route path="journal" component={Journal}/>
     </Route>
   </Router>
 ), document.getElementById('app'));

@@ -12,28 +12,36 @@ export default class SideMenu extends React.Component {
       <div className="menu">
         <div className='options'>
           <div className='menu-option fadeInDown animated'>
-            <div className='option-wrapper'>
-              <Link to="about">BIO</Link>
-              <Butterfly />
-            </div>
+            <Link to="about">
+              <div className='option-wrapper'>
+                <span>BIO</span>
+                <Butterfly />
+              </div>
+            </Link>
           </div>
           <div className='menu-option fadeInDown animated'>
-            <div className='option-wrapper'>
-              <Link to="work">WORK</Link>
-              <Butterfly />
-            </div>
+            <Link to="work">
+              <div className='option-wrapper'>
+                <span>WORK</span>
+                <Butterfly />
+              </div>
+            </Link>
           </div>
           <div className='menu-option fadeInUp animated'>
-            <div className='option-wrapper'>
-              <Link to="jokesart">OTHER WORK / JOKES / ART</Link>
-              <Butterfly />
-            </div>
+            <Link to="jokesart">
+              <div className='option-wrapper'>
+                <span>OTHER WORK / JOKES / ART</span>
+                <Butterfly />
+              </div>
+            </Link>
           </div>
           <div className='menu-option fadeInUp animated'>
-            <div className='option-wrapper'>
-              <Link to="journal">JOURNAL (coming soon)</Link>
-              <Butterfly />
-            </div>
+            <Link to="journal">
+              <div className='option-wrapper'>
+                <span>JOURNAL (coming soon)</span>
+                <Butterfly />
+              </div>
+            </Link>
           </div>
         </div>
       </div>

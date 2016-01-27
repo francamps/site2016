@@ -1,6 +1,5 @@
 'use strict';
 
-import Message from './message';
 import Hero from './hero';
 import Navigation from './navigation';
 
@@ -15,13 +14,10 @@ export default class Hello extends React.Component {
               <span>Visualization</span>
               <span>Information Experience</span>
             </div>
-            <div className='this-is'><span>FRANC DOT LY</span></div>
+            <div className='this-is'><h2>FRANC DOT LY</h2></div>
             <div className='fadeInDown animated'>
               <Hero />
             </div>
-            {/*<div className='hero'>
-              <img src='./assets/herotemp.png' width='500px' />
-            </div>*/}
             <Navigation />
           </div>
         </section>

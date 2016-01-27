@@ -15,7 +15,7 @@
         position: relative;
         margin: 0 auto;
         margin-bottom: 60px;
-        border: 4px solid $ultrapink;
+        border: 4px solid $lightblue;
         border-radius: 50px;
         z-index: $first;
     }
@@ -48,7 +48,7 @@
           transition: border 0.3s;
 
           &:hover {
-            border-bottom: $ultrapink 4px solid;
+            border-bottom: $lightblue 4px solid;
             transition: border 0.3s;
           }
 
@@ -57,43 +57,8 @@
             font-family: 'DINPro-Light';
             padding: 10px 0;
             margin: 10px auto;
-            color: $ultrapink;
+            color: $lightblue;
             background: none;
-          }
-        }
-      }
-    }
-    .social-footer {
-      height: 62px;
-      margin-left: -15px;
-      clear: both;
-
-      .social-icon {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        padding: 10px;
-        background: $ultrablue;
-        transform: scale(.5, .5);
-        display: inline;
-        float: left;
-        cursor: pointer;
-
-        path,
-        circle {
-          /*fill: $midgrey;*/
-          fill: $lightblue;
-          stroke: $ultrablue;
-          stroke-width: 2px;
-          transition: fill .3s, stroke .3s;
-        }
-
-        &:hover {
-          background: $lightgreen;
-
-          path {
-            fill: $lightblue;
-            stroke: $ultrablue;
-            transition: fill .3s, stroke .3s;
           }
         }
       }

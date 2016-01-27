@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-export default class Sparkline extends React.Component {
+export default class Butterfly extends React.Component {
   render () {
     return (
       <div className="butterfly">

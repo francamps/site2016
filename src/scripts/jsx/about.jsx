@@ -24,6 +24,7 @@ export default class About extends React.Component {
             <p>I was part of the School for Poetic Computation Fall 2014 session, exploring the intersection of code, design, hardware and theory in media art.</p>
             <p>I have an opinion.</p>
             <p>Say hi!</p>
+            <p><a href='mailto:hi@franc.ly'>hi@franc.ly</a></p>
           </div>
         </section>
         <Footer />

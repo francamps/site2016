@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import SocialIcon from '../socialicon';
+import SocialIcon from './socialicon';
 import { Link } from 'react-router';
 
 export default class Contact extends React.Component {

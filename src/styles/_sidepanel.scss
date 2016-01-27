@@ -42,38 +42,44 @@
           background: none;
           transition: color .2s, background .2s;
 
-          .option-wrapper {
-            display: inline-block;
-          }
-
           a {
             text-decoration: none;
             color: $white;
-            transition: color .2s;
-            display: inline-block;
             height: 70px;
             line-height: 70px;
-            float: left;
-          }
+            width: 100%;
+            transition: color .2s;
 
-          &:hover {
-            background: $white;
-            transition: color .2s, background .2s;
-
-            a {
-              color: $darkgrey;
+            span {
+              display: inline-block;
             }
 
-            .wing1 {
-              opacity: 1;
-              transform: skew(0, 30deg) translate(20px, 20px);
-            }
-
-            .wing2 {
-              opacity: 1;
-              transform: skew(0deg, -30deg) translate(10px, 0px);
+            .option-wrapper {
+              display: inline-block;
+              width: 100%;
             }
           }
+
+            &:hover {
+              background: $white;
+              transition: background .2s;
+
+              span {
+                color: $darkgrey;
+                transition: color .2s;
+              }
+
+              .wing1 {
+                opacity: 1;
+                transform: skew(0, 30deg) translate(20px, 20px);
+              }
+
+              .wing2 {
+                opacity: 1;
+                transform: skew(0deg, -30deg) translate(10px, 0px);
+              }
+            }
+
         }
 
         @media (min-width: $min-mobile-width) and (max-width: $min-tablet-portrait-width) {

@@ -1,29 +1,5 @@
 @import 'arrows';
 
-.one-project {
-  height: 300px;
-  cursor: pointer;
-  background: $white;
-  transition: background 0.1s;
-  border-bottom: 1px solid $ultrablue;
-  margin-bottom: 25px;
-  box-shadow: 0 0 2px 0 $ultrablue;
-  padding: 20px;
-
-  &:hover {
-    box-shadow: 0 0 6px 0 $ultrablue;
-    transition: box-shadow 0.1s;
-  }
-
-  .thumbnail {
-    width: 30%;
-    height: 100%;
-    margin-right: 5%;
-    display: inline-block;
-    float: left;
-  }
-}
-
 .one-project-detail {
   padding: 40px;
   color: $darkgrey;

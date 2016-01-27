@@ -21,7 +21,7 @@
   .footer-nav {
     text-align: center;
     width: 100%;
-    margin: 10px;
+    margin: 10px 0;
 
     a {
       font-family: 'DinProBold';
@@ -58,7 +58,6 @@
 
       path,
       circle {
-        /*fill: $midgrey;*/
         fill: $lightblue;
         transition: fill .3s, stroke .3s;
       }

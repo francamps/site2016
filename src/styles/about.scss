@@ -1,4 +1,10 @@
 .about {
   width: 80%;
   max-width: 1200px;
+
+  .copy {
+    img {
+      width: 100%;
+    }
+  }
 }
