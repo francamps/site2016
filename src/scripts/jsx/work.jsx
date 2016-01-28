@@ -22,9 +22,10 @@ let projects = [
 export default class Work extends React.Component {
   constructor(props) {
     super(props);
+    let id = props.params.id;
     this.state = {
-      activeProject: null,
-      openMenu: false
+      activeProject: id || null,
+      openMenu: (props.params.hasOwnProperty('id'))
     }
   }
 
@@ -53,10 +54,7 @@ export default class Work extends React.Component {
       });
     }
 
-    this.setState({
-      activeProject: selectedProject,
-      openMenu: true
-    });
+    this.context.history.pushState(null, '/work/' + selectedProject);
   }
 
   prevProject(id) {
@@ -71,10 +69,7 @@ export default class Work extends React.Component {
       });
     }
 
-    this.setState({
-      activeProject: selectedProject,
-      openMenu: true
-    });
+    this.context.history.pushState(null, '/work/' + selectedProject);
   }
 
   componentDidMount() {
@@ -90,35 +85,43 @@ export default class Work extends React.Component {
     return j;
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.openMenu === false) {
-      $('body').removeClass('noscroll');
-    }
-  }
-
   bindEscKey() {
-    $(document).keyup((e) => {
+    window.addEventListener('keyup', (e) => {
       if (e.keyCode == 27) {
-        this.setState({ openMenu: false });
+        this.context.history.pushState(null, '/work');
       }
     });
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.id) {
+        this.setState({
+          activeProject: nextProps.params.id,
+          openMenu: true
+      });
+    } else {
+      this.setState({ openMenu: false });
+    }
+  }
+
+componentWillUpdate(nextProps, nextState) {
+  if (nextState.openMenu === false) {
+    $('body').removeClass('noscroll');
+  }
+}
 
   render() {
     return (
       <div>
         <SidePanel contents={<SideMenu />} />
-        <SidePanel
-          hidden={true}
-          additionalClass={'left'}
-          contents={<OneProjectDetail
-            onNextProject={this.nextProject.bind(this)}
-            onPrevProject={this.prevProject.bind(this)}
-            projectId={this.state.activeProject}
-            projectNum={this.whichProjectNum()}
-            projects={projects}
-            type={'work'}/>}
-          isOpen={this.state.openMenu}/>
+        <OneProjectDetail
+          onNextProject={this.nextProject.bind(this)}
+          onPrevProject={this.prevProject.bind(this)}
+          projectId={this.state.activeProject}
+          projectNum={this.whichProjectNum()}
+          projects={projects}
+          openMenu={this.state.openMenu}
+          type={'work'}/>
         <section className='work'>
             <Logo />
             <h2 className='fadeInUp animated'>Work</h2>
@@ -156,3 +159,7 @@ export default class Work extends React.Component {
     )
   }
 };
+
+Work.contextTypes = {
+  history: React.PropTypes.object
+}

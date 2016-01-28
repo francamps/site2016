@@ -19,9 +19,10 @@ let projects = [
 export default class Jokesart extends React.Component {
   constructor(props) {
     super(props);
+    let id = props.params.id;
     this.state = {
-      activeProject: null,
-      openMenu: false
+      activeProject: id || null,
+      openMenu: (props.params.hasOwnProperty('id'))
     }
   }
 
@@ -50,10 +51,7 @@ export default class Jokesart extends React.Component {
       });
     }
 
-    this.setState({
-      activeProject: selectedProject,
-      openMenu: true
-    });
+    this.context.history.pushState(null, '/projects/' + selectedProject);
   }
 
   prevProject(id) {
@@ -68,41 +66,12 @@ export default class Jokesart extends React.Component {
       });
     }
 
-    this.setState({
-      activeProject: selectedProject,
-      openMenu: true
-    });
+    this.context.history.pushState(null, '/projects/' + selectedProject);
   }
 
   componentDidMount() {
     window.scrollTo(0, 0);
     this.bindEscKey();
-    this.getProjectParam();
-  }
-
-  getURLParameter(name) {
-      let search = location.hash.split('?').slice();
-      search = search.slice(1, search.length).join();
-      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-          results = regex.exec('?' + search);
-      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
-
-  getProjectParam() {
-    let selectedProject,
-        projectParam = this.getURLParameter('project');
-
-    projects.forEach((project, i) => {
-      if (project === projectParam) { selectedProject = projectParam; }
-    });
-
-    if (selectedProject) {
-      this.setState({
-        activeProject: selectedProject,
-        openMenu: true
-      });
-    }
   }
 
   whichProjectNum() {
@@ -116,32 +85,40 @@ export default class Jokesart extends React.Component {
   bindEscKey() {
     window.addEventListener('keyup', (e) => {
       if (e.keyCode == 27) {
-        this.setState({ openMenu: false });
+        this.context.history.pushState(null, '/jokesart');
       }
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.id) {
+        this.setState({
+          activeProject: nextProps.params.id,
+          openMenu: true
+      });
+    } else {
+      this.setState({ openMenu: false });
+    }
   }
 
   componentWillUpdate(nextProps, nextState) {
     if (nextState.openMenu === false) {
       $('body').removeClass('noscroll');
     }
-  }  
+  }
 
   render() {
     return (
       <div>
         <SidePanel contents={<SideMenu />} />
-        <SidePanel
-          hidden={true}
-          additionalClass={'left'}
-          contents={<OneProjectDetail
-            onNextProject={this.nextProject.bind(this)}
-            onPrevProject={this.prevProject.bind(this)}
-            projectId={this.state.activeProject}
-            projectNum={this.whichProjectNum()}
-            projects={projects}
-            type={'projects'}/>}
-          isOpen={this.state.openMenu}/>
+        <OneProjectDetail
+          onNextProject={this.nextProject.bind(this)}
+          onPrevProject={this.prevProject.bind(this)}
+          projectId={this.state.activeProject}
+          projectNum={this.whichProjectNum()}
+          projects={projects}
+          openMenu={this.state.openMenu}
+          type={'projects'}/>
         <section className='jokesart'>
             <Logo />
             <h2 className='fadeInUp animated'>Digital Art / Jokes / Other work</h2>
@@ -165,3 +142,7 @@ export default class Jokesart extends React.Component {
     )
   }
 };
+
+Jokesart.contextTypes = {
+  history: React.PropTypes.object
+}

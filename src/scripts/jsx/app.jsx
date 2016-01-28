@@ -4,7 +4,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import Router from 'react-router';
-import { IndexRoute, Link, Route } from 'react-router';
+import { Redirect, IndexRoute, Link, Route } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import Hello from './hello';
@@ -16,6 +16,7 @@ import Footer from './footer';
 import About from './about';
 import Work from './work';
 import Jokesart from './jokesart';
+import OneProjectDetail from './oneprojectdetail';
 import Journal from './journal';
 
 class Home extends React.Component {
@@ -23,6 +24,7 @@ class Home extends React.Component {
     return (
       <div>
         <Hello />
+        <SidePanel />
         <Contact />
         <Footer />
       </div>
@@ -45,8 +47,14 @@ render((
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
       <Route path="about" component={About}/>
-      <Route path="work" component={Work}/>
-      <Route path="jokesart" component={Jokesart}/>
+      <Route path="work" component={Work}>
+        <Route path="/work/:id" component={OneProjectDetail} />
+        <Redirect from="work/:id" to="/work/:id" />
+      </Route>
+      <Route path="jokesart" component={Jokesart}>
+        <Route path="/projects/:id" component={OneProjectDetail} />
+        <Redirect from="projects/:id" to="/projects/:id" />
+      </Route>
       <Route path="journal" component={Journal}/>
     </Route>
   </Router>

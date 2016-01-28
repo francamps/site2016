@@ -49,14 +49,14 @@ export default class OneProjectThumbnail extends React.Component {
 
     return (
       <div className="one-project-thumbnail-wrapper">
-        {/*<Link to={path + id}>*/}
-          <div className="one-project-thumbnail"
-            onClick={this.props.onSelectProject.bind(null, id)}>
+        <Link to={path + id}>
+          <div className="one-project-thumbnail">
+        {/*    onClick={this.props.onSelectProject.bind(null, id)}>*/}
             <div className="title">{title}</div>
             <Butterfly />
             {this.renderThumbnail()}
           </div>
-        {/*}</Link>*/}
+        </Link>
       </div>
     );
   }

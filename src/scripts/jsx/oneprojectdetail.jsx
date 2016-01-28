@@ -1,5 +1,6 @@
 'use strict';
 
+import SidePanel from './sidepanel/sidepanel';
 import Loading from './loading';
 import $ from 'jquery';
 import Arrow from './arrow';
@@ -79,21 +80,27 @@ export default class OneProjectDetail extends React.Component {
     let tags = this.state.project.tags || '';
 
     return (
-      <div id="OneProjectDetail" className="one-project-detail fadeIn animated">
-        {this.renderDots()}
-        <div className='header'>
-          <h2 dangerouslySetInnerHTML={{ __html: title}}></h2>
-          <h3 className='author' dangerouslySetInnerHTML={{ __html: author }}></h3>
-          <p dangerouslySetInnerHTML={{__html: tags }}></p>
-        </div>
-        <Arrow
-          direction='next'
-          onNextProject={this.props.onNextProject.bind(null, this.props.projectId)}/>
+      <SidePanel
+        hidden={true}
+        additionalClass={'left'}
+        contents={
+        <div id="OneProjectDetail" className="one-project-detail fadeIn animated">
+          {this.renderDots()}
+          <div className='header'>
+            <h2 dangerouslySetInnerHTML={{ __html: title}}></h2>
+            <h3 className='author' dangerouslySetInnerHTML={{ __html: author }}></h3>
+            <p dangerouslySetInnerHTML={{__html: tags }}></p>
+          </div>
           <Arrow
-            direction='prev'
-            onNextProject={this.props.onPrevProject.bind(null, this.props.projectId)}/>
-        <p dangerouslySetInnerHTML={{__html: body}}></p>
-      </div>
+            direction='next'
+            onNextProject={this.props.onNextProject.bind(null, this.props.projectId)}/>
+            <Arrow
+              direction='prev'
+              onNextProject={this.props.onPrevProject.bind(null, this.props.projectId)}/>
+          <p dangerouslySetInnerHTML={{__html: body}}></p>
+          </div>
+        }
+        isOpen={this.props.openMenu}/>
     );
   }
 }
