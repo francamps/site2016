@@ -1,7 +1,7 @@
 ---
 title: Craigslist flaneur
 author: Franc
-image: craigslist.png
+image: craigslist.jpg
 date: 2014
 tags: <span class='project-tag'>Personal data</span><span class='project-tag'>Online communities</span><span class='project-tag'>Digital narratives</span>
 ---

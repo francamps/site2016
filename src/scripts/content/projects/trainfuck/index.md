@@ -1,7 +1,7 @@
 ---
 title: Trainfuck
 author: franc
-image: trainfuck.png
+image: trainfuck.jpg
 date: 2014
 tags: <span class='project-tag'>Conceptual</span><span class='project-tag'>Performance</span><span class='project-tag'>Computation</span>
 ---

@@ -48,8 +48,9 @@
           transition: border 0.3s;
 
           &:hover {
-            border-bottom: $lightblue 4px solid;
-            transition: border 0.3s;
+            border-bottom: $lightgreen 4px solid;
+            color: $lightgreen;
+            transition: border 0.3s, color .3s;
           }
 
           &.mailto {

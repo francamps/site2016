@@ -1,7 +1,7 @@
 ---
 title: Whatsapp gum sculptures
 author: Franc
-image: whatsapp.png
+image: whatsapp.jpg
 date: 2015
 tags: <span class='project-tag'>Personal data</span><span class='project-tag'>Design</span><span class='project-tag'>Visualization</span><span class='project-tag'>Digital narratives</span>
 ---
