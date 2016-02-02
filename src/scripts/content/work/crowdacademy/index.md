@@ -17,8 +17,6 @@ The goal, on the one hand, was to optimize and streamline the process of assessm
 On the other hand, we'd like to progressively incorporate data that has been collected in the platform over time in order to provide reliable information to future project founders and provide statistical support to their decision-making processes.
 
 
-![Crowdacademy](assets/content/work/crowdacademy01.png)
-
-![Crowdacademy](assets/content/work/crowdacademy02.png)
-
-![Crowdacademy](assets/content/work/crowdacademy03.png)
+![Crowdacademy](/assets/content/work/crowdacademy01.png)
+![Crowdacademy](/assets/content/work/crowdacademy02.png)
+![Crowdacademy](/assets/content/work/crowdacademy03.png)

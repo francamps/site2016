@@ -1,6 +1,7 @@
 'use strict';
 
 import $ from 'jquery';
+import { Link } from 'react-router';
 
 export default class Logo extends React.Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ export default class Logo extends React.Component {
   render() {
     return (
       <div className="logo">
-        <a href="/index.html">
+        <Link to="/">
           <svg x="0px" y="0px"
           	 width="172.8px" height="172.8px" viewBox="0 0 172.8 172.8" enable-background="new 0 0 172.8 172.8">
              <defs>
@@ -52,7 +53,7 @@ export default class Logo extends React.Component {
           		c0.08,0,4.939-5.146,7.68-7.2c1.098-0.823,2.219-2.926,4.8-2.16C105.224,77.89,112.96,88.266,104.521,88.801z"/>
           </g>
           </svg>
-        </a>
+        </Link>
       </div>
     );
   }

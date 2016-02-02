@@ -16,8 +16,6 @@ So I made a book out of it. I made a book with all the emails that Gmail saved f
 
 Now that it seems that email is on its way out from its central role in our electronic communications, being replaced by a landscape of messaging apps and walled gardens, I thought this could be a good way of paying tribute to a romantic idea of email.
 
-![Unsend](assets/content/projects/unsend.jpg)
-
-![Unsend](assets/content/projects/unsend2.png)
-
-![Unsend](assets/content/projects/unsend3.png)
+![Unsend](/assets/content/projects/unsend.jpg)
+![Unsend](/assets/content/projects/unsend2.png)
+![Unsend](/assets/content/projects/unsend3.png)

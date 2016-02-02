@@ -12,7 +12,7 @@ Each gray bubble represents a concept node in the small portion of the graph dis
 
 The visualization displays different variables estimated by Knewton's algorithms as simulated data of students' work go through a course and Knewton's estimation of difficulty and other properties about the graph change as well.
 
-![Proficiency](assets/content/work/proficiency01.png)
-![Proficiency](assets/content/work/proficiency02.png)
-![Proficiency](assets/content/work/proficiency03.png)
-![Proficiency](assets/content/work/proficiency04.png)
+![Proficiency](/assets/content/work/proficiency01.png)
+![Proficiency](/assets/content/work/proficiency02.png)
+![Proficiency](/assets/content/work/proficiency03.png)
+![Proficiency](/assets/content/work/proficiency04.png)

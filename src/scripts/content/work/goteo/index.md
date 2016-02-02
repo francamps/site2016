@@ -10,7 +10,7 @@ tags: <span class='project-tag'>Interactive viusalization</span><span class='pro
 
 You can see a live version of the report [here](http://www.franc.ly/Goteo/index_en.html).
 
-![Goteo](assets/content/work/goteando01.png)
-![Goteo](assets/content/work/goteando02.png)
+![Goteo](/assets/content/work/goteando01.png)
+![Goteo](/assets/content/work/goteando02.png)
 
 <div style="width: 500px; margin: 0 auto"><iframe src="//player.vimeo.com/video/55852962" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>

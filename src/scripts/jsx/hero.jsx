@@ -1,10 +1,12 @@
 'use strict';
 
+import { Link } from 'react-router';
+
 export default class Hero extends React.Component {
   render() {
     return (
       <div className="hero">
-        <a href="/index.html">
+        <Link to="/">
           <svg x="0px" y="0px"
           	 width="145.44px" height="148.32px" viewBox="0 0 145.44 148.32" enable-background="new 0 0 145.44 148.32">
              <defs>
@@ -37,7 +39,7 @@ export default class Hero extends React.Component {
               c0.08,0,4.939-5.146,7.68-7.2c1.098-0.823,2.219-2.926,4.8-2.16C105.224,77.89,112.96,88.266,104.521,88.801z"/>
           </g>
           </svg>
-        </a>
+        </Link>
       </div>
     );
   }

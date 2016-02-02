@@ -12,17 +12,14 @@ As a person who spends large amounts of time online and keeps relationships of f
 
 This is a part of a series of explorations.
 
-![Whatsapp](assets/content/projects/whatsapp01.png)
+![Whatsapp](/assets/content/projects/whatsapp01.jpg)
+![Whatsapp](/assets/content/projects/whatsapp03.jpg)
 A partner relationship that ended up in a painful breakup. Some of the arguing happened via messaging (hence the big spikes at the end). After a long cautionary time of no contact, some friendly communication was reestablished.
 
-![Whatsapp](assets/content/projects/whatsapp02.png)
-A friendship.
-
-![Whatsapp](assets/content/projects/whatsapp03.png)
+![Whatsapp](/assets/content/projects/whatsapp02.jpg)
+![Whatsapp](/assets/content/projects/whatsapp05.jpg)
 My parents, my sister and I.
 
-## Methodology
-
-* Create a python parser to output a JSON file that is usable, grouping messages by author and time.
-* Display over a time period and interpolate, using d3
-* Refine and display
+![Whatsapp](/assets/content/projects/whatsapp04.jpg)
+![Whatsapp](/assets/content/projects/whatsapp06.jpg)
+A friendship.

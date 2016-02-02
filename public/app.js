@@ -17,10 +17,6 @@ var _hello = require('./hello');
 
 var _hello2 = _interopRequireDefault(_hello);
 
-var _featuredwork = require('./featuredwork');
-
-var _featuredwork2 = _interopRequireDefault(_featuredwork);
-
 var _sidepanel = require('./sidepanel/sidepanel');
 
 var _sidepanel2 = _interopRequireDefault(_sidepanel);
@@ -29,7 +25,7 @@ var _sidemenu = require('./sidepanel/sidemenu');
 
 var _sidemenu2 = _interopRequireDefault(_sidemenu);
 
-var _contact = require('./contact/contact');
+var _contact = require('./contact');
 
 var _contact2 = _interopRequireDefault(_contact);
 
@@ -49,9 +45,13 @@ var _jokesart = require('./jokesart');
 
 var _jokesart2 = _interopRequireDefault(_jokesart);
 
-var _project = require('./project');
+var _oneprojectdetail = require('./oneprojectdetail');
 
-var _project2 = _interopRequireDefault(_project);
+var _oneprojectdetail2 = _interopRequireDefault(_oneprojectdetail);
+
+var _journal = require('./journal');
+
+var _journal2 = _interopRequireDefault(_journal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -77,6 +77,7 @@ var Home = (function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(_hello2.default, null),
+        _react2.default.createElement(_sidepanel2.default, null),
         _react2.default.createElement(_contact2.default, null),
         _react2.default.createElement(_footer2.default, null)
       );
@@ -101,7 +102,6 @@ var App = (function (_React$Component2) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_sidepanel2.default, { contents: _react2.default.createElement(_sidemenu2.default, null) }),
         this.props.children
       );
     }
@@ -119,13 +119,24 @@ var App = (function (_React$Component2) {
     _reactRouter.Route,
     { path: '/', component: App },
     _react2.default.createElement(_reactRouter.IndexRoute, { component: Home }),
-    _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _about2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: '/work', component: _work2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: '/jokesart', component: _jokesart2.default })
+    _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _about2.default }),
+    _react2.default.createElement(
+      _reactRouter.Route,
+      { path: 'work', component: _work2.default },
+      _react2.default.createElement(_reactRouter.Route, { path: '/work/:id', component: _oneprojectdetail2.default }),
+      _react2.default.createElement(_reactRouter.Redirect, { from: 'work/:id', to: '/work/:id' })
+    ),
+    _react2.default.createElement(
+      _reactRouter.Route,
+      { path: 'jokesart', component: _jokesart2.default },
+      _react2.default.createElement(_reactRouter.Route, { path: '/projects/:id', component: _oneprojectdetail2.default }),
+      _react2.default.createElement(_reactRouter.Redirect, { from: 'projects/:id', to: '/projects/:id' })
+    ),
+    _react2.default.createElement(_reactRouter.Route, { path: 'journal', component: _journal2.default })
   )
 ), document.getElementById('app'));
 
-},{"./about":211,"./contact/contact":214,"./featuredwork":215,"./footer":216,"./hello":217,"./jokesart":219,"./project":226,"./sidepanel/sidemenu":228,"./sidepanel/sidepanel":229,"./work":231,"react":210,"react-dom":28,"react-router":48}],231:[function(require,module,exports){
+},{"./about":211,"./contact":215,"./footer":216,"./hello":217,"./jokesart":219,"./journal":220,"./oneprojectdetail":224,"./sidepanel/sidemenu":227,"./sidepanel/sidepanel":228,"./work":230,"react":210,"react-dom":28,"react-router":48}],230:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -145,6 +156,10 @@ var _oneprojectdetail2 = _interopRequireDefault(_oneprojectdetail);
 var _sidepanel = require('./sidepanel/sidepanel');
 
 var _sidepanel2 = _interopRequireDefault(_sidepanel);
+
+var _sidemenu = require('./sidepanel/sidemenu');
+
+var _sidemenu2 = _interopRequireDefault(_sidemenu);
 
 var _logo = require('./logo');
 
@@ -166,7 +181,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var projects = ['differentiation', 'crowdacademy', 'goteo', 'readiness', 'forbesclustering', 'studentproficiency'];
+var projects = ['readiness', 'goteo', 'differentiation', 'forbesclustering', 'crowdacademy', 'studentproficiency', 'othervisualizations'];
 
 var Work = (function (_React$Component) {
   _inherits(Work, _React$Component);
@@ -176,9 +191,10 @@ var Work = (function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Work).call(this, props));
 
+    var id = props.params.id;
     _this.state = {
-      activeProject: null,
-      openMenu: false
+      activeProject: id || null,
+      openMenu: props.params.hasOwnProperty('id')
     };
     return _this;
   }
@@ -200,20 +216,107 @@ var Work = (function (_React$Component) {
       });
     }
   }, {
+    key: 'nextProject',
+    value: function nextProject(id) {
+      // Select next project after id
+      var selectedProject = {};
+
+      if (id === projects[projects.length - 1]) {
+        selectedProject = projects[0];
+      } else {
+        projects.forEach(function (project, i) {
+          if (project === id) {
+            selectedProject = projects[i + 1];
+          }
+        });
+      }
+
+      this.context.history.pushState(null, '/work/' + selectedProject);
+    }
+  }, {
+    key: 'prevProject',
+    value: function prevProject(id) {
+      // Select next project after id
+      var selectedProject = {};
+
+      if (id === projects[0]) {
+        selectedProject = projects[projects.length - 1];
+      } else {
+        projects.forEach(function (project, i) {
+          if (project === id) {
+            selectedProject = projects[i - 1];
+          }
+        });
+      }
+
+      this.context.history.pushState(null, '/work/' + selectedProject);
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      window.scrollTo(0, 0);
+      this.bindEscKey();
+    }
+  }, {
+    key: 'whichProjectNum',
+    value: function whichProjectNum() {
+      var _this2 = this;
+
+      var j = 0;
+      projects.forEach(function (project, i) {
+        if (project === _this2.state.activeProject) {
+          j = i;
+        }
+      });
+      return j;
+    }
+  }, {
+    key: 'bindEscKey',
+    value: function bindEscKey() {
+      var _this3 = this;
+
+      window.addEventListener('keyup', function (e) {
+        if (e.keyCode == 27) {
+          _this3.context.history.pushState(null, '/work');
+        }
+      });
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      if (nextProps.params.id) {
+        this.setState({
+          activeProject: nextProps.params.id,
+          openMenu: true
+        });
+      } else {
+        this.setState({ openMenu: false });
+      }
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      if (nextState.openMenu === false) {
+        (0, _jquery2.default)('body').removeClass('noscroll');
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       return React.createElement(
         'div',
         null,
-        React.createElement(_sidepanel2.default, {
-          hidden: true,
-          additionalClass: 'left',
-          contents: React.createElement(_oneprojectdetail2.default, {
-            projectId: this.state.activeProject,
-            type: 'work' }),
-          isOpen: this.state.openMenu }),
+        React.createElement(_sidepanel2.default, { contents: React.createElement(_sidemenu2.default, null) }),
+        React.createElement(_oneprojectdetail2.default, {
+          onNextProject: this.nextProject.bind(this),
+          onPrevProject: this.prevProject.bind(this),
+          projectId: this.state.activeProject,
+          projectNum: this.whichProjectNum(),
+          projects: projects,
+          openMenu: this.state.openMenu,
+          type: 'work' }),
         React.createElement(
           'section',
           { className: 'work' },
@@ -224,9 +327,33 @@ var Work = (function (_React$Component) {
             'Work'
           ),
           React.createElement(
-            'p',
+            'div',
             { className: 'copy' },
-            'I specialize in the design and development of data visualization applications, as well as general visual storytelling and communication. I get really excited with social innovation and creative technology. I have a crush for algorithms and their implementation in visual design.'
+            React.createElement(
+              'p',
+              null,
+              'I specialize in the design and development of data-rich web applications, interactive visualization and tools for information insight.'
+            ),
+            React.createElement(
+              'p',
+              null,
+              'I am especially interested in projects involving social innovation, creative technology and technological initiatives that have a potential of having an impact.'
+            ),
+            React.createElement(
+              'p',
+              null,
+              'I have a crush for algorithms and their implementation in visual design.'
+            ),
+            React.createElement(
+              'p',
+              null,
+              'I like to explore situations of complexity and use visualizations to see order and patterns emerge.'
+            ),
+            React.createElement(
+              'p',
+              null,
+              'Here I mostly display my work as a data visualization engineer. Other more general engineering work is not publicly shareable. Contact me for further samples.'
+            )
           ),
           React.createElement(
             'div',
@@ -235,7 +362,7 @@ var Work = (function (_React$Component) {
               return React.createElement(_oneprojectthumbnail2.default, {
                 key: project,
                 type: 'work',
-                onSelectProject: _this2.selectProject.bind(_this2),
+                onSelectProject: _this4.selectProject.bind(_this4),
                 projectId: project });
             })
           )
@@ -251,7 +378,11 @@ var Work = (function (_React$Component) {
 exports.default = Work;
 ;
 
-},{"./footer":216,"./logo":221,"./oneprojectdetail":224,"./oneprojectthumbnail":225,"./sidepanel/sidepanel":229,"jquery":27}],226:[function(require,module,exports){
+Work.contextTypes = {
+  history: React.PropTypes.object
+};
+
+},{"./footer":216,"./logo":222,"./oneprojectdetail":224,"./oneprojectthumbnail":225,"./sidepanel/sidemenu":227,"./sidepanel/sidepanel":228,"jquery":27}],220:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -268,11 +399,17 @@ var _reactDom = require('react-dom');
 
 var _reactRouter = require('react-router');
 
-var _reactRouter2 = _interopRequireDefault(_reactRouter);
+var _sidepanel = require('./sidepanel/sidepanel');
 
-var _jquery = require('jquery');
+var _sidepanel2 = _interopRequireDefault(_sidepanel);
 
-var _jquery2 = _interopRequireDefault(_jquery);
+var _footer = require('./footer');
+
+var _footer2 = _interopRequireDefault(_footer);
+
+var _logo = require('./logo');
+
+var _logo2 = _interopRequireDefault(_logo);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -282,146 +419,49 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ProjectsApp = (function (_React$Component) {
-  _inherits(ProjectsApp, _React$Component);
+var Journal = (function (_React$Component) {
+  _inherits(Journal, _React$Component);
 
-  function ProjectsApp() {
-    _classCallCheck(this, ProjectsApp);
+  function Journal(props) {
+    _classCallCheck(this, Journal);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsApp).apply(this, arguments));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Journal).call(this, props));
   }
 
-  _createClass(ProjectsApp, [{
+  _createClass(Journal, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(_sidepanel2.default, null),
         _react2.default.createElement(
-          'h1',
-          null,
-          'Projects'
-        ),
-        _react2.default.createElement(
-          'ul',
-          null,
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouter.Link,
-              { to: '/projects' },
-              'Projects'
-            )
-          )
-        ),
-        this.props.children
-      );
-    }
-  }]);
-
-  return ProjectsApp;
-})(_react2.default.Component);
-
-exports.default = ProjectsApp;
-
-var ProjectsHome = (function (_React$Component2) {
-  _inherits(ProjectsHome, _React$Component2);
-
-  function ProjectsHome() {
-    _classCallCheck(this, ProjectsHome);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(ProjectsHome).apply(this, arguments));
-  }
-
-  _createClass(ProjectsHome, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h1',
-          null,
-          'Projects'
-        ),
-        this.props.childten
-      );
-    }
-  }]);
-
-  return ProjectsHome;
-})(_react2.default.Component);
-
-exports.default = ProjectsHome;
-
-var Project = (function (_React$Component3) {
-  _inherits(Project, _React$Component3);
-
-  function Project(props) {
-    _classCallCheck(this, Project);
-
-    var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(Project).call(this, props));
-
-    _this3.state = {
-      title: 'Loading',
-      abstract: 'stuff'
-    };
-    return _this3;
-  }
-
-  _createClass(Project, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this4 = this;
-
-      if (this.props.params.id) {
-        var id = this.props.params.id;
-        var path = this.props.type === 'projects' ? './projects/' : './work/';
-
-        _jquery2.default.get(path + id + '/index.json', function (data) {
-          _this4.setState({ body: data.body, title: data.title });
-        });
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var body = this.state.body || "Loading...";
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'one-project' },
-        _react2.default.createElement(
-          'div',
-          { className: 'thumbnail' },
-          this.props.children
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'summary' },
+          'section',
+          { className: 'work' },
+          _react2.default.createElement(_logo2.default, null),
           _react2.default.createElement(
             'h2',
-            { className: 'title' },
-            '"Here\'s a very interesting project"'
+            { className: 'fadeInUp animated' },
+            'Journal'
           ),
           _react2.default.createElement(
-            'div',
-            { className: 'abstract' },
-            _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: body } })
+            'p',
+            { className: 'copy' },
+            'Coming soon...'
           )
-        )
+        ),
+        _react2.default.createElement(_footer2.default, null)
       );
     }
   }]);
 
-  return Project;
+  return Journal;
 })(_react2.default.Component);
 
-exports.default = Project;
+exports.default = Journal;
 ;
 
-},{"jquery":27,"react":210,"react-dom":28,"react-router":48}],219:[function(require,module,exports){
+},{"./footer":216,"./logo":222,"./sidepanel/sidepanel":228,"react":210,"react-dom":28,"react-router":48}],219:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -442,6 +482,10 @@ var _sidepanel = require('./sidepanel/sidepanel');
 
 var _sidepanel2 = _interopRequireDefault(_sidepanel);
 
+var _sidemenu = require('./sidepanel/sidemenu');
+
+var _sidemenu2 = _interopRequireDefault(_sidemenu);
+
 var _logo = require('./logo');
 
 var _logo2 = _interopRequireDefault(_logo);
@@ -449,6 +493,10 @@ var _logo2 = _interopRequireDefault(_logo);
 var _footer = require('./footer');
 
 var _footer2 = _interopRequireDefault(_footer);
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -458,7 +506,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var projects = ['trainfuck', 'whatsapp', 'unsend', 'craigslist'];
+var projects = ['trainfuck', 'whatsapp', 'unsend', 'craigslist', 'binarycard'];
 
 var Jokesart = (function (_React$Component) {
   _inherits(Jokesart, _React$Component);
@@ -468,9 +516,10 @@ var Jokesart = (function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Jokesart).call(this, props));
 
+    var id = props.params.id;
     _this.state = {
-      activeProject: null,
-      openMenu: false
+      activeProject: id || null,
+      openMenu: props.params.hasOwnProperty('id')
     };
     return _this;
   }
@@ -492,23 +541,110 @@ var Jokesart = (function (_React$Component) {
       });
     }
   }, {
+    key: 'nextProject',
+    value: function nextProject(id) {
+      // Select next project after id
+      var selectedProject = {};
+
+      if (id === projects[projects.length - 1]) {
+        selectedProject = projects[0];
+      } else {
+        projects.forEach(function (project, i) {
+          if (project === id) {
+            selectedProject = projects[i + 1];
+          }
+        });
+      }
+
+      this.context.history.pushState(null, '/projects/' + selectedProject);
+    }
+  }, {
+    key: 'prevProject',
+    value: function prevProject(id) {
+      // Select next project after id
+      var selectedProject = {};
+
+      if (id === projects[0]) {
+        selectedProject = projects[projects.length - 1];
+      } else {
+        projects.forEach(function (project, i) {
+          if (project === id) {
+            selectedProject = projects[i - 1];
+          }
+        });
+      }
+
+      this.context.history.pushState(null, '/projects/' + selectedProject);
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      window.scrollTo(0, 0);
+      this.bindEscKey();
+    }
+  }, {
+    key: 'whichProjectNum',
+    value: function whichProjectNum() {
+      var _this2 = this;
+
+      var j = 0;
+      projects.forEach(function (project, i) {
+        if (project === _this2.state.activeProject) {
+          j = i;
+        }
+      });
+      return j;
+    }
+  }, {
+    key: 'bindEscKey',
+    value: function bindEscKey() {
+      var _this3 = this;
+
+      window.addEventListener('keyup', function (e) {
+        if (e.keyCode == 27) {
+          _this3.context.history.pushState(null, '/jokesart');
+        }
+      });
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      if (nextProps.params.id) {
+        this.setState({
+          activeProject: nextProps.params.id,
+          openMenu: true
+        });
+      } else {
+        this.setState({ openMenu: false });
+      }
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      if (nextState.openMenu === false) {
+        (0, _jquery2.default)('body').removeClass('noscroll');
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       return React.createElement(
         'div',
         null,
-        React.createElement(_sidepanel2.default, {
-          hidden: true,
-          additionalClass: 'left',
-          contents: React.createElement(_oneprojectdetail2.default, {
-            projectId: this.state.activeProject,
-            type: 'projects' }),
-          isOpen: this.state.openMenu }),
+        React.createElement(_sidepanel2.default, { contents: React.createElement(_sidemenu2.default, null) }),
+        React.createElement(_oneprojectdetail2.default, {
+          onNextProject: this.nextProject.bind(this),
+          onPrevProject: this.prevProject.bind(this),
+          projectId: this.state.activeProject,
+          projectNum: this.whichProjectNum(),
+          projects: projects,
+          openMenu: this.state.openMenu,
+          type: 'projects' }),
         React.createElement(
           'section',
-          { className: 'work' },
+          { className: 'jokesart' },
           React.createElement(_logo2.default, null),
           React.createElement(
             'h2',
@@ -518,7 +654,12 @@ var Jokesart = (function (_React$Component) {
           React.createElement(
             'p',
             { className: 'copy' },
-            'In parallel, I explore digital contexts artistically. I like to reshape our online identities, explore how we communicate to each other, and what other forms these communications can take. I’m interested in online communities and what makes them emerge.'
+            'In parallel, I do work that focuses on the individual, the lyrics of the intimate in a personal world determined by enormous amounts of data, almost incomprehensible by an individual point of view. I explore the dimensions of the human experience abstracted by data and attempt to reconstruct what makes us human out of the traces we leave. I produce conceptual pieces out of data to describe and understand a reality defined by the increasing overlap between online and offline experiences, using my own self as a subject.'
+          ),
+          React.createElement(
+            'p',
+            null,
+            'With this work, I attempt to challenge and question the representations of ourselves that are given to us. Taking data, online traces and behaviors as prime matter and repurposing, reshaping and redefining them I attempt to regain aspects of the richness of the human. I capture details and nuances of the traces we leave online and explore what they say about what it means to be human, and what they reveal about our relationships today.'
           ),
           React.createElement(
             'div',
@@ -527,7 +668,7 @@ var Jokesart = (function (_React$Component) {
               return React.createElement(_oneprojectthumbnail2.default, {
                 key: project,
                 type: 'projects',
-                onSelectProject: _this2.selectProject.bind(_this2),
+                onSelectProject: _this4.selectProject.bind(_this4),
                 projectId: project });
             })
           )
@@ -543,7 +684,11 @@ var Jokesart = (function (_React$Component) {
 exports.default = Jokesart;
 ;
 
-},{"./footer":216,"./logo":221,"./oneprojectdetail":224,"./oneprojectthumbnail":225,"./sidepanel/sidepanel":229}],217:[function(require,module,exports){
+Jokesart.contextTypes = {
+  history: React.PropTypes.object
+};
+
+},{"./footer":216,"./logo":222,"./oneprojectdetail":224,"./oneprojectthumbnail":225,"./sidepanel/sidemenu":227,"./sidepanel/sidepanel":228,"jquery":27}],225:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -552,9 +697,371 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _message = require('./message');
+var _butterfly = require('./butterfly/butterfly');
 
-var _message2 = _interopRequireDefault(_message);
+var _butterfly2 = _interopRequireDefault(_butterfly);
+
+var _reactRouter = require('react-router');
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var OneProjectThumbnail = (function (_React$Component) {
+  _inherits(OneProjectThumbnail, _React$Component);
+
+  function OneProjectThumbnail(props) {
+    _classCallCheck(this, OneProjectThumbnail);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(OneProjectThumbnail).call(this, props));
+
+    _this.state = {
+      project: {}
+    };
+    return _this;
+  }
+
+  _createClass(OneProjectThumbnail, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.setState({ project: {} });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      if (this.props.projectId) {
+        var path = this.props.type === 'projects' ? './projects/' : './work/';
+        var id = this.props.projectId;
+        _jquery2.default.getJSON(path + id + '/index.json', function (data) {
+          _this2.setState({ project: data });
+        });
+      }
+    }
+  }, {
+    key: 'renderThumbnail',
+    value: function renderThumbnail() {
+      var path = 'assets/content/';
+      path += this.props.type === 'projects' ? 'projects/' : 'work/';
+
+      if (this.state.project.image) {
+        return React.createElement(
+          'div',
+          { className: 'thumbnail' },
+          React.createElement('img', { src: path + this.state.project.image })
+        );
+      }
+      return React.createElement('div', { className: 'thumbnail' });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var id = this.props.projectId || '';
+      var title = this.state.project.title || '';
+      var path = this.props.type === 'projects' ? '/projects/' : '/work/';
+
+      return React.createElement(
+        'div',
+        { className: 'one-project-thumbnail-wrapper' },
+        React.createElement(
+          _reactRouter.Link,
+          { to: path + id },
+          React.createElement(
+            'div',
+            { className: 'one-project-thumbnail' },
+            React.createElement(
+              'div',
+              { className: 'title' },
+              title
+            ),
+            React.createElement(_butterfly2.default, null),
+            this.renderThumbnail()
+          )
+        )
+      );
+    }
+  }]);
+
+  return OneProjectThumbnail;
+})(React.Component);
+
+exports.default = OneProjectThumbnail;
+
+},{"./butterfly/butterfly":214,"jquery":27,"react-router":48}],224:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _sidepanel = require('./sidepanel/sidepanel');
+
+var _sidepanel2 = _interopRequireDefault(_sidepanel);
+
+var _loading = require('./loading');
+
+var _loading2 = _interopRequireDefault(_loading);
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _arrow = require('./arrow');
+
+var _arrow2 = _interopRequireDefault(_arrow);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var OneProjectDetail = (function (_React$Component) {
+  _inherits(OneProjectDetail, _React$Component);
+
+  function OneProjectDetail(props) {
+    _classCallCheck(this, OneProjectDetail);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(OneProjectDetail).call(this, props));
+
+    _this.state = {
+      project: {}
+    };
+    return _this;
+  }
+
+  _createClass(OneProjectDetail, [{
+    key: 'bindArrowKeys',
+    value: function bindArrowKeys() {
+      var _this2 = this;
+
+      document.onkeydown = function (e) {
+        e = e || window.event;
+        if (e.keyCode == '37') {
+          _this2.props.onPrevProject(_this2.props.projectId);
+        } else if (e.keyCode == '39') {
+          _this2.props.onNextProject(_this2.props.projectId);
+        }
+      };
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      document.getElementsByTagName('body')[0].className += ' noscroll';
+    }
+  }, {
+    key: 'loadJSON',
+    value: function loadJSON(path, id) {
+      var _this3 = this;
+
+      _jquery2.default.getJSON(path + id + '/index.json', function (data) {
+        _this3.setState({ project: data });
+      });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (this.props.projectId) {
+        var path = this.props.type === 'projects' ? '/projects/' : '/work/';
+        var id = this.props.projectId;
+
+        window.setTimeout(this.loadJSON.bind(this, path, id), 500);
+      }
+
+      this.bindArrowKeys();
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      if (nextProps.projectId) {
+        this.setState({ project: {} });
+
+        var path = nextProps.type === 'projects' ? '/projects/' : '/work/';
+        var id = nextProps.projectId;
+
+        window.setTimeout(this.loadJSON.bind(this, path, id), 500);
+      }
+    }
+  }, {
+    key: 'renderDots',
+    value: function renderDots() {
+      var _this4 = this;
+
+      var projects = this.props.projects || [];
+      return React.createElement(
+        'div',
+        { className: 'project-dots' },
+        projects.map(function (project, i) {
+          var classes = 'project-dot';
+          classes += _this4.props.projectNum === i ? ' active' : '';
+          return React.createElement('div', { className: classes });
+        })
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var body = this.state.project.body || '';
+      var author = 'by: ' + (this.state.project.author || 'Franc');
+      var year = this.state.project.date || 'Ongoing';
+      author += ' - ' + year;
+      var title = this.state.project.title || 'Loading...';
+      var tags = this.state.project.tags || '';
+
+      return React.createElement(_sidepanel2.default, {
+        hidden: true,
+        additionalClass: 'left',
+        contents: React.createElement(
+          'div',
+          { id: 'OneProjectDetail', className: 'one-project-detail fadeIn animated' },
+          this.renderDots(),
+          React.createElement(
+            'div',
+            { className: 'header' },
+            React.createElement('h2', { dangerouslySetInnerHTML: { __html: title } }),
+            React.createElement('h3', { className: 'author', dangerouslySetInnerHTML: { __html: author } }),
+            React.createElement('p', { dangerouslySetInnerHTML: { __html: tags } })
+          ),
+          React.createElement(_arrow2.default, {
+            direction: 'next',
+            onNextProject: this.props.onNextProject.bind(null, this.props.projectId) }),
+          React.createElement(_arrow2.default, {
+            direction: 'prev',
+            onNextProject: this.props.onPrevProject.bind(null, this.props.projectId) }),
+          React.createElement('p', { dangerouslySetInnerHTML: { __html: body } })
+        ),
+        isOpen: this.props.openMenu });
+    }
+  }]);
+
+  return OneProjectDetail;
+})(React.Component);
+
+exports.default = OneProjectDetail;
+
+},{"./arrow":213,"./loading":221,"./sidepanel/sidepanel":228,"jquery":27}],221:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Loading = (function (_React$Component) {
+  _inherits(Loading, _React$Component);
+
+  function Loading() {
+    _classCallCheck(this, Loading);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Loading).apply(this, arguments));
+  }
+
+  _createClass(Loading, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'preloader loading' },
+        _react2.default.createElement('span', { className: 'slice' }),
+        _react2.default.createElement('span', { className: 'slice' }),
+        _react2.default.createElement('span', { className: 'slice' }),
+        _react2.default.createElement('span', { className: 'slice' }),
+        _react2.default.createElement('span', { className: 'slice' }),
+        _react2.default.createElement('span', { className: 'slice' })
+      );
+    }
+  }]);
+
+  return Loading;
+})(_react2.default.Component);
+
+exports.default = Loading;
+
+},{"react":210}],213:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Next = (function (_React$Component) {
+  _inherits(Next, _React$Component);
+
+  function Next() {
+    _classCallCheck(this, Next);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Next).apply(this, arguments));
+  }
+
+  _createClass(Next, [{
+    key: 'render',
+    value: function render() {
+      var classes = this.props.direction;
+      classes += this.props.isOpen ? ' is-active' : '';
+      classes += this.props.hidden && !this.props.isOpen ? ' hidden' : '';
+
+      return _react2.default.createElement(
+        'div',
+        { className: classes,
+          onClick: this.props.onNextProject.bind(null, this.props.projectId) },
+        _react2.default.createElement('span', null)
+      );
+    }
+  }]);
+
+  return Next;
+})(_react2.default.Component);
+
+exports.default = Next;
+
+},{"react":210}],217:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _hero = require('./hero');
 
@@ -614,9 +1121,17 @@ var Hello = (function (_React$Component) {
             ),
             React.createElement(
               'div',
+              { className: 'this-is' },
+              React.createElement(
+                'h2',
+                null,
+                'FRANC DOT LY'
+              )
+            ),
+            React.createElement(
+              'div',
               { className: 'fadeInDown animated' },
-              React.createElement(_hero2.default, null),
-              React.createElement(_message2.default, null)
+              React.createElement(_hero2.default, null)
             ),
             React.createElement(_navigation2.default, null)
           )
@@ -631,7 +1146,7 @@ var Hello = (function (_React$Component) {
 exports.default = Hello;
 ;
 
-},{"./hero":218,"./message":222,"./navigation":223}],223:[function(require,module,exports){
+},{"./hero":218,"./navigation":223}],223:[function(require,module,exports){
 'use strict';
 
 var _reactRouter = require('react-router');
@@ -662,25 +1177,6 @@ module.exports = React.createClass({
   }
 });
 
-},{"react-router":48}],222:[function(require,module,exports){
-'use strict';
-
-var Router = require('react-router').Router;
-var Route = require('react-router').Route;
-var Link = require('react-router').Link;
-
-module.exports = React.createClass({
-  displayName: 'Message',
-
-  render: function render() {
-    return React.createElement(
-      'div',
-      { className: 'hello-copy' },
-      React.createElement('p', null)
-    );
-  }
-});
-
 },{"react-router":48}],218:[function(require,module,exports){
 'use strict';
 
@@ -689,6 +1185,8 @@ var _createClass = (function () { function defineProperties(target, props) { for
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _reactRouter = require('react-router');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -706,38 +1204,41 @@ var Hero = (function (_React$Component) {
   }
 
   _createClass(Hero, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       return React.createElement(
-        "div",
-        { className: "hero" },
+        'div',
+        { className: 'hero' },
         React.createElement(
-          "a",
-          { href: "/index.html" },
+          _reactRouter.Link,
+          { to: '/' },
           React.createElement(
-            "svg",
-            { x: "0px", y: "0px",
-              width: "145.44px", height: "148.32px", viewBox: "0 0 145.44 148.32", "enable-background": "new 0 0 145.44 148.32" },
+            'svg',
+            { x: '0px', y: '0px',
+              width: '145.44px', height: '148.32px', viewBox: '0 0 145.44 148.32', 'enable-background': 'new 0 0 145.44 148.32' },
             React.createElement(
-              "defs",
+              'defs',
               null,
               React.createElement(
-                "linearGradient",
-                { id: "logoGrad", x1: "0%", y1: "0%", x2: "30%", y2: "100%" },
-                React.createElement("stop", { offset: "30%", stopColor: "rgb(36, 216, 205)" }),
-                React.createElement("stop", { offset: "100%", stopColor: "rgb(120, 220, 58)" })
+                'linearGradient',
+                { id: 'logoGrad', x1: '0%', y1: '0%', x2: '30%', y2: '100%' },
+                React.createElement('stop', { offset: '30%', stopColor: 'rgb(36, 216, 205)' }),
+                React.createElement('stop', { offset: '100%', stopColor: 'rgb(120, 220, 58)' })
               ),
               React.createElement(
-                "linearGradient",
-                { id: "logoGradFinal", x2: "0%", y2: "0%", x1: "30%", y1: "100%" },
-                React.createElement("stop", { offset: "30%", stopColor: "rgb(36, 216, 205)" }),
-                React.createElement("stop", { offset: "100%", stopColor: "rgb(120, 220, 58)" })
+                'linearGradient',
+                { id: 'logoGradFinal', x2: '0%', y2: '0%', x1: '30%', y1: '100%' },
+                React.createElement('stop', { offset: '30%', stopColor: 'rgb(36, 216, 205)' }),
+                React.createElement('stop', { offset: '100%', stopColor: 'rgb(120, 220, 58)' })
               )
             ),
-            React.createElement("circle", { "fill-rule": "evenodd", "clip-rule": "evenodd", cx: "71.999", cy: "75.321", r: "72" }),
-            React.createElement("circle", { "fill-rule": "evenodd", "clip-rule": "evenodd", cx: "72.001", cy: "72", r: "72" }),
-            React.createElement("path", { "fill-rule": "evenodd", "clip-rule": "evenodd", fill: "none", d: "M64.682,83.6c-0.542,0.463-2.347,0.783-3.12,0.24 c-2.095-0.646-2.917-3.158-1.92-5.52c1.262-2.988,6.344-6.883,6.72-9.601c-0.817-2.083-1.438-4.504-2.16-6.72 c-0.688-2.113-0.596-1.419-2.16-6.96c0-1.04-0.603-18.891,0.24-22.8c0-1.12,0.696-12.587,2.88-15.6c0.585-0.807,1.527-1.68,2.4-1.68 c7.218,0.064,8.266,7.686,10.08,13.2c1.314,3.995,4.146,17.939,4.801,20.64c0.571,2.358,1.529,7.098,0.72,10.32 c-1.191,4.737-5.076,9.661-8.641,12c0.32,0.96,0.641,1.92,0.961,2.88c0.08,0,4.939-5.146,7.68-7.2c1.098-0.823,2.219-2.926,4.8-2.16 c2.863,0.85,10.6,11.226,2.16,11.761c-0.808-0.08-1.625-0.449-2.16-0.961c-0.795-0.76-0.977-1.439-1.92-2.16 c-1.618,2.425-7.104,6.093-7.68,8.88c1.108,2.109,1.771,4.84,2.64,7.199c3.47,9.416,4.831,25.025,1.44,36 c-1.635,5.295-2.93,11.338-9.841,11.279c-0.912,0.002-1.662-0.318-2.399-1.199c-4.324-5.16-8.787-15.238-11.04-22.801 c-1.152-3.867-1.861-10.16-0.24-14.158c1.967-4.854,4.817-9.355,7.68-13.441c1.143-1.629,2.648-3.088,3.6-5.52 c-0.263-1.074-0.766-1.545-0.96-2.4 M72.122,34.64c1.271,5.189,2.024,10.105,3.36,15.6c0.444,1.83,1.312,5.298,0.72,7.68 c-0.623,2.507-2.141,3.533-3.84,5.52c-1.087-1.441-1.643-3.838-2.16-6c-2.051-8.578-0.818-21.289-0.48-30.72 C71.262,28.641,71.475,32,72.122,34.64z M75.001,93.92c2.218,6.801,3.164,18.648,1.2,26.639c-0.669,2.721-2.447,7.916-2.64,8.16 c-1.561-2.211-3.155-5.012-4.32-7.68c-1.395-3.189-2.045-6.246-3.12-9.84c-0.692-2.314-1.772-5.953-0.96-8.879 c1.487-5.361,5.178-9.68,7.92-13.92C73.983,90.014,74.376,92.002,75.001,93.92z" }),
-            React.createElement("path", { id: "pathtop", "fill-rule": "evenodd", "clip-rule": "evenodd", fill: "#FFFFFF", d: "M64.682,81.6c-0.542,0.463-2.347,0.783-3.12,0.24 c-2.095-0.646-2.917-3.158-1.92-5.52c1.262-2.988,6.344-6.883,6.72-9.601c-0.817-2.083-1.438-4.504-2.16-6.72 c-0.688-2.113-0.596-1.419-2.16-6.96c0-1.04-0.603-18.891,0.24-22.8c0-1.12,0.696-12.587,2.88-15.6c0.585-0.807,1.527-1.68,2.4-1.68 c7.218,0.064,8.266,7.686,10.08,13.2c1.314,3.995,4.146,17.939,4.801,20.64c0.571,2.358,1.529,7.098,0.72,10.32 c-1.191,4.737-5.076,9.661-8.641,12c0.32,0.96,0.641,1.92,0.961,2.88c0.08,0,4.939-5.146,7.68-7.2c1.098-0.823,2.219-2.926,4.8-2.16 c2.863,0.85,10.6,11.225,2.16,11.761c-0.808-0.08-1.625-0.449-2.16-0.96c-0.795-0.76-0.977-1.44-1.92-2.16 c-1.618,2.425-7.104,6.093-7.68,8.88c1.108,2.109,1.771,4.84,2.64,7.199c3.47,9.416,4.831,25.025,1.44,36 c-1.635,5.295-2.93,11.338-9.841,11.279c-0.912,0.002-1.662-0.318-2.399-1.199c-4.324-5.16-8.787-15.238-11.04-22.801 c-1.152-3.867-1.861-10.16-0.24-14.158c1.967-4.854,4.817-9.355,7.68-13.441c1.143-1.629,2.648-3.088,3.6-5.52 c-0.263-1.074-0.766-1.545-0.96-2.4 M72.122,32.64c1.271,5.189,2.024,10.105,3.36,15.6c0.444,1.83,1.312,5.298,0.72,7.68 c-0.623,2.507-2.141,3.533-3.84,5.52c-1.087-1.441-1.643-3.838-2.16-6c-2.051-8.578-0.818-21.289-0.48-30.72 C71.262,26.641,71.475,30,72.122,32.64z M75.001,91.92c2.218,6.801,3.164,18.648,1.2,26.639c-0.669,2.721-2.447,7.916-2.64,8.16 c-1.561-2.211-3.155-5.012-4.32-7.68c-1.395-3.189-2.045-6.246-3.12-9.84c-0.692-2.314-1.772-5.953-0.96-8.879 c1.487-5.361,5.178-9.68,7.92-13.92C73.983,88.014,74.376,90.002,75.001,91.92z" })
+            React.createElement(
+              'g',
+              null,
+              React.createElement('path', { id: 'path1', 'fill-rule': 'evenodd', 'clip-rule': 'evenodd', d: 'M86.76,75.84c1.7-1.987,3.217-3.013,3.84-5.52 c0.592-2.381-0.275-5.85-0.72-7.68c-1.336-5.495-2.089-10.411-3.36-15.6c-0.647-2.64-0.859-6-2.4-7.92 c-0.338,9.431-1.571,22.142,0.48,30.72C85.118,72.002,85.673,74.399,86.76,75.84z' }),
+              React.createElement('path', { 'fill-rule': 'evenodd', 'clip-rule': 'evenodd', d: 'M87.48,100.801c-2.742,4.24-6.433,8.559-7.92,13.92 c-0.812,2.926,0.268,6.564,0.96,8.879c1.075,3.594,1.725,6.65,3.12,9.84c1.166,2.668,2.76,5.469,4.32,7.68 c0.192-0.244,1.971-5.439,2.64-8.16c1.964-7.99,1.018-19.838-1.2-26.639C88.775,104.403,88.382,102.415,87.48,100.801z' }),
+              React.createElement('path', { className: 'pathChar', 'fill-rule': 'evenodd', 'clip-rule': 'evenodd', d: 'M86.4,14.4c-39.765,0-72,32.235-72,72c0,39.764,32.235,72,72,72 s72-32.236,72-72C158.4,46.636,126.165,14.4,86.4,14.4z M104.521,88.801c-0.808-0.08-1.625-0.449-2.16-0.961 c-0.795-0.76-0.977-1.439-1.92-2.16c-1.618,2.425-7.104,6.093-7.68,8.88c1.108,2.109,1.771,4.84,2.64,7.199 c3.47,9.416,4.831,25.025,1.44,36c-1.635,5.295-2.93,11.338-9.841,11.279c-0.912,0.002-1.662-0.318-2.399-1.199 c-4.324-5.16-8.787-15.238-11.04-22.801c-1.152-3.867-1.861-10.16-0.24-14.158c1.967-4.854,4.817-9.355,7.68-13.441 c1.143-1.629,2.648-3.088,3.6-5.52c-0.263-1.074-0.766-1.545-0.96-2.4L79.081,96c-0.542,0.463-2.347,0.783-3.12,0.24 c-2.095-0.646-2.917-3.158-1.92-5.52c1.262-2.988,6.344-6.883,6.72-9.601c-0.817-2.083-1.438-4.504-2.16-6.72 c-0.688-2.113-0.596-1.419-2.16-6.96c0-1.04-0.603-18.891,0.24-22.8c0-1.12,0.696-12.587,2.88-15.6 c0.585-0.807,1.527-1.68,2.4-1.68c7.218,0.064,8.266,7.686,10.08,13.2c1.314,3.995,4.146,17.939,4.801,20.64 c0.571,2.358,1.529,7.098,0.72,10.32c-1.191,4.737-5.076,9.661-8.641,12c0.32,0.96,0.641,1.92,0.961,2.88 c0.08,0,4.939-5.146,7.68-7.2c1.098-0.823,2.219-2.926,4.8-2.16C105.224,77.89,112.96,88.266,104.521,88.801z' })
+            )
           )
         )
       );
@@ -749,378 +1250,7 @@ var Hero = (function (_React$Component) {
 
 exports.default = Hero;
 
-},{}],215:[function(require,module,exports){
-'use strict';
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _sidepanel = require('./sidepanel/sidepanel');
-
-var _sidepanel2 = _interopRequireDefault(_sidepanel);
-
-var _oneprojectdetail = require('./oneprojectdetail');
-
-var _oneprojectdetail2 = _interopRequireDefault(_oneprojectdetail);
-
-var _oneprojectthumbnail = require('./oneprojectthumbnail');
-
-var _oneprojectthumbnail2 = _interopRequireDefault(_oneprojectthumbnail);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var projectsPath = './assets/content/projects.json';
-
-var project = {
-  id: 'project0',
-  title: 'title',
-  abstract: 'abstract'
-};
-
-var Work = (function (_React$Component) {
-  _inherits(Work, _React$Component);
-
-  function Work(props) {
-    _classCallCheck(this, Work);
-
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Work).call(this, props));
-
-    _this.state = {
-      inDetail: false,
-      projects: [],
-      activeProject: undefined
-    };
-    return _this;
-  }
-
-  _createClass(Work, [{
-    key: 'onProjectToggle',
-    value: function onProjectToggle() {
-      this.setState({ inDetail: !this.state.inDetail });
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.loadProjects();
-    }
-  }, {
-    key: 'loadProjects',
-    value: function loadProjects() {
-      var _this2 = this;
-
-      _jquery2.default.get(projectsPath, function (json) {
-        return _this2.setState({ projects: json.projects });
-      });
-    }
-  }, {
-    key: 'selectProject',
-    value: function selectProject(i, args) {
-      console.log(i, args, this);
-      this.setState({
-        activeProject: i,
-        inDetail: true
-      });
-    }
-  }, {
-    key: 'renderProjects',
-    value: function renderProjects() {
-      var projects = this.state.projects;
-      /*
-      <div className='projects'>
-        {projects.map((project, i) => <OneProject
-          onSelectProject={this.selectProject.bind(this)}
-          project={project}
-          index={i}
-          key={'project-' + i}/>) }
-      */
-      return React.createElement(
-        'div',
-        { className: 'projects-wrapper' },
-        React.createElement(
-          'div',
-          { className: 'column' },
-          React.createElement(_oneprojectthumbnail2.default, {
-            onSelectProject: this.selectProject.bind(this),
-            project: project })
-        ),
-        React.createElement(
-          'div',
-          { className: 'column' },
-          React.createElement(_oneprojectthumbnail2.default, { onSelectProject: this.selectProject.bind(this), project: project })
-        ),
-        React.createElement(
-          'div',
-          { className: 'column' },
-          React.createElement(_oneprojectthumbnail2.default, { onSelectProject: this.selectProject.bind(this), project: project })
-        )
-      );
-    }
-  }, {
-    key: 'renderProjectDetail',
-    value: function renderProjectDetail() {
-      if (this.state.inDetail) {
-        var _project = this.state.projects[this.state.activeProject];
-        return React.createElement(_oneprojectdetail2.default, { project: _project });
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var classDetail = 'featured-work';
-      classDetail += this.state.inDetail ? ' in-detail' : '';
-
-      return React.createElement(
-        'section',
-        { className: classDetail },
-        React.createElement('div', { className: 'avatar' }),
-        React.createElement(
-          'div',
-          { className: 'content-detail', onClick: this.onProjectToggle.bind(this) },
-          this.renderProjectDetail()
-        ),
-        React.createElement(
-          'div',
-          { className: 'content' },
-          React.createElement(
-            'div',
-            { className: 'copy' },
-            React.createElement(
-              'h2',
-              null,
-              'I am a UI/UX Data Visualization Engineer and Designer specialized in data and information experince and tools.'
-            )
-          ),
-          React.createElement(
-            'p',
-            null,
-            'I specialize in the design and development of data visualization applications, as well as general visual storytelling and communication. I get really excited with social innovation and creative technology. I have a crush for algorithms and their implementation in visual design.'
-          ),
-          React.createElement(
-            'h2',
-            null,
-            'Digital Art / Jokes / Other work'
-          ),
-          this.renderProjects()
-        )
-      );
-    }
-  }]);
-
-  return Work;
-})(React.Component);
-
-//render(<Work />, document.getElementById('work'));
-
-exports.default = Work;
-
-},{"./oneprojectdetail":224,"./oneprojectthumbnail":225,"./sidepanel/sidepanel":229,"jquery":27}],225:[function(require,module,exports){
-'use strict';
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _butterfly = require('./butterfly/butterfly');
-
-var _butterfly2 = _interopRequireDefault(_butterfly);
-
-var _reactRouter = require('react-router');
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var OneProjectThumbnail = (function (_React$Component) {
-  _inherits(OneProjectThumbnail, _React$Component);
-
-  function OneProjectThumbnail(props) {
-    _classCallCheck(this, OneProjectThumbnail);
-
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(OneProjectThumbnail).call(this, props));
-
-    _this.state = {
-      project: {}
-    };
-    return _this;
-  }
-
-  _createClass(OneProjectThumbnail, [{
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      this.setState({ project: {} });
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      if (this.props.projectId) {
-        var path = this.props.type === 'projects' ? './projects/' : './work/';
-        var id = this.props.projectId;
-
-        _jquery2.default.get(path + id + '/index.json', function (data) {
-          _this2.setState({ project: data });
-        });
-      }
-    }
-  }, {
-    key: 'renderThumbnail',
-    value: function renderThumbnail() {
-      var path = 'assets/content/';
-      path += this.props.type === 'projects' ? 'projects/' : 'work/';
-
-      if (this.state.project.image) {
-        return React.createElement(
-          'div',
-          { className: 'thumbnail' },
-          React.createElement('img', { src: path + this.state.project.image })
-        );
-      }
-      return React.createElement('div', { className: 'thumbnail' });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var id = this.props.projectId || '';
-      var title = this.state.project.title || '';
-      var path = this.props.type === 'projects' ? '/projects/' : '/work/';
-
-      return React.createElement(
-        'div',
-        { className: 'one-project-thumbnail-wrapper' },
-        React.createElement(
-          'div',
-          { className: 'one-project-thumbnail',
-            onClick: this.props.onSelectProject.bind(null, id) },
-          React.createElement(
-            'div',
-            { className: 'title' },
-            title
-          ),
-          React.createElement(_butterfly2.default, null),
-          this.renderThumbnail()
-        )
-      );
-    }
-  }]);
-
-  return OneProjectThumbnail;
-})(React.Component);
-
-exports.default = OneProjectThumbnail;
-
-},{"./butterfly/butterfly":213,"jquery":27,"react-router":48}],224:[function(require,module,exports){
-'use strict';
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _loading = require('./loading');
-
-var _loading2 = _interopRequireDefault(_loading);
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var OneProjectDetail = (function (_React$Component) {
-  _inherits(OneProjectDetail, _React$Component);
-
-  function OneProjectDetail(props) {
-    _classCallCheck(this, OneProjectDetail);
-
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(OneProjectDetail).call(this, props));
-
-    _this.state = {
-      project: {}
-    };
-    return _this;
-  }
-
-  _createClass(OneProjectDetail, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      if (this.props.projectId) {
-        var path = this.props.type === 'projects' ? './projects/' : './work/';
-        var id = this.props.projectId;
-
-        _jquery2.default.get(path + id + '/index.json', function (data) {
-          _this2.setState({ project: data });
-        });
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var body = this.state.project.body || '';
-      var author = 'by: ' + (this.state.project.author || 'Franc') + ' - 2015';
-      var year = this.state.project.date || 'Ongoing';
-      var title = this.state.project.title || 'Loading...';
-
-      /*if (!this.state.project.body) {
-        return (
-            <div className="one-project-detail fadeIn animated">
-              <Loading />
-            </div>
-        )
-      }*/
-
-      return React.createElement(
-        'div',
-        { className: 'one-project-detail fadeIn animated' },
-        React.createElement(
-          'div',
-          { className: 'header' },
-          React.createElement('h1', { dangerouslySetInnerHTML: { __html: title } }),
-          React.createElement('h3', { className: 'author', dangerouslySetInnerHTML: { __html: author } })
-        ),
-        React.createElement('p', { dangerouslySetInnerHTML: { __html: body } })
-      );
-    }
-  }]);
-
-  return OneProjectDetail;
-})(React.Component);
-
-exports.default = OneProjectDetail;
-
-},{"./loading":220,"jquery":27}],220:[function(require,module,exports){
+},{"react-router":48}],215:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1133,60 +1263,11 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Loading = (function (_React$Component) {
-  _inherits(Loading, _React$Component);
-
-  function Loading() {
-    _classCallCheck(this, Loading);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Loading).apply(this, arguments));
-  }
-
-  _createClass(Loading, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        { className: 'preloader loading' },
-        _react2.default.createElement('span', { className: 'slice' }),
-        _react2.default.createElement('span', { className: 'slice' }),
-        _react2.default.createElement('span', { className: 'slice' }),
-        _react2.default.createElement('span', { className: 'slice' }),
-        _react2.default.createElement('span', { className: 'slice' }),
-        _react2.default.createElement('span', { className: 'slice' })
-      );
-    }
-  }]);
-
-  return Loading;
-})(_react2.default.Component);
-
-exports.default = Loading;
-
-},{"react":210}],214:[function(require,module,exports){
-'use strict';
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _socialicon = require('../socialicon');
+var _socialicon = require('./socialicon');
 
 var _socialicon2 = _interopRequireDefault(_socialicon);
+
+var _reactRouter = require('react-router');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1243,49 +1324,60 @@ var Contact = (function (_React$Component) {
               _react2.default.createElement(
                 'span',
                 { className: 'highlight' },
-                'data and information experience '
+                'data '
               ),
-              'tools.'
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              'I am based between ',
+              'and',
               _react2.default.createElement(
                 'span',
                 { className: 'highlight' },
-                'New York '
+                ' information tools '
               ),
-              'and ',
+              'and',
               _react2.default.createElement(
                 'span',
                 { className: 'highlight' },
-                'Barcelona'
+                ' experiences'
               ),
               '.'
             ),
             _react2.default.createElement(
               'p',
               null,
-              'If you want to collaborate, chat or have an idea, say hi!'
+              _react2.default.createElement(
+                'span',
+                { className: 'highlight' },
+                'New York City '
+              ),
+              '|| ',
+              _react2.default.createElement(
+                'span',
+                { className: 'highlight' },
+                'Barcelona'
+              )
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Say hi!'
             ),
             _react2.default.createElement(
               'p',
               null,
               _react2.default.createElement(
                 'a',
-                { href: 'mailto:hi@franc.ly' },
-                'hi AD franc DOT ly'
+                { className: 'mailto', href: 'mailto:hi@franc.ly' },
+                'hi@franc.ly'
               )
             ),
             _react2.default.createElement(
-              'div',
-              { className: 'social-footer' },
-              _react2.default.createElement(_socialicon2.default, { type: 'github' }),
-              _react2.default.createElement(_socialicon2.default, { type: 'linkedin' }),
-              _react2.default.createElement(_socialicon2.default, { type: 'vimeo' }),
-              _react2.default.createElement(_socialicon2.default, { type: 'twitter' }),
-              _react2.default.createElement(_socialicon2.default, { type: 'instagram' })
+              'p',
+              null,
+              'Go see some ',
+              _react2.default.createElement(
+                _reactRouter.Link,
+                { to: 'work' },
+                'work.'
+              )
             )
           )
         )
@@ -1298,7 +1390,7 @@ var Contact = (function (_React$Component) {
 
 exports.default = Contact;
 
-},{"../socialicon":230,"react":210}],211:[function(require,module,exports){
+},{"./socialicon":229,"react":210,"react-router":48}],211:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1337,6 +1429,11 @@ var About = (function (_React$Component) {
   }
 
   _createClass(About, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      window.scrollTo(0, 0);
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
@@ -1355,25 +1452,32 @@ var About = (function (_React$Component) {
           React.createElement(
             'div',
             { className: 'copy' },
+            React.createElement('img', { src: 'assets/thisguy.gif', height: '150px', width: '150px' }),
             React.createElement(
               'p',
               null,
-              'I’m Franc Camps-Febrer and I am a data visualization engineer and digital artist. I was born in Barcelona, and I am based in Brooklyn.'
+              'Hello there. I’m Franc Camps-Febrer. I am a designer and software engineer especialized in data-rich visualizations and applications, and a digital artist. I am based between Brooklyn and Barcelona.'
             ),
             React.createElement(
               'p',
               null,
-              'I’m currently working for @Knewton, the adaptive learning platform. I also do freelance work when I believe it’ll make the world better. I am passionate about all things storytelling, and exploring combinations of formats to tell more powerful stories.'
+              'I’ve been a software and data visualization engineer for @Knewton for 4 years. I now do freelance work as an engineer and designer and explore some initiatives in digital art. I am passionate about all things storytelling, and exploring combinations of formats to tell more powerful stories.'
             ),
             React.createElement(
               'p',
               null,
-              'I’ve worked as a bunch of different things, but most importantly as researcher, teacher, designer and developer. I’ve always done writing for various purposes. I earned a master degree in Developmental Neuroscience from CUNY in 2011, and focused my master’s thesis on neuroaesthetics, synaesthesia and the emergence of creative thinking based on research work I collaborated with at NYU’s Center for Neural Science. I also shot a documentary about it.'
+              'I’ve worked as a bunch of different things, but most importantly as researcher, teacher, designer and developer. I’ve always done writing for various purposes.  I worked as a neuroscience research assistant in cognitive neuroscience and neuroaesthetics at NYU\'s Center for Neural Science. I shot a short documentary in synaesthesia and the emergence of creative thinking based on some of the research work I collaborated with. '
             ),
             React.createElement(
               'p',
               null,
-              'Late 2011, I started pursuing my interests in visualization, interaction, design and development full-time. Putting all my experiences together, I like to think I have both a qualitative and quantitative approach to storytelling. You can check my resume here.'
+              'Late 2011, I started pursuing my interests in visualization, interaction, design and development full-time. Putting all my experiences together, I have both a qualitative and quantitative approach to storytelling. You can check my resume ',
+              React.createElement(
+                'a',
+                { href: 'assets/resumeA.pdf' },
+                'here'
+              ),
+              '.'
             ),
             React.createElement(
               'p',
@@ -1389,6 +1493,15 @@ var About = (function (_React$Component) {
               'p',
               null,
               'Say hi!'
+            ),
+            React.createElement(
+              'p',
+              null,
+              React.createElement(
+                'a',
+                { href: 'mailto:hi@franc.ly' },
+                'hi@franc.ly'
+              )
             )
           )
         ),
@@ -1402,7 +1515,7 @@ var About = (function (_React$Component) {
 
 exports.default = About;
 
-},{"./footer":216,"./logo":221,"./sidepanel/sidepanel":229}],229:[function(require,module,exports){
+},{"./footer":216,"./logo":222,"./sidepanel/sidepanel":228}],228:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1452,8 +1565,18 @@ var SidePanel = (function (_React$Component) {
       this.setState({ isOpen: true });
     }
   }, {
+    key: 'allowBodyScroll',
+    value: function allowBodyScroll() {
+      var elems = document.getElementsByTagName("body");
+      [].forEach.call(elems, function (el) {
+        el.classList.remove("noscroll");
+      });
+    }
+  }, {
     key: 'closeMenu',
     value: function closeMenu() {
+      this.allowBodyScroll();
+
       this.setState({
         isOpen: false,
         contents: _react2.default.createElement(_sidemenu2.default, null)
@@ -1496,7 +1619,7 @@ var SidePanel = (function (_React$Component) {
 
 exports.default = SidePanel;
 
-},{"./sideburger":227,"./sidemenu":228,"react":210}],228:[function(require,module,exports){
+},{"./sideburger":226,"./sidemenu":227,"react":210}],227:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1545,56 +1668,72 @@ var SideMenu = (function (_React$Component) {
             'div',
             { className: 'menu-option fadeInDown animated' },
             _react2.default.createElement(
-              'div',
-              { className: 'option-wrapper' },
+              _reactRouter.Link,
+              { to: 'about' },
               _react2.default.createElement(
-                _reactRouter.Link,
-                { to: 'about' },
-                'ABOUT'
-              ),
-              _react2.default.createElement(_butterfly2.default, null)
+                'div',
+                { className: 'option-wrapper' },
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  'BIO'
+                ),
+                _react2.default.createElement(_butterfly2.default, null)
+              )
             )
           ),
           _react2.default.createElement(
             'div',
             { className: 'menu-option fadeInDown animated' },
             _react2.default.createElement(
-              'div',
-              { className: 'option-wrapper' },
+              _reactRouter.Link,
+              { to: 'work' },
               _react2.default.createElement(
-                _reactRouter.Link,
-                { to: 'work' },
-                'WORK'
-              ),
-              _react2.default.createElement(_butterfly2.default, null)
+                'div',
+                { className: 'option-wrapper' },
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  'WORK'
+                ),
+                _react2.default.createElement(_butterfly2.default, null)
+              )
             )
           ),
           _react2.default.createElement(
             'div',
             { className: 'menu-option fadeInUp animated' },
             _react2.default.createElement(
-              'div',
-              { className: 'option-wrapper' },
+              _reactRouter.Link,
+              { to: 'jokesart' },
               _react2.default.createElement(
-                _reactRouter.Link,
-                { to: 'jokesart' },
-                'OTHER WORK / JOKES / ART'
-              ),
-              _react2.default.createElement(_butterfly2.default, null)
+                'div',
+                { className: 'option-wrapper' },
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  'OTHER WORK / JOKES / ART'
+                ),
+                _react2.default.createElement(_butterfly2.default, null)
+              )
             )
           ),
           _react2.default.createElement(
             'div',
             { className: 'menu-option fadeInUp animated' },
             _react2.default.createElement(
-              'div',
-              { className: 'option-wrapper' },
+              _reactRouter.Link,
+              { to: 'journal' },
               _react2.default.createElement(
-                'a',
-                { href: 'journal.html' },
-                'JOURNAL'
-              ),
-              _react2.default.createElement(_butterfly2.default, null)
+                'div',
+                { className: 'option-wrapper' },
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  'JOURNAL (coming soon)'
+                ),
+                _react2.default.createElement(_butterfly2.default, null)
+              )
             )
           )
         )
@@ -1607,7 +1746,7 @@ var SideMenu = (function (_React$Component) {
 
 exports.default = SideMenu;
 
-},{"../butterfly/butterfly":213,"react":210,"react-router":48}],213:[function(require,module,exports){
+},{"../butterfly/butterfly":214,"react":210,"react-router":48}],214:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1628,16 +1767,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Sparkline = (function (_React$Component) {
-  _inherits(Sparkline, _React$Component);
+var Butterfly = (function (_React$Component) {
+  _inherits(Butterfly, _React$Component);
 
-  function Sparkline() {
-    _classCallCheck(this, Sparkline);
+  function Butterfly() {
+    _classCallCheck(this, Butterfly);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Sparkline).apply(this, arguments));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Butterfly).apply(this, arguments));
   }
 
-  _createClass(Sparkline, [{
+  _createClass(Butterfly, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -1649,12 +1788,12 @@ var Sparkline = (function (_React$Component) {
     }
   }]);
 
-  return Sparkline;
+  return Butterfly;
 })(_react2.default.Component);
 
-exports.default = Sparkline;
+exports.default = Butterfly;
 
-},{"react":210}],227:[function(require,module,exports){
+},{"react":210}],226:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1722,6 +1861,8 @@ var _socialicon = require('./socialicon');
 
 var _socialicon2 = _interopRequireDefault(_socialicon);
 
+var _reactRouter = require('react-router');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1747,16 +1888,37 @@ var Footer = (function (_React$Component) {
         { className: 'footer' },
         React.createElement(_logo2.default, null),
         React.createElement(
-          'a',
-          { className: 'footer-mail', href: 'mailto:hi@franc.ly' },
-          'hi@franc.ly'
+          'div',
+          { className: 'footer-nav' },
+          React.createElement(
+            _reactRouter.Link,
+            { to: 'about' },
+            'ABOUT'
+          ),
+          React.createElement(
+            _reactRouter.Link,
+            { to: 'work' },
+            'WORK'
+          ),
+          React.createElement(
+            _reactRouter.Link,
+            { to: 'jokesart' },
+            'JOKES / ART'
+          )
         ),
         React.createElement(
           'div',
           { className: 'social-footer' },
           React.createElement(_socialicon2.default, { type: 'github' }),
           React.createElement(_socialicon2.default, { type: 'linkedin' }),
-          React.createElement(_socialicon2.default, { type: 'twitter' })
+          React.createElement(_socialicon2.default, { type: 'vimeo' }),
+          React.createElement(_socialicon2.default, { type: 'twitter' }),
+          React.createElement(_socialicon2.default, { type: 'instagram' })
+        ),
+        React.createElement(
+          'span',
+          { className: 'footer-mail' },
+          'By Franc Camps-Febrer - hi@franc.ly - 2016'
         )
       );
     }
@@ -1767,7 +1929,7 @@ var Footer = (function (_React$Component) {
 
 exports.default = Footer;
 
-},{"./logo":221,"./socialicon":230}],230:[function(require,module,exports){
+},{"./logo":222,"./socialicon":229,"react-router":48}],229:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1784,9 +1946,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var iconData = {
   github: 'https://github.com/francamps',
-  vimeo: '',
+  vimeo: 'https://vimeo.com/franccampsfebrer',
   twitter: 'https://www.twitter.com/francamps',
-  linkedin: ''
+  linkedin: 'https://www.linkedin.com/in/franc-camps-febrer-86020912',
+  instagram: 'https://www.instagram.com/francamps'
 };
 
 var SocialIcon = (function (_React$Component) {
@@ -1801,7 +1964,7 @@ var SocialIcon = (function (_React$Component) {
   _createClass(SocialIcon, [{
     key: 'onClickLink',
     value: function onClickLink() {
-      window.location.href = iconData.github;
+      window.location.href = iconData[this.props.type];
     }
   }, {
     key: 'render',
@@ -1857,9 +2020,15 @@ var SocialIcon = (function (_React$Component) {
           React.createElement(
             'svg',
             { x: '0px', y: '0px',
-              width: '61px', height: '60px', viewBox: '89.38 89.88 61 60', 'enable-background': 'new 89.38 89.88 61 60' },
-            React.createElement('circle', { fill: '#FFC963', cx: '120.098', cy: '119.875', r: '29.97' }),
-            React.createElement('path', { fill: '#FFFFFF', d: 'M136.478,127.876c0-5.399,0-10.801,0-16.201c0-3.253,0.083-6.07-1.801-7.401 c-1.656-1.17-5.251-0.8-8.001-0.8c-6.267,0-12.535,0-18.801,0c-0.384,0.259-1.25,0.343-1.8,0.4c-0.693,0.88-1.829,1.386-2.2,2.6 c-0.551,1.802-0.2,4.479-0.2,6.601c0,4.467,0,8.935,0,13.401c0,3.684-0.354,7.479,1.8,9.001c2.407,1.7,12.847,0.8,17.001,0.8 c3.639,0,9.908,0.827,12.201-0.8C136.596,134.115,136.478,131.194,136.478,127.876z M126.076,108.075 c0.161-0.204,0.071-0.055,0.2-0.4c0.291-0.17,0.573-0.362,0.8-0.6c1.233-0.032,3.771-0.34,4.601,0.2c1.508,0.515,1.072,3.621,1,5.6 c-0.2,0.134-0.4,0.267-0.6,0.4c-1.135,0.906-4.407,0.323-5.602,0C126.096,111.972,126.064,109.943,126.076,108.075z M113.675,118.076c0.971-3.055,2.675-3.044,5-4.601c3.667-0.113,5.874,0.838,7.2,3c2.359,3.846-0.437,8.297-3.4,9.4 C117.676,127.665,112.021,123.281,113.675,118.076z M132.876,131.077c-0.16,0.236-0.154,0.336-0.199,0.8 c-0.292,0.171-0.574,0.362-0.801,0.601c-7.934,0-15.869,0-23.802,0c-1.604-2.494-0.828-11.129-0.8-15.202c1,0,2,0,3,0 c-0.33,5.496,0.787,8.984,4.2,11.201c0.812,0.527,2.057,0.924,3,1.2c5.872,1.722,10.84-2.366,12.202-6 c0.756-2.021,0.482-4.282,0.199-6.401c0.934,0,1.867,0,2.801,0C133.56,119.937,132.892,127.675,132.876,131.077z' })
+              width: '61px', height: '60px', viewBox: '0 0 61 60', 'enable-background': 'new 0 0 61 60' },
+            React.createElement(
+              'g',
+              null,
+              React.createElement('path', { fill: '#FFC963', d: 'M40.807,27.4c0.283,2.119,0.557,4.381-0.199,6.401c-1.361,3.634-6.33,7.722-12.201,6 c-0.943-0.276-2.188-0.673-3-1.2c-3.414-2.217-4.531-5.705-4.201-11.201c-1,0-2,0-3,0c-0.027,4.074-0.803,12.709,0.801,15.203 c7.933,0,15.867,0,23.802,0c0.228-0.24,0.509-0.431,0.801-0.602c0.046-0.464,0.039-0.564,0.199-0.8 c0.017-3.402,0.685-11.14-0.2-13.802C42.674,27.4,41.74,27.4,40.807,27.4z' }),
+              React.createElement('path', { fill: '#FFC963', d: 'M43.009,23.4c0.2-0.133,0.399-0.267,0.6-0.4c0.072-1.979,0.509-5.085-1-5.6 c-0.829-0.541-3.368-0.232-4.601-0.2c-0.227,0.237-0.51,0.43-0.801,0.6c-0.129,0.345-0.039,0.196-0.199,0.4 c-0.012,1.868,0.02,3.897,0.398,5.2C38.602,23.723,41.873,24.307,43.009,23.4z' }),
+              React.createElement('path', { fill: '#FFC963', d: 'M33.406,36c2.963-1.104,5.76-5.555,3.4-9.4c-1.326-2.162-3.533-3.113-7.2-3 c-2.325,1.558-4.028,1.547-5,4.602C22.953,33.406,28.607,37.79,33.406,36z' }),
+              React.createElement('path', { fill: '#FFC963', d: 'M31.029,0.029C14.478,0.029,1.06,13.448,1.06,30s13.418,29.971,29.97,29.971C47.582,59.971,61,46.552,61,30 S47.582,0.029,31.029,0.029z M45.608,45.602c-2.293,1.627-8.562,0.801-12.2,0.801c-4.154,0-14.595,0.899-17.002-0.801 c-2.154-1.521-1.8-5.316-1.8-9c0-4.467,0-8.935,0-13.401c0-2.122-0.351-4.8,0.2-6.601c0.371-1.215,1.507-1.721,2.2-2.601 c0.55-0.058,1.416-0.142,1.8-0.399c6.266,0,12.534,0,18.801,0c2.75,0,6.346-0.371,8.001,0.799c1.884,1.332,1.802,4.148,1.802,7.401 c0,5.4,0,10.802,0,16.201C47.41,41.318,47.527,44.24,45.608,45.602z' })
+            )
           )
         );
       }
@@ -1871,7 +2040,7 @@ var SocialIcon = (function (_React$Component) {
 
 exports.default = SocialIcon;
 
-},{}],221:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1879,6 +2048,14 @@ var _createClass = (function () { function defineProperties(target, props) { for
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _reactRouter = require('react-router');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1896,41 +2073,54 @@ var Logo = (function (_React$Component) {
   }
 
   _createClass(Logo, [{
-    key: "render",
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      (0, _jquery2.default)('.logo path').css('fill', 'url(#logoGrad)');
+
+      (0, _jquery2.default)('.logo path').on('mouseover', function () {
+        (0, _jquery2.default)(this).css('fill', 'url(#logoGradFinal)');
+      });
+
+      (0, _jquery2.default)('.logo path').on('mouseout', function () {
+        (0, _jquery2.default)(this).css('fill', 'url(#logoGrad)');
+      });
+    }
+  }, {
+    key: 'render',
     value: function render() {
       return React.createElement(
-        "div",
-        { className: "logo" },
+        'div',
+        { className: 'logo' },
         React.createElement(
-          "a",
-          { href: "/index.html" },
+          _reactRouter.Link,
+          { to: '/' },
           React.createElement(
-            "svg",
-            { x: "0px", y: "0px",
-              width: "172.8px", height: "172.8px", viewBox: "0 0 172.8 172.8", "enable-background": "new 0 0 172.8 172.8" },
+            'svg',
+            { x: '0px', y: '0px',
+              width: '172.8px', height: '172.8px', viewBox: '0 0 172.8 172.8', 'enable-background': 'new 0 0 172.8 172.8' },
             React.createElement(
-              "defs",
+              'defs',
               null,
               React.createElement(
-                "linearGradient",
-                { id: "logoGrad", x1: "0%", y1: "0%", x2: "30%", y2: "100%" },
-                React.createElement("stop", { offset: "30%", stopColor: "rgb(36, 216, 205)" }),
-                React.createElement("stop", { offset: "100%", stopColor: "rgb(120, 220, 58)" })
+                'linearGradient',
+                { id: 'logoGrad', x1: '0%', y1: '0%', x2: '30%', y2: '100%' },
+                React.createElement('stop', { offset: '30%', stopColor: 'rgb(36, 216, 205)' }),
+                React.createElement('stop', { offset: '100%', stopColor: 'rgb(120, 220, 58)' })
               ),
               React.createElement(
-                "linearGradient",
-                { id: "logoGradFinal", x2: "0%", y2: "0%", x1: "30%", y1: "100%" },
-                React.createElement("stop", { offset: "30%", stopColor: "rgb(36, 216, 205)" }),
-                React.createElement("stop", { offset: "100%", stopColor: "rgb(120, 220, 58)" })
+                'linearGradient',
+                { id: 'logoGradFinal', x2: '0%', y2: '0%', x1: '30%', y1: '100%' },
+                React.createElement('stop', { offset: '30%', stopColor: 'rgb(36, 216, 205)' }),
+                React.createElement('stop', { offset: '100%', stopColor: 'rgb(120, 220, 58)' })
               )
             ),
-            React.createElement("rect", { "fill-rule": "evenodd", "clip-rule": "evenodd", width: "172.8", height: "172.8" }),
+            React.createElement('rect', { 'fill-rule': 'evenodd', 'clip-rule': 'evenodd', width: '172.8', height: '172.8' }),
             React.createElement(
-              "g",
+              'g',
               null,
-              React.createElement("path", { "fill-rule": "evenodd", "clip-rule": "evenodd", d: "M86.76,75.84c1.7-1.987,3.217-3.013,3.84-5.52 c0.592-2.381-0.275-5.85-0.72-7.68c-1.336-5.495-2.089-10.411-3.36-15.6c-0.647-2.64-0.859-6-2.4-7.92 c-0.338,9.431-1.571,22.142,0.48,30.72C85.118,72.002,85.673,74.399,86.76,75.84z" }),
-              React.createElement("path", { "fill-rule": "evenodd", "clip-rule": "evenodd", d: "M87.48,100.801c-2.742,4.24-6.433,8.559-7.92,13.92 c-0.812,2.926,0.268,6.564,0.96,8.879c1.075,3.594,1.725,6.65,3.12,9.84c1.166,2.668,2.76,5.469,4.32,7.68 c0.192-0.244,1.971-5.439,2.64-8.16c1.964-7.99,1.018-19.838-1.2-26.639C88.775,104.403,88.382,102.415,87.48,100.801z" }),
-              React.createElement("path", { "fill-rule": "evenodd", "clip-rule": "evenodd", d: "M86.4,14.4c-39.765,0-72,32.235-72,72c0,39.764,32.235,72,72,72 s72-32.236,72-72C158.4,46.636,126.165,14.4,86.4,14.4z M104.521,88.801c-0.808-0.08-1.625-0.449-2.16-0.961 c-0.795-0.76-0.977-1.439-1.92-2.16c-1.618,2.425-7.104,6.093-7.68,8.88c1.108,2.109,1.771,4.84,2.64,7.199 c3.47,9.416,4.831,25.025,1.44,36c-1.635,5.295-2.93,11.338-9.841,11.279c-0.912,0.002-1.662-0.318-2.399-1.199 c-4.324-5.16-8.787-15.238-11.04-22.801c-1.152-3.867-1.861-10.16-0.24-14.158c1.967-4.854,4.817-9.355,7.68-13.441 c1.143-1.629,2.648-3.088,3.6-5.52c-0.263-1.074-0.766-1.545-0.96-2.4L79.081,96c-0.542,0.463-2.347,0.783-3.12,0.24 c-2.095-0.646-2.917-3.158-1.92-5.52c1.262-2.988,6.344-6.883,6.72-9.601c-0.817-2.083-1.438-4.504-2.16-6.72 c-0.688-2.113-0.596-1.419-2.16-6.96c0-1.04-0.603-18.891,0.24-22.8c0-1.12,0.696-12.587,2.88-15.6 c0.585-0.807,1.527-1.68,2.4-1.68c7.218,0.064,8.266,7.686,10.08,13.2c1.314,3.995,4.146,17.939,4.801,20.64 c0.571,2.358,1.529,7.098,0.72,10.32c-1.191,4.737-5.076,9.661-8.641,12c0.32,0.96,0.641,1.92,0.961,2.88 c0.08,0,4.939-5.146,7.68-7.2c1.098-0.823,2.219-2.926,4.8-2.16C105.224,77.89,112.96,88.266,104.521,88.801z" })
+              React.createElement('path', { id: 'path1', 'fill-rule': 'evenodd', 'clip-rule': 'evenodd', d: 'M86.76,75.84c1.7-1.987,3.217-3.013,3.84-5.52 c0.592-2.381-0.275-5.85-0.72-7.68c-1.336-5.495-2.089-10.411-3.36-15.6c-0.647-2.64-0.859-6-2.4-7.92 c-0.338,9.431-1.571,22.142,0.48,30.72C85.118,72.002,85.673,74.399,86.76,75.84z' }),
+              React.createElement('path', { 'fill-rule': 'evenodd', 'clip-rule': 'evenodd', d: 'M87.48,100.801c-2.742,4.24-6.433,8.559-7.92,13.92 c-0.812,2.926,0.268,6.564,0.96,8.879c1.075,3.594,1.725,6.65,3.12,9.84c1.166,2.668,2.76,5.469,4.32,7.68 c0.192-0.244,1.971-5.439,2.64-8.16c1.964-7.99,1.018-19.838-1.2-26.639C88.775,104.403,88.382,102.415,87.48,100.801z' }),
+              React.createElement('path', { className: 'pathChar', 'fill-rule': 'evenodd', 'clip-rule': 'evenodd', d: 'M86.4,14.4c-39.765,0-72,32.235-72,72c0,39.764,32.235,72,72,72 s72-32.236,72-72C158.4,46.636,126.165,14.4,86.4,14.4z M104.521,88.801c-0.808-0.08-1.625-0.449-2.16-0.961 c-0.795-0.76-0.977-1.439-1.92-2.16c-1.618,2.425-7.104,6.093-7.68,8.88c1.108,2.109,1.771,4.84,2.64,7.199 c3.47,9.416,4.831,25.025,1.44,36c-1.635,5.295-2.93,11.338-9.841,11.279c-0.912,0.002-1.662-0.318-2.399-1.199 c-4.324-5.16-8.787-15.238-11.04-22.801c-1.152-3.867-1.861-10.16-0.24-14.158c1.967-4.854,4.817-9.355,7.68-13.441 c1.143-1.629,2.648-3.088,3.6-5.52c-0.263-1.074-0.766-1.545-0.96-2.4L79.081,96c-0.542,0.463-2.347,0.783-3.12,0.24 c-2.095-0.646-2.917-3.158-1.92-5.52c1.262-2.988,6.344-6.883,6.72-9.601c-0.817-2.083-1.438-4.504-2.16-6.72 c-0.688-2.113-0.596-1.419-2.16-6.96c0-1.04-0.603-18.891,0.24-22.8c0-1.12,0.696-12.587,2.88-15.6 c0.585-0.807,1.527-1.68,2.4-1.68c7.218,0.064,8.266,7.686,10.08,13.2c1.314,3.995,4.146,17.939,4.801,20.64 c0.571,2.358,1.529,7.098,0.72,10.32c-1.191,4.737-5.076,9.661-8.641,12c0.32,0.96,0.641,1.92,0.961,2.88 c0.08,0,4.939-5.146,7.68-7.2c1.098-0.823,2.219-2.926,4.8-2.16C105.224,77.89,112.96,88.266,104.521,88.801z' })
             )
           )
         )
@@ -1943,7 +2133,7 @@ var Logo = (function (_React$Component) {
 
 exports.default = Logo;
 
-},{}],48:[function(require,module,exports){
+},{"jquery":27,"react-router":48}],48:[function(require,module,exports){
 /* components */
 'use strict';
 

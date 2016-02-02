@@ -123,7 +123,10 @@ export default class Jokesart extends React.Component {
             <Logo />
             <h2 className='fadeInUp animated'>Digital Art / Jokes / Other work</h2>
             <p className='copy'>
-              In parallel, I explore digital contexts artistically. I like to reshape our online identities, explore how we communicate to each other, and what other forms these communications can take. I’m interested in online communities and what makes them emerge.
+              In parallel, I do work that focuses on the individual, the lyrics of the intimate in a personal world determined by enormous amounts of data, almost incomprehensible by an individual point of view. I explore the dimensions of the human experience abstracted by data and attempt to reconstruct what makes us human out of the traces we leave. I produce conceptual pieces out of data to describe and understand a reality defined by the increasing overlap between online and offline experiences, using my own self as a subject.
+            </p>
+            <p>
+              With this work, I attempt to challenge and question the representations of ourselves that are given to us. Taking data, online traces and behaviors as prime matter and repurposing, reshaping and redefining them I attempt to regain aspects of the richness of the human. I capture details and nuances of the traces we leave online and explore what they say about what it means to be human, and what they reveal about our relationships today.
             </p>
             <div className='projects-wrapper'>
               {projects.map((project) => {

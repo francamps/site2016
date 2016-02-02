@@ -10,4 +10,4 @@ An online calculator to support a workshop using [Toru Urakawa](https://twitter.
 
 You can find a live version [here](http://franc.ly/bica/index.html).
 
-![Binary](assets/content/projects/binarycard.png)
+![Binary](/assets/content/projects/binarycard.png)

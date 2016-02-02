@@ -5,7 +5,6 @@ import { render } from 'react-dom';
 
 import Router from 'react-router';
 import { Redirect, IndexRoute, Link, Route } from 'react-router';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import Hello from './hello';
 import SidePanel from './sidepanel/sidepanel';

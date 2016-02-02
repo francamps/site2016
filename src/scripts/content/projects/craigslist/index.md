@@ -7,7 +7,7 @@ tags: <span class='project-tag'>Personal data</span><span class='project-tag'>On
 ---
 
 
-![Trainfuck](assets/content/projects/craigslist01.png)
+![Craigslist](/assets/content/projects/craigslist01.png)
 
 For a month, I've been blogging in places around the world. Places that could feel abandoned, local and remote, or very alien to me. I wanted to talk to the least targeted audience, have a completely depersonalized experience.
 
@@ -27,18 +27,18 @@ Craigslist is ephemeral. All posts disappear in 45 days, so the disappearance al
 
 I wanted to see if something happened. And then nothing happened, which is the something that happened.
 
-![Day 1](../assets/content/projects/Day 1.png)
-![Day 2](../assets/content/projects/Day 2.png)
-![Day 3](../assets/content/projects/Day 3.png)
-![Day 4](../assets/content/projects/Day 4.png)
-![Day 5](../assets/content/projects/Day 5.png)
-![Day 6](../assets/content/projects/Day 6.png)
-![Day 7](../assets/content/projects/Day 7a.png)
-![Day 8](../assets/content/projects/Day 8.png)
-![Day 9](../assets/content/projects/Day 9A.png)
-![Day 10](../assets/content/projects/Day 10.png)
-![Day 11](../assets/content/projects/Day 11.png)
-![Day 12](../assets/content/projects/Day 12.png)
-![Day 13](../assets/content/projects/Day 13.png)
-![Day 14](../assets/content/projects/Day 14.png)
-![Day 15](../assets/content/projects/Day 15.png)
+![Day 1](/assets/content/projects/Day 1.png)
+![Day 2](/assets/content/projects/Day 2.png)
+![Day 3](/assets/content/projects/Day 3.png)
+![Day 4](/assets/content/projects/Day 4.png)
+![Day 5](/assets/content/projects/Day 5.png)
+![Day 6](/assets/content/projects/Day 6.png)
+![Day 7](/assets/content/projects/Day 7a.png)
+![Day 8](/assets/content/projects/Day 8.png)
+![Day 9](/assets/content/projects/Day 9A.png)
+![Day 10](/assets/content/projects/Day 10.png)
+![Day 11](/assets/content/projects/Day 11.png)
+![Day 12](/assets/content/projects/Day 12.png)
+![Day 13](/assets/content/projects/Day 13.png)
+![Day 14](/assets/content/projects/Day 14.png)
+![Day 15](/assets/content/projects/Day 15.png)

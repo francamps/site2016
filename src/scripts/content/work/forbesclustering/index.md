@@ -8,4 +8,4 @@ tags: <span class='project-tag'>Visualization</span><span class='project-tag'>Pr
 
 Based on different variables estimated by Knewton's algorithms, Clustering of educational content. Visualization for Knewton, featured on Forbes Magazine (Python matplotlib, Illustrator)
 
-![Clustering](assets/content/work/ForbesB.png)
+![Clustering](/assets/content/work/ForbesB.png)

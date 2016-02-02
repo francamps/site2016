@@ -1,3 +1,6 @@
 .about {
   width: 80%;
   max-width: 1200px; }
+  .about .copy img {
+    border-radius: 10px;
+    margin: 20px 0; }

@@ -36,7 +36,7 @@ export default class OneProjectDetail extends React.Component {
 
   componentDidMount() {
     if (this.props.projectId) {
-      let path = (this.props.type === 'projects') ? './projects/' : './work/';
+      let path = (this.props.type === 'projects') ? '/projects/' : '/work/';
       let id = this.props.projectId;
 
       window.setTimeout(this.loadJSON.bind(this, path, id), 500);
@@ -49,7 +49,7 @@ export default class OneProjectDetail extends React.Component {
     if (nextProps.projectId) {
       this.setState({ project: {} });
 
-      let path = (nextProps.type === 'projects') ? './projects/' : './work/';
+      let path = (nextProps.type === 'projects') ? '/projects/' : '/work/';
       let id = nextProps.projectId;
 
       window.setTimeout(this.loadJSON.bind(this, path, id), 500);
