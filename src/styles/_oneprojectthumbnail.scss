@@ -33,15 +33,16 @@
 
       .title {
         padding: 10px 0;
+        padding-left: 5%;
+        padding-right: 5%;
         text-transform: uppercase;
-        font-weight: bold;
         letter-spacing: .1em;
-        font-family: 'Lato';
+        font-family: DinProBold;
         font-size: $large;
         color: $darkgrey;
         position: absolute;
         top: 50%;
-        width: 100%;
+        width: 90%;
         filter: blur(10px);
         text-align: center;
         opacity: 0;
@@ -70,26 +71,12 @@
         transition: opacity .3s;
       }
 
-      .butterfly {
-        opacity: 1;
-        transition: opacity .3s;
-      }
-
       .title {
         opacity: 1;
         filter: none;
         display: inline-block;
         transition: opacity .3s, filter .6s;
-      }
-
-      .wing1 {
-        transform: skew(0, 30deg) translate(20px, 20px);
-        -webkit-transform: skew(0, 30deg) translate(20px, 20px);
-      }
-
-      .wing2 {
-        transform: skew(0deg, -30deg) translate(10px, 10px);
-        -webkit-transform: skew(0deg, -30deg) translate(10px, 10px);
+        transform: translateY(-50%);
       }
     }
 
@@ -111,16 +98,7 @@
           opacity: 1;
           filter: none;
           display: inline-block;
-        }
-
-        .wing1 {
-          transform: skew(0, 30deg) translate(20px, 20px);
-          -webkit-transform: skew(0, 30deg) translate(20px, 20px);
-        }
-
-        .wing2 {
-          transform: skew(0deg, -30deg) translate(10px, 10px);
-          -webkit-transform: skew(0deg, -30deg) translate(10px, 10px);
+          transform: translateY(-50%);
         }
       }
     }

@@ -1,6 +1,5 @@
 'use strict';
 
-import Butterfly from './butterfly/butterfly';
 import { IndexRoute, Link, Route } from 'react-router';
 
 import $ from 'jquery';
@@ -53,7 +52,6 @@ export default class OneProjectThumbnail extends React.Component {
           <div className="one-project-thumbnail">
         {/*    onClick={this.props.onSelectProject.bind(null, id)}>*/}
             <div className="title">{title}</div>
-            <Butterfly />
             {this.renderThumbnail()}
           </div>
         </Link>

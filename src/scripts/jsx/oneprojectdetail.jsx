@@ -24,10 +24,6 @@ export default class OneProjectDetail extends React.Component {
     }
   }
 
-  componentWillMount() {
-    document.getElementsByTagName('body')[0].className += ' noscroll'
-  }
-
   loadJSON(path, id) {
     $.getJSON(path + id + '/index.json', (data) => {
       this.setState({ project: data });

@@ -33,11 +33,11 @@
         line-height: $xxlarge;
         margin: 0 auto;
         margin-bottom: 36px;
-        font-family: 'DINPro-Light';
+        font-family: DinProLight;
 
         .highlight {
           color: $darkgrey;
-          font-family: 'DINPro-Medium';
+          font-family: DinProMedium;
         }
 
         a {
@@ -55,7 +55,7 @@
 
           &.mailto {
             text-decoration: none;
-            font-family: 'DINPro-Light';
+            font-family: DinProLight;
             padding: 10px 0;
             margin: 10px auto;
             color: $lightblue;

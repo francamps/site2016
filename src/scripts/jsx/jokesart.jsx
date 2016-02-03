@@ -69,8 +69,12 @@ export default class Jokesart extends React.Component {
     this.context.history.pushState(null, '/projects/' + selectedProject);
   }
 
-  componentDidMount() {
+  goToTop() {
     window.scrollTo(0, 0);
+  }
+
+  componentDidMount() {
+    this.goToTop();
     this.bindEscKey();
   }
 
@@ -98,12 +102,6 @@ export default class Jokesart extends React.Component {
       });
     } else {
       this.setState({ openMenu: false });
-    }
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.openMenu === false) {
-      $('body').removeClass('noscroll');
     }
   }
 

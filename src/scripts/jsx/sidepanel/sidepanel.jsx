@@ -3,6 +3,7 @@
 import React from 'react';
 import SideMenu from './sidemenu';
 import SideBurger from './sideburger';
+import $ from 'jquery';
 
 export default class SidePanel extends React.Component {
   constructor(props) {
@@ -14,27 +15,42 @@ export default class SidePanel extends React.Component {
   }
 
   openMenu() {
-    this.setState({isOpen: true});
-  }
-
-  allowBodyScroll() {
-    var elems = document.getElementsByTagName("body");
-    [].forEach.call(elems, function(el) {
-        el.classList.remove("noscroll");
+    this.setState({
+      isOpen: true
     });
   }
 
   closeMenu() {
-    this.allowBodyScroll();
-
     this.setState({
       isOpen: false,
       contents: <SideMenu />
     });
   }
 
+  enableBodyScroll() {
+    var elems = document.getElementsByTagName("body");
+    [].forEach.call(elems, function(el) {
+        el.classList.remove("noscroll");
+    });
+  }
+
+  disableBodyScroll() {
+    let body = document.getElementsByTagName('body')[0]
+    if (this.state.isOpen & !$(body).hasClass('noscroll')) {
+      body.className += ' noscroll';
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({ isOpen: nextProps.isOpen });
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.isOpen) {
+      this.disableBodyScroll();
+    } else {
+      this.enableBodyScroll();
+    }
   }
 
   render() {

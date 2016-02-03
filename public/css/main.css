@@ -736,7 +736,7 @@ Sections
       z-index: 100;
       padding-top: 10px; }
       .hello .hello-wrapper .categories span {
-        font-family: 'DINPro-Bold';
+        font-family: DinProBold;
         font-size: 12px;
         font-weight: bold;
         letter-spacing: .1em;
@@ -985,10 +985,10 @@ Sections
         line-height: 48px;
         margin: 0 auto;
         margin-bottom: 36px;
-        font-family: 'DINPro-Light'; }
+        font-family: DinProLight; }
         .contact .content .copy p .highlight {
           color: #282c34;
-          font-family: 'DINPro-Medium'; }
+          font-family: DinProMedium; }
         .contact .content .copy p a {
           text-decoration: none;
           font-weight: bold;
@@ -1003,7 +1003,7 @@ Sections
             transition: border 0.3s, color .3s; }
           .contact .content .copy p a.mailto {
             text-decoration: none;
-            font-family: 'DINPro-Light';
+            font-family: DinProLight;
             padding: 10px 0;
             margin: 10px auto;
             color: #24d8cd;
@@ -1022,7 +1022,7 @@ Sections
   .footer .footer-mail {
     display: inline-block;
     font-size: 12px;
-    font-family: 'DINPro-Light';
+    font-family: DinProLight;
     text-align: center;
     width: 100%;
     text-decoration: none;
@@ -1034,7 +1034,7 @@ Sections
     margin: 0;
     margin-top: 20px; }
     .footer .footer-nav a {
-      font-family: 'DinProBold';
+      font-family: DinProBold;
       font-weight: bold;
       font-size: 12px;
       letter-spacing: .1em;
@@ -1125,15 +1125,16 @@ Other components
         opacity: 0; }
       .projects-wrapper .one-project-thumbnail-wrapper .one-project-thumbnail .title {
         padding: 10px 0;
+        padding-left: 5%;
+        padding-right: 5%;
         text-transform: uppercase;
-        font-weight: bold;
         letter-spacing: .1em;
-        font-family: 'Lato';
+        font-family: DinProBold;
         font-size: 24px;
         color: #282c34;
         position: absolute;
         top: 50%;
-        width: 100%;
+        width: 90%;
         -webkit-filter: blur(10px);
                 filter: blur(10px);
         text-align: center;
@@ -1158,10 +1159,6 @@ Other components
       opacity: 1;
       -webkit-transition: opacity .3s;
       transition: opacity .3s; }
-    .projects-wrapper .one-project-thumbnail-wrapper:hover .butterfly {
-      opacity: 1;
-      -webkit-transition: opacity .3s;
-      transition: opacity .3s; }
     .projects-wrapper .one-project-thumbnail-wrapper:hover .title {
       opacity: 1;
       -webkit-filter: none;
@@ -1170,13 +1167,9 @@ Other components
       -webkit-transition: opacity .3s, -webkit-filter .6s;
       transition: opacity .3s, -webkit-filter .6s;
       transition: opacity .3s, filter .6s;
-      transition: opacity .3s, filter .6s, -webkit-filter .6s; }
-    .projects-wrapper .one-project-thumbnail-wrapper:hover .wing1 {
-      transform: skew(0, 30deg) translate(20px, 20px);
-      -webkit-transform: skew(0, 30deg) translate(20px, 20px); }
-    .projects-wrapper .one-project-thumbnail-wrapper:hover .wing2 {
-      transform: skew(0deg, -30deg) translate(10px, 10px);
-      -webkit-transform: skew(0deg, -30deg) translate(10px, 10px); }
+      transition: opacity .3s, filter .6s, -webkit-filter .6s;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%); }
     @media (min-width: 360px) and (max-width: 840px) {
       .projects-wrapper .one-project-thumbnail-wrapper .one-project-thumbnail .thumbnail {
         -webkit-filter: none;
@@ -1189,13 +1182,9 @@ Other components
         opacity: 1;
         -webkit-filter: none;
                 filter: none;
-        display: inline-block; }
-      .projects-wrapper .one-project-thumbnail-wrapper .one-project-thumbnail .wing1 {
-        transform: skew(0, 30deg) translate(20px, 20px);
-        -webkit-transform: skew(0, 30deg) translate(20px, 20px); }
-      .projects-wrapper .one-project-thumbnail-wrapper .one-project-thumbnail .wing2 {
-        transform: skew(0deg, -30deg) translate(10px, 10px);
-        -webkit-transform: skew(0deg, -30deg) translate(10px, 10px); } }
+        display: inline-block;
+        -webkit-transform: translateY(-50%);
+                transform: translateY(-50%); } }
 
 .next,
 .prev {

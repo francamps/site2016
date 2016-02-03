@@ -294,13 +294,6 @@ var Work = (function (_React$Component) {
       }
     }
   }, {
-    key: 'componentWillUpdate',
-    value: function componentWillUpdate(nextProps, nextState) {
-      if (nextState.openMenu === false) {
-        (0, _jquery2.default)('body').removeClass('noscroll');
-      }
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _this4 = this;
@@ -577,9 +570,14 @@ var Jokesart = (function (_React$Component) {
       this.context.history.pushState(null, '/projects/' + selectedProject);
     }
   }, {
+    key: 'goToTop',
+    value: function goToTop() {
+      window.scrollTo(0, 0);
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      window.scrollTo(0, 0);
+      this.goToTop();
       this.bindEscKey();
     }
   }, {
@@ -616,13 +614,6 @@ var Jokesart = (function (_React$Component) {
         });
       } else {
         this.setState({ openMenu: false });
-      }
-    }
-  }, {
-    key: 'componentWillUpdate',
-    value: function componentWillUpdate(nextProps, nextState) {
-      if (nextState.openMenu === false) {
-        (0, _jquery2.default)('body').removeClass('noscroll');
       }
     }
   }, {
@@ -696,10 +687,6 @@ var _createClass = (function () { function defineProperties(target, props) { for
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _butterfly = require('./butterfly/butterfly');
-
-var _butterfly2 = _interopRequireDefault(_butterfly);
 
 var _reactRouter = require('react-router');
 
@@ -783,7 +770,6 @@ var OneProjectThumbnail = (function (_React$Component) {
               { className: 'title' },
               title
             ),
-            React.createElement(_butterfly2.default, null),
             this.renderThumbnail()
           )
         )
@@ -796,7 +782,7 @@ var OneProjectThumbnail = (function (_React$Component) {
 
 exports.default = OneProjectThumbnail;
 
-},{"./butterfly/butterfly":214,"jquery":27,"react-router":48}],224:[function(require,module,exports){
+},{"jquery":27,"react-router":48}],224:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -856,11 +842,6 @@ var OneProjectDetail = (function (_React$Component) {
           _this2.props.onNextProject(_this2.props.projectId);
         }
       };
-    }
-  }, {
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      document.getElementsByTagName('body')[0].className += ' noscroll';
     }
   }, {
     key: 'loadJSON',
@@ -1536,6 +1517,10 @@ var _sideburger = require('./sideburger');
 
 var _sideburger2 = _interopRequireDefault(_sideburger);
 
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1562,30 +1547,47 @@ var SidePanel = (function (_React$Component) {
   _createClass(SidePanel, [{
     key: 'openMenu',
     value: function openMenu() {
-      this.setState({ isOpen: true });
-    }
-  }, {
-    key: 'allowBodyScroll',
-    value: function allowBodyScroll() {
-      var elems = document.getElementsByTagName("body");
-      [].forEach.call(elems, function (el) {
-        el.classList.remove("noscroll");
+      this.setState({
+        isOpen: true
       });
     }
   }, {
     key: 'closeMenu',
     value: function closeMenu() {
-      this.allowBodyScroll();
-
       this.setState({
         isOpen: false,
         contents: _react2.default.createElement(_sidemenu2.default, null)
       });
     }
   }, {
+    key: 'enableBodyScroll',
+    value: function enableBodyScroll() {
+      var elems = document.getElementsByTagName("body");
+      [].forEach.call(elems, function (el) {
+        el.classList.remove("noscroll");
+      });
+    }
+  }, {
+    key: 'disableBodyScroll',
+    value: function disableBodyScroll() {
+      var body = document.getElementsByTagName('body')[0];
+      if (this.state.isOpen & !(0, _jquery2.default)(body).hasClass('noscroll')) {
+        body.className += ' noscroll';
+      }
+    }
+  }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       this.setState({ isOpen: nextProps.isOpen });
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      if (nextState.isOpen) {
+        this.disableBodyScroll();
+      } else {
+        this.enableBodyScroll();
+      }
     }
   }, {
     key: 'render',
@@ -1619,7 +1621,7 @@ var SidePanel = (function (_React$Component) {
 
 exports.default = SidePanel;
 
-},{"./sideburger":226,"./sidemenu":227,"react":210}],227:[function(require,module,exports){
+},{"./sideburger":226,"./sidemenu":227,"jquery":27,"react":210}],227:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
