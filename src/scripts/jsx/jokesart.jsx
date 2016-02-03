@@ -13,6 +13,7 @@ let projects = [
   'whatsapp',
   'unsend',
   'craigslist',
+  'artofsynaesthesia',
   'binarycard'
 ];
 
