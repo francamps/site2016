@@ -981,8 +981,8 @@ Sections
       background: #fefbf7;
       text-align: center; }
       .contact .content .copy p {
-        font-size: 36px;
-        line-height: 48px;
+        font-size: 24px;
+        line-height: 32px;
         margin: 0 auto;
         margin-bottom: 36px;
         font-family: DinProLight; }
@@ -1008,6 +1008,10 @@ Sections
             margin: 10px auto;
             color: #24d8cd;
             background: none; }
+      @media (min-width: 600px) {
+        .contact .content .copy p {
+          font-size: 36px;
+          line-height: 48px; } }
 
 .footer {
   background: -webkit-radial-gradient(circle, #fefbf7, #d4d4d2);

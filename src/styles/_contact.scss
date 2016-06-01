@@ -29,8 +29,8 @@
       text-align: center;
 
       p {
-        font-size: $xlarge;
-        line-height: $xxlarge;
+        font-size: $large;
+        line-height: $mlarge;
         margin: 0 auto;
         margin-bottom: 36px;
         font-family: DinProLight;
@@ -61,6 +61,13 @@
             color: $lightblue;
             background: none;
           }
+        }
+      }
+
+      @media (min-width: $min-tablet-portrait-width) {
+        p {
+          font-size: $xlarge;
+          line-height: $xxlarge;
         }
       }
     }
