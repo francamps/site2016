@@ -36,12 +36,12 @@ export default class SideMenu extends React.Component {
             </Link>
           </div>
           <div className='menu-option fadeInUp animated'>
-            <Link to="journal">
+            <a href="/writing">
               <div className='option-wrapper'>
-                <span>JOURNAL (coming soon)</span>
+                <span>JOURNAL</span>
                 <Butterfly />
               </div>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

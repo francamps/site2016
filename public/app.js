@@ -181,7 +181,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var projects = ['readiness', 'goteo', 'differentiation', 'forbesclustering', 'crowdacademy', 'studentproficiency', 'othervisualizations'];
+var projects = ['tellmewhatsapp', 'readiness', 'goteo', 'differentiation', 'forbesclustering', 'crowdacademy', 'studentproficiency' //,
+//'othervisualizations'
+];
 
 var Work = (function (_React$Component) {
   _inherits(Work, _React$Component);
@@ -1724,15 +1726,15 @@ var SideMenu = (function (_React$Component) {
             'div',
             { className: 'menu-option fadeInUp animated' },
             _react2.default.createElement(
-              _reactRouter.Link,
-              { to: 'journal' },
+              'a',
+              { href: '/writing' },
               _react2.default.createElement(
                 'div',
                 { className: 'option-wrapper' },
                 _react2.default.createElement(
                   'span',
                   null,
-                  'JOURNAL (coming soon)'
+                  'JOURNAL'
                 ),
                 _react2.default.createElement(_butterfly2.default, null)
               )

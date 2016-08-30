@@ -10,13 +10,14 @@ import Footer from './footer';
 import $ from 'jquery';
 
 let projects = [
+  'tellmewhatsapp',
   'readiness',
   'goteo',
   'differentiation',
   'forbesclustering',
   'crowdacademy',
-  'studentproficiency',
-  'othervisualizations'
+  'studentproficiency'//,
+  //'othervisualizations'
 ];
 
 export default class Work extends React.Component {
