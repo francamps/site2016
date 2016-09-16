@@ -19,10 +19,11 @@ export default class Contact extends React.Component {
               <span className='highlight'> experiences</span>.
             </p>
 
-            <p>
-              <span className='highlight'>New York City </span>
-              || <span className='highlight'>Barcelona</span>
-            </p>
+            <div>
+              <p className='highlight inactive'>Barcelona </p>
+              <p className='highlight inactive'>New York </p>
+              <p className='highlight'>London</p>
+            </div>
 
             <p>Say hi!</p>
             <p><a className='mailto' href='mailto:hi@franc.ly'>hi@franc.ly</a></p>

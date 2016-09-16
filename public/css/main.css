@@ -980,28 +980,33 @@ Sections
       max-width: none;
       background: #fefbf7;
       text-align: center; }
-      .contact .content .copy p {
+      .contact .content .copy div, .contact .content .copy p {
         font-size: 24px;
         line-height: 32px;
         margin: 0 auto;
         margin-bottom: 36px;
         font-family: DinProLight; }
-        .contact .content .copy p .highlight {
+        .contact .content .copy div .highlight, .contact .content .copy p .highlight {
           color: #282c34;
           font-family: DinProMedium; }
-        .contact .content .copy p a {
+          .contact .content .copy div .highlight.inactive, .contact .content .copy p .highlight.inactive {
+            color: #81898f;
+            text-decoration: line-through;
+            font-family: 'DinProLight';
+            margin-bottom: 0; }
+        .contact .content .copy div a, .contact .content .copy p a {
           text-decoration: none;
           font-weight: bold;
           color: #24d8cd;
           border-bottom: white 4px transparent;
           -webkit-transition: border 0.3s;
           transition: border 0.3s; }
-          .contact .content .copy p a:hover {
+          .contact .content .copy div a:hover, .contact .content .copy p a:hover {
             border-bottom: #78dc3a 4px solid;
             color: #78dc3a;
             -webkit-transition: border 0.3s, color .3s;
             transition: border 0.3s, color .3s; }
-          .contact .content .copy p a.mailto {
+          .contact .content .copy div a.mailto, .contact .content .copy p a.mailto {
             text-decoration: none;
             font-family: DinProLight;
             padding: 10px 0;

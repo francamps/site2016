@@ -28,7 +28,7 @@
       background: $almostwhite;
       text-align: center;
 
-      p {
+      div, p {
         font-size: $large;
         line-height: $mlarge;
         margin: 0 auto;
@@ -38,6 +38,13 @@
         .highlight {
           color: $darkgrey;
           font-family: DinProMedium;
+
+          &.inactive {
+            color: $midgrey;
+            text-decoration: line-through;
+            font-family: 'DinProLight';
+            margin-bottom: 0;
+          }
         }
 
         a {
