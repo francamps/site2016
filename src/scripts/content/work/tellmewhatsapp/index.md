@@ -1,12 +1,12 @@
 ---
-title: Tell Me Whatsapp Inside
+title: Whatsapp Explorer
 author: Franc
 image: whatsappthumbnail.png
 date: 2016
 tags: <span class='project-tag'>Interactive viusalization</span><span class='project-tag'>Dashboard</span><span class='project-tag'>Visual communication</span><span class='project-tag'>Personal data</span>
 ---
 
-On summer 2016 I launched [Tell Me Whatsapp Inside](http://www.tellmewhatsappinside.com), an analytics dashboard to explore your own personal Whatsapp conversations and gain insight into your communication patterns.
+On summer 2016 I launched [Whatsapp Explorer](http://www.franc.ly/whatsappExplorer/index.html), an analytics dashboard to explore your own personal Whatsapp conversations and gain insight into your communication patterns.
 
 The dashboard parses the \*.txt file that can be obtained through the official Whatsapp app for each conversation. The data in the conversation is then handled to produce several metrics and visualizations that inform the user on the patterns of her individual conversations with other people.
 
